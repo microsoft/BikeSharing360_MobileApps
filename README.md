@@ -2,7 +2,7 @@
 
 During Connect(); //2016 we showcased many technologies available to you as a developer across Azure, Office, Windows, Visual Studio and Visual Studio Team Services. We’ve also heard from you that you love to have real-world applications through which you can directly experience what’s possible using those technologies. This year, then, we built out a full bikerider scenario for our Connect(); //2016 demos and are delighted to share all the source code with you.
 
-**Note:** This document is about the **Xamarin apps**. For the [Cordova app click here]("./cordova.md").
+**Note:** This document is about the **Xamarin apps**. For the [Cordova app click here](./cordova.md).
 
 <img src="Images/hero_image.png" alt="BikeRider" Width="800" />
 
