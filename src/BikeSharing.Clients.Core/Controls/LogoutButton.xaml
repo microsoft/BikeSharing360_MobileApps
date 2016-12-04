@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BikeSharing.Clients.Core.Controls.LogoutButton"
+             Spacing="0"
+             Orientation="Horizontal"
+             Margin="12">
+  <Image 
+      Source="menu_ic_logout.png"
+      WidthRequest="20"
+      HeightRequest="20"
+      Margin="0,0,14,0">
+    <Image.Source>
+      <OnPlatform x:TypeArguments="ImageSource"
+                  Android="menu_ic_logout.png"
+                  iOS="menu_ic_logout.png"
+                  WinPhone="Assets\uwp_ic_logout.png"/>
+    </Image.Source>
+    <Image.Margin>
+      <OnPlatform x:TypeArguments="Thickness"
+                  Android="0,0,14,0"
+                  iOS="0,0,14,0"
+                  WinPhone="0,14,14,14"/>
+    </Image.Margin>
+  </Image>
+  <Label
+      Text="Logout">
+    <Label.Style>
+      <OnPlatform x:TypeArguments="Style"
+                  Android="{StaticResource HeaderLabelStyle}"
+                  iOS="{StaticResource HeaderLabelStyle}"
+                  WinPhone="{StaticResource UwpHeaderLabelStyle}"/>
+    </Label.Style>
+    <Label.Margin>
+      <OnPlatform x:TypeArguments="Thickness"
+                  WinPhone="0,14"/>
+    </Label.Margin>
+  </Label>
+</StackLayout>

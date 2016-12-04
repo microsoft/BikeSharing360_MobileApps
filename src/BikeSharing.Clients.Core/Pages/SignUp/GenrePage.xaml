@@ -1,0 +1,258 @@
+﻿<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BikeSharing.Clients.Core.Pages.GenrePage"
+             xmlns:helpers="clr-namespace:BikeSharing.Clients.Core.Helpers;assembly=BikeSharing.Clients.Core"
+             xmlns:controls="clr-namespace:BikeSharing.Clients.Core.Controls;assembly=BikeSharing.Clients.Core"
+             xmlns:behaviors="clr-namespace:BikeSharing.Clients.Core.Behaviors;assembly=BikeSharing.Clients.Core"
+             xmlns:effects="clr-namespace:BikeSharing.Clients.Core.Effects;assembly=BikeSharing.Clients.Core"
+             xmlns:triggers="clr-namespace:BikeSharing.Clients.Core.Triggers;assembly=BikeSharing.Clients.Core"
+             xmlns:animations="clr-namespace:BikeSharing.Clients.Core.Animations;assembly=BikeSharing.Clients.Core">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <animations:RotateToAnimation
+                x:Key="SunAnimation"
+                Target="{x:Reference Sun}"
+                Rotation="360"
+                Duration="5000"
+                RepeatForever="True"/>
+
+            <animations:StoryBoard
+               x:Key="Cloud1Animation"
+               Target="{x:Reference Cloud1}"
+               RepeatForever="True">
+                <animations:TranslateToAnimation
+                   Target="{x:Reference Cloud1}"
+                   TranslateX="-24"
+                   Duration="8000"/>
+                <animations:TranslateToAnimation
+                   Target="{x:Reference Cloud1}"
+                   TranslateX="24"
+                   Duration="8000"/>
+            </animations:StoryBoard>
+
+            <animations:StoryBoard
+                x:Key="Cloud2Animation"
+                Target="{x:Reference Cloud2}"
+                RepeatForever="True">
+                <animations:TranslateToAnimation
+                   Target="{x:Reference Cloud2}"
+                   TranslateX="24"
+                   Duration="8000"/>
+                <animations:TranslateToAnimation
+                   Target="{x:Reference Cloud2}"
+                   TranslateX="-24"
+                   Duration="8000"/>
+            </animations:StoryBoard>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid
+        BackgroundColor="Gray"
+        Padding="0,0,0,1">
+        <!-- BACKGROUND -->
+        <BoxView 
+            BackgroundColor="{StaticResource WhiteColor}"/>
+        <AbsoluteLayout 
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+            <!-- CLOSE -->
+            <Image
+                AbsoluteLayout.LayoutFlags="All"
+                Margin="0, 6">
+                <Image.AbsoluteLayout.LayoutBounds>
+                    <helpers:OnCustomPlatform 
+                        x:TypeArguments="Rectangle"
+                        iOS="0.05, 0.0, 0.065, 0.065"
+                        Android="0.05, 0.0, 0.065, 0.065"
+                        WinPhone="0.05, 0.0, 0.065, 0.065"
+                        Windows="0.01, 0.0, 0.065, 0.065"/>
+                </Image.AbsoluteLayout.LayoutBounds>
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                      Android="ic_close.png"
+                      iOS="ic_close.png"
+                      WinPhone="Assets\SignUp\ic_close.png"/>
+                </Image.Source>
+            </Image>
+            <Grid   
+                BackgroundColor="Transparent"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Grid.AbsoluteLayout.LayoutBounds>
+                    <helpers:OnCustomPlatform 
+                        x:TypeArguments="Rectangle"
+                        iOS="0.05, 0.0, 30, 30"
+                        Android="0.05, 0.0, 30, 30"
+                        WinPhone="0.05, 0.0, 30, 30"
+                        Windows="0.01, 0.0, 34, 34"/>
+                </Grid.AbsoluteLayout.LayoutBounds>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CloseCommand}" 
+                                          NumberOfTapsRequired="1" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <!-- SUN -->
+            <Image
+                x:Name="Sun"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0.1, 0.3, 0.25, 0.25">
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                      Android="sun.png"
+                      iOS="sun.png"
+                      WinPhone="Assets\SignUp\sun.png"/>
+                </Image.Source>
+            </Image>
+            <!-- CLOUD 1 -->
+            <Image
+                x:Name="Cloud1" 
+                AbsoluteLayout.LayoutFlags="All">
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                      Android="cloud_1.png"
+                      iOS="cloud_1.png"
+                      WinPhone="Assets\SignUp\cloud_1.png"/>
+                </Image.Source>
+                <Image.AbsoluteLayout.LayoutBounds>
+                    <helpers:OnCustomPlatform 
+                          x:TypeArguments="Rectangle"
+                          Android="0.3, 0.05, 0.4, 0.4"
+                          iOS="0.3, 0.05, 0.4, 0.4"
+                          WinPhone="0.3, 0.05, 0.4, 0.4" 
+                          Windows="0.3, 0.05, 0.15, 0.15" />
+                </Image.AbsoluteLayout.LayoutBounds>
+            </Image>
+            <!-- CLOUD 2 -->
+            <Image 
+                x:Name="Cloud2"
+                AbsoluteLayout.LayoutFlags="All">
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                      Android="cloud_2.png"
+                      iOS="cloud_2.png"
+                      WinPhone="Assets\SignUp\cloud_2.png"/>
+                </Image.Source>
+                <Image.AbsoluteLayout.LayoutBounds>
+                    <helpers:OnCustomPlatform 
+                          x:TypeArguments="Rectangle"
+                          Android="0.15, 0.95, 0.4, 0.4"
+                          iOS="0.15, 0.95, 0.4, 0.4"
+                          WinPhone="0.15, 0.95, 0.4, 0.4" 
+                          Windows="0.15, 0.95, 0.15, 0.15" />
+                </Image.AbsoluteLayout.LayoutBounds>
+            </Image>
+            <!-- MAN -->
+            <controls:ToggleButton    
+                UnCheckedImage="signup_man"
+                Animate="True"           
+                Checked="{Binding IsMale, Mode=TwoWay}" 
+                Command="{Binding MaleCommand}"
+                CommandParameter="Male"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0.2, 0.7, 0.4, 0.4">
+                <controls:ToggleButton.CheckedImage>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                          Android="signup_man_select.png"
+                          iOS="signup_man_select.png"
+                          WinPhone="Assets\SignUp\signup_man_select.png"/>
+                </controls:ToggleButton.CheckedImage>
+                <controls:ToggleButton.UnCheckedImage>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                          Android="signup_man.png"
+                          iOS="signup_man.png"
+                          WinPhone="Assets\SignUp\signup_man.png"/>
+                </controls:ToggleButton.UnCheckedImage>
+            </controls:ToggleButton>
+            <!-- WOMAN -->
+            <controls:ToggleButton
+                Animate="True"
+                Checked="{Binding IsFemale, Mode=TwoWay}"
+                Command="{Binding FemaleCommand}" 
+                CommandParameter="Female"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0.7, 0.2, 0.4, 0.4">
+                <controls:ToggleButton.CheckedImage>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                          Android="signup_woman_select.png"
+                          iOS="signup_woman_select.png"
+                          WinPhone="Assets\SignUp\signup_woman_select.png"/>
+                </controls:ToggleButton.CheckedImage>
+                <controls:ToggleButton.UnCheckedImage>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                          Android="signup_woman.png"
+                          iOS="signup_woman.png"
+                          WinPhone="Assets\SignUp\signup_woman.png"/>
+                </controls:ToggleButton.UnCheckedImage>
+            </controls:ToggleButton>
+            <!-- BUILDING -->
+            <Image 
+                HorizontalOptions="EndAndExpand"
+                VerticalOptions="EndAndExpand"
+                AbsoluteLayout.LayoutFlags="All">
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                      Android="building.png"
+                      iOS="building.png"
+                      WinPhone="Assets\SignUp\building.png"/>
+                </Image.Source>
+                <Image.Aspect>
+                    <helpers:OnCustomPlatform 
+                          x:TypeArguments="Aspect"
+                          Android="AspectFill"
+                          iOS="AspectFill"
+                          WinPhone="AspectFit" 
+                          Windows="AspectFit" />
+                </Image.Aspect>
+                <Image.AbsoluteLayout.LayoutBounds>
+                    <helpers:OnCustomPlatform 
+                          x:TypeArguments="Rectangle"
+                          Android="1.0, 1.0, 0.5, 0.5"
+                          iOS="1.0, 1.0, 0.5, 0.5"
+                          WinPhone="1.0, 1.0, 0.5, 0.5" 
+                          Windows="1.0, 1.0, 0.75, 0.75" />
+                </Image.AbsoluteLayout.LayoutBounds>
+            </Image>
+            <!-- SKIP -->
+            <Label
+                Text="Skip" 
+                TextColor="{StaticResource BlackColor}"
+                FontFamily="Montserrat-Regular.ttf#Montserrat"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                VerticalOptions="EndAndExpand"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0.05, 0.95, 0.25, 0.075">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SkipCommand}" 
+                                          NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+            <!-- NEXT -->
+            <Image  
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                AbsoluteLayout.LayoutFlags="All"
+                Margin="0, 12, 12, 0">
+                <Image.AbsoluteLayout.LayoutBounds>
+                    <helpers:OnCustomPlatform 
+                        x:TypeArguments="Rectangle"
+                        iOS="1.0, 1.0, 0.3, 0.3"
+                        Android="1.0, 1.0, 0.3, 0.3"
+                        WinPhone="1.0, 1.0, 0.3, 0.3"
+                        Windows="1.0, 1.0, 0.25, 0.25"/>
+                </Image.AbsoluteLayout.LayoutBounds>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NextCommand}" 
+                                          CommandParameter="True"
+                                          NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                      Android="floating_action_button_normal.png"
+                      iOS="floating_action_button_normal.png"
+                      WinPhone="Assets\SignUp\floating_action_button_normal.png"/>
+                </Image.Source>
+            </Image>
+        </AbsoluteLayout>
+    </Grid>
+</ContentView>

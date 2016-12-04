@@ -1,0 +1,319 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BikeSharing.Clients.Core.Pages.CustomRidePage" 
+             xmlns:controls="clr-namespace:BikeSharing.Clients.Core.Controls;assembly=BikeSharing.Clients.Core"   
+             xmlns:triggers="clr-namespace:BikeSharing.Clients.Core.Triggers;assembly=BikeSharing.Clients.Core"
+             xmlns:behaviors="clr-namespace:BikeSharing.Clients.Core.Behaviors;assembly=BikeSharing.Clients.Core"
+             xmlns:animations="clr-namespace:BikeSharing.Clients.Core.Animations;assembly=BikeSharing.Clients.Core"
+             xmlns:effects="clr-namespace:BikeSharing.Clients.Core.Effects;assembly=BikeSharing.Clients.Core"
+             xmlns:helpers="clr-namespace:BikeSharing.Clients.Core.Helpers;assembly=BikeSharing.Clients.Core"
+             xmlns:core="clr-namespace:BikeSharing.Clients.Core;assembly=BikeSharing.Clients.Core"
+             xmlns:ride="clr-namespace:BikeSharing.Clients.Core.Controls.Rides"
+             Title="New Ride">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="TranslucidBlackColor">#1A000000</Color>
+
+            <Style x:Key="NewRideHeaderStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+            </Style>
+
+            <Style x:Key="FormBindablePickerStyle" TargetType="controls:BindablePicker">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="effects:LineColorEffect.ApplyLineColor" Value="True" />
+                <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+            <animations:FadeInAnimation
+                x:Key="MapAnimation"
+                Target="{x:Reference Map}"
+                Direction="Up"
+                Duration="1000"/>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Triggers>
+        <EventTrigger Event="OnAppearing">
+            <triggers:BeginAnimation
+                Animation="{StaticResource MapAnimation}" />
+        </EventTrigger>
+    </ContentPage.Triggers>
+    <ContentPage.Effects>
+        <effects:ContentPageTitleFontEffect />
+    </ContentPage.Effects>
+    <AbsoluteLayout>
+        <!-- MAP -->
+        <controls:CustomMap   
+            x:Name="Map"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" 
+            CustomPins="{Binding CustomPins}"
+            SelectedPin="{Binding SelectedPin, Mode=TwoWay}"
+            From="{Binding From, Mode=TwoWay}"
+            To="{Binding To, Mode=TwoWay}">
+        </controls:CustomMap>
+        <!-- ROUTE SELECTOR -->
+        <Grid
+            x:Name="RouteSelector"
+            Margin="12"
+            AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
+            AbsoluteLayout.LayoutBounds="0.1, 0, 1.0, 230">
+            <Grid.Triggers>
+                <DataTrigger 
+                            TargetType="Grid"
+                            Binding="{Binding ShowInfo}"
+                            Value="True">
+                    <Setter Property="BackgroundColor"
+                            Value="Transparent" />
+                </DataTrigger>
+            </Grid.Triggers>
+            <Grid.BackgroundColor>
+                <OnPlatform 
+                        x:TypeArguments="Color" 
+                        Android="Transparent"
+                        iOS="{StaticResource WhiteColor}" 
+                        WinPhone="{StaticResource TranslucidBlackColor}"/>
+            </Grid.BackgroundColor>
+            <Grid.Padding>
+                <helpers:OnCustomPlatform 
+                    x:TypeArguments="Thickness"
+                    WinPhone="12"
+                    Windows="12"/>
+            </Grid.Padding>
+            <RelativeLayout
+                IsVisible="{Binding ShowInfo, Converter={StaticResource InverseBoolConverter}}">
+                <StackLayout 
+                    x:Name="Menu"
+                    Padding="12"
+                    BackgroundColor="{StaticResource WhiteColor}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression
+                        Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression
+                        Type=RelativeToParent,Property=Height,Factor=1,Constant=-48}">
+                    <Label 
+                        Text="From"
+                        TextColor="#3063F5"
+                        Style="{StaticResource NewRideHeaderStyle}"/>
+                    <controls:BindablePicker   
+                        ItemsSource="{Binding CustomPins}"      
+                        SelectedItem="{Binding From, Mode=TwoWay}"
+                        Style="{StaticResource FormBindablePickerStyle}"/>
+                    <Label  
+                        Text="To"
+                        TextColor="#FF5E4D"
+                        Style="{StaticResource NewRideHeaderStyle}"/>
+                    <controls:BindablePicker  
+                        ItemsSource="{Binding CustomPins}"    
+                        SelectedItem="{Binding To, Mode=TwoWay}"
+                        Style="{StaticResource FormBindablePickerStyle}"/>
+                </StackLayout>
+                <!-- GO Button Container -->
+                <Grid 
+					x:Name="GoButtonContainer"
+                    IsVisible="{Binding ShowInfo, Converter={StaticResource InverseBoolConverter}}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression
+                        Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                        ElementName=Menu,Property=Height,Factor=1,Constant=0}">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding GoCommand}"    
+                            Tapped="Go"
+                            NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                    <Grid.BackgroundColor>
+                        <OnPlatform 
+                                x:TypeArguments="Color" 
+                                Android="Transparent"
+								iOS="{StaticResource BackgroundGrayColor}"
+                                WinPhone="{StaticResource BackgroundGrayColor}" />
+                    </Grid.BackgroundColor>
+                    <Grid.HeightRequest>
+                        <OnPlatform 
+                            x:TypeArguments="x:Double" 
+                            iOS="32"
+                            Android="96"
+                            WinPhone="48" />
+                    </Grid.HeightRequest>
+                    <!-- iOS Go Button -->
+                    <Grid>
+                        <Grid.IsVisible>
+                            <OnPlatform 
+                                x:TypeArguments="x:Boolean" 
+                                iOS="True"
+                                Android="False"
+                                WinPhone="False" />
+                        </Grid.IsVisible>
+						<Label
+			                Text="Go" 
+			                TextColor="{StaticResource BlueColor}"
+			                FontSize="Large"
+			                FontAttributes="Bold"
+			                HorizontalOptions="End"     
+			                FontFamily="{StaticResource MontserratRegular}" 
+			                Margin="12, 0" />
+                    </Grid>
+                    <!-- Android Go Button -->
+                    <Grid>
+                        <Grid.IsVisible>
+                            <OnPlatform 
+                                x:TypeArguments="x:Boolean" 
+                                iOS="False"
+                                Android="True"
+                                WinPhone="False" />
+                        </Grid.IsVisible>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid 
+                            Grid.Row="0"
+                            BackgroundColor="{StaticResource WhiteColor}"/>
+                        <Image
+                            x:Name="AndroidGoImage"
+                            Opacity="0"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            HorizontalOptions="End"
+                            Source="customride_go_normal" />
+                    </Grid>
+                    <!-- UWP Go Button -->
+                    <Grid BackgroundColor="{StaticResource BlueColor}"
+                          WidthRequest="48"
+                          HorizontalOptions="End">
+                        <Grid.IsVisible>
+                            <OnPlatform 
+                            x:TypeArguments="x:Boolean" 
+                            iOS="False"
+                            Android="False"
+                            WinPhone="True" />
+                        </Grid.IsVisible>
+                        <Label 
+                            Text="Go"    
+                            TextColor="{StaticResource WhiteColor}"
+                            FontSize="{StaticResource BigSize}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            FontFamily="{StaticResource MontserratRegular}" 
+                            BackgroundColor="{StaticResource BlueColor}"/>
+                    </Grid>
+                </Grid>
+            </RelativeLayout>
+
+        </Grid>
+        <!-- INFO PANEL -->
+        <Grid   
+            x:Name="InfoPanel"
+            IsVisible="False"
+            Margin="12"
+            AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
+            AbsoluteLayout.LayoutBounds="0.0, 1.0, 1.0, AutoSize">
+            <StackLayout
+                x:Name="InfoPanelContent"
+                Spacing="0"
+                IsVisible="{Binding SelectedPin, Converter={StaticResource NullToBoolConverter}}">
+                <StackLayout.Padding>
+                    <helpers:OnCustomPlatform 
+                    x:TypeArguments="Thickness"
+                    WinPhone="12"
+                    Windows="12"/>
+                </StackLayout.Padding>
+                <StackLayout.BackgroundColor>
+                    <OnPlatform 
+                        x:TypeArguments="Color" 
+                        Android="Transparent"
+                        iOS="Transparent" 
+                        WinPhone="{StaticResource TranslucidBlackColor}"/>
+                </StackLayout.BackgroundColor>
+                <ride:RideStationInformationControl
+                    Padding="8"
+                    StationTextColor="{StaticResource WhiteColor}"
+                    TextColor="{StaticResource WhiteColor}"
+                    IsFromStation="{Binding SelectedPin.Type, Converter={StaticResource FromStationConverter}}"
+                    BackgroundColor="{Binding SelectedPin, Converter={StaticResource MapColorConverter}}"
+                    Station="{Binding SelectedStation}" />
+                <ride:RideStationInformationControl
+                    IsFromStation="True"
+                    Padding="8"
+                    BackgroundColor="{Binding From, Converter={StaticResource MapColorConverter}}"
+                    StationTextColor="{StaticResource WhiteColor}"
+                    TextColor="{StaticResource WhiteColor}"
+                    Station="{Binding FromStation}">
+                    <ride:RideStationInformationControl.Triggers>
+                        <DataTrigger 
+                            TargetType="ride:RideStationInformationControl"
+                            Binding="{Binding FromStation, Converter={StaticResource NullToBoolConverter}}"
+                            Value="False">
+                            <Setter Property="Opacity"
+                                    Value="0" />
+                        </DataTrigger>
+                    </ride:RideStationInformationControl.Triggers>
+                </ride:RideStationInformationControl>
+                <ride:RideStationInformationControl
+                    IsFromStation="False"
+                    Padding="8"
+                    Margin="0, 8, 0, 0"
+                    BackgroundColor="{Binding To, Converter={StaticResource MapColorConverter}}"
+                    StationTextColor="{StaticResource WhiteColor}"
+                    TextColor="{StaticResource WhiteColor}"
+                    Station="{Binding ToStation}">
+                    <ride:RideStationInformationControl.Triggers>
+                        <DataTrigger 
+                            TargetType="ride:RideStationInformationControl"
+                            Binding="{Binding ToStation, Converter={StaticResource NullToBoolConverter}}"
+                            Value="False">
+                            <Setter Property="Opacity"
+                                    Value="0" />
+                        </DataTrigger>
+                    </ride:RideStationInformationControl.Triggers>
+                </ride:RideStationInformationControl>
+            </StackLayout>
+        </Grid>
+        <!-- RIDE SUMMARY -->
+        <Grid   
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.0, 0.0, 1.0, 1.0"           
+            BackgroundColor="{StaticResource TransparentBlueColor}"
+            IsVisible="{Binding ShowInfo}">
+            <Grid.Padding>
+                <OnPlatform 
+                    x:TypeArguments="Thickness" 
+                    iOS="12, 48, 12, 12"
+                    Android="12, 12, 12, 12"
+                    WinPhone="12, 24, 12, 12" />
+            </Grid.Padding>
+            <ride:RideSummaryControl   
+                x:Name="RideSummary"                
+                From="{Binding FromStation.Name}"
+                To="{Binding ToStation.Name}"      
+                Location="{x:Static core:GlobalSettings.City}"
+                FromStation="{Binding FromStation}"
+                ToStation="{Binding ToStation}"     
+                BookingCommand="{Binding MakeBookingCommand}"/>
+        </Grid>
+        <!-- ACTIVITY INDICATOR -->
+        <Grid
+            IsVisible="{Binding IsBusy}"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.0, 0.0, 1.0, 1.0">
+            <ActivityIndicator
+            Color="{StaticResource BlueColor}"
+            IsRunning="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+                <ActivityIndicator.WidthRequest>
+                    <OnPlatform 
+                        x:TypeArguments="x:Double" 
+                        iOS="100" 
+                        Android="100"
+                        WinPhone="400" />
+                </ActivityIndicator.WidthRequest>
+            </ActivityIndicator>
+        </Grid>
+    </AbsoluteLayout>
+</ContentPage>

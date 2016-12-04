@@ -1,0 +1,7 @@
+<ion-tabs *ngIf="needTabsWithIcons">
+  <ion-tab [root]="tab1Root" tabTitle="Reports" tabIcon="bs-reports"></ion-tab>
+</ion-tabs>
+
+<ion-tabs *ngIf="!needTabsWithIcons">
+    <ion-tab [root]="tab1Root" tabTitle="Reports"></ion-tab>
+</ion-tabs>

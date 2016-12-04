@@ -1,0 +1,77 @@
+@import "../../../theme/variables";
+
+.bs-reports_confirm {
+    color: $color-foreground-light;
+
+    .scroll-content {
+        margin: 0 !important;
+        overflow: hidden;
+        padding: 0 !important;
+    }
+
+    &-container {
+        background-color: $color-brand;
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    &-modal,
+    &-mechanic{
+        height: 100%;
+        left: 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    &-modal {
+        z-index: 3;
+    }
+
+    $bottom: 24%;
+    $left: 10%;
+    &-mechanic {
+        bottom: -$bottom;
+        height: 100% + $bottom;
+        width: 100% + $left;
+        z-index: 2;
+        left: -$left;
+        min-width: 100% + $left;
+
+        &--back {
+            left: #{'calc(-' + $left +' - 4px)'};
+            z-index: 1;
+        }
+    }
+
+    &-title,
+    &-status,
+    &-date,
+    &-station {
+        color: $color-foreground-light;
+        display: block;
+        text-align: center;
+    }
+
+    &-title {
+        font-size: 1.7rem;
+        padding-top: 25%;
+        padding-bottom: .5rem;
+    }
+
+    &-date {
+        font-size: 1.5rem;
+        margin-bottom: .5rem;
+    }
+
+    &-station {
+        font-size: 1.5rem;
+        margin-top: .5rem;
+    }
+
+    &-actions {
+        margin: 80% auto;
+        width: 80%;
+    }
+}

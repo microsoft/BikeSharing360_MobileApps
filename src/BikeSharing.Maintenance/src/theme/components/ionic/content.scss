@@ -1,0 +1,11 @@
+@import "../../variables";
+
+.scroll-content, .fixed-content {
+    margin-top: 60px !important;
+}
+
+.content-ios {
+    .scroll-content, .fixed-content {
+        margin-top: 0 !important;
+    }
+}

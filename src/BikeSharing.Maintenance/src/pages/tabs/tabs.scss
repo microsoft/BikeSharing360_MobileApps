@@ -1,0 +1,30 @@
+@import "../../theme/variables";
+
+.bs-tabs {
+    &.tabs {
+        &-md, &-wp {
+            .tab-button {
+                &-text {
+                    transform: none !important;
+                }
+
+                &[aria-selected=true] {
+                    border-bottom: 2px solid $color-secondary;
+                }
+            }
+        }
+
+        &-ios {
+            .tab-button {
+                &[aria-selected=true] {
+                    color: $color-secondary !important;
+                }
+
+                &-icon {
+                    font-size: 2rem;
+                    padding-top: .5rem;
+                }
+            }
+        }
+    }
+}

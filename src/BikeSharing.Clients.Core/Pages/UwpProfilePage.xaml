@@ -1,0 +1,123 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BikeSharing.Clients.Core.Pages.UwpProfilePage"
+             xmlns:eff="clr-namespace:BikeSharing.Clients.Core.Effects;assembly=BikeSharing.Clients.Core"
+             xmlns:ctrl="clr-namespace:BikeSharing.Clients.Core.Controls;assembly=BikeSharing.Clients.Core"
+             xmlns:animations="clr-namespace:BikeSharing.Clients.Core.Animations;assembly=BikeSharing.Clients.Core"
+             xmlns:triggers="clr-namespace:BikeSharing.Clients.Core.Triggers;assembly=BikeSharing.Clients.Core"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             Title="Profile">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ProfileTitleLabelStyle"
+               TargetType="{x:Type Label}"
+               BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                    Value="{StaticResource BlueColor}" />
+                <Setter Property="FontSize"
+                    Value="{StaticResource LittleSize}" />
+            </Style>
+
+            <Style x:Key="ProfileItemLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource GrayColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LargeSize}" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Effects>
+        <eff:ContentPageTitleFontEffect />
+    </ContentPage.Effects>
+    <Grid 
+        BackgroundColor="{StaticResource BackgroundGrayColor}">
+        <ffimageloading:CachedImage 
+            Source="bg_profile.png"     
+            Aspect="AspectFill"/>
+        <ScrollView>
+            <Grid>
+                <Grid
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    Margin="0, 175, 0, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid 
+                        x:Name="ProfileImage"
+                        Grid.Column="0">
+                        <ctrl:UserProfileImageControl
+                            WidthRequest="105"
+                            HeightRequest="105"
+                            BorderColor="{StaticResource ProfileGrayColorHexString}"
+                            ProfileImage="{Binding Profile.PhotoUrl}"
+                            UpdatePhotoCommand="{Binding UpdatePhotoCommand}"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="Start" />
+                    </Grid>
+                    <StackLayout 
+                        Grid.Column="1" 
+                        Spacing="10"
+                        Margin="40,0,0,0">
+                        <Label
+                            Text="First Name"
+                            Style="{StaticResource ProfileTitleLabelStyle}" />
+                        <Label
+                            Text="{Binding Profile.FirstName}"
+                            Style="{StaticResource ProfileItemLabelStyle}"
+                            Margin="0,0,0,14" />
+                        <Label Text="Last Name"
+                            Style="{StaticResource ProfileTitleLabelStyle}"/>
+                        <Label
+                            Text="{Binding Profile.LastName}"
+                            Style="{StaticResource ProfileItemLabelStyle}"
+                            Margin="0,0,0,14"/>
+                        <Label
+                            Text="Birhdate"
+                            Style="{StaticResource ProfileTitleLabelStyle}"/>
+                        <Label
+                            Text="{Binding Profile.BirthDate, Converter={StaticResource BirthDateConverter}}"
+                            Style="{StaticResource ProfileItemLabelStyle}"/>
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Column="2"
+                        Spacing="10"
+                        Margin="80,0,0,0">
+                        <Label
+                            Text="Email"
+                            Style="{StaticResource ProfileTitleLabelStyle}"/>
+                        <Label
+                            Text="{Binding Profile.Email}"
+                            Style="{StaticResource ProfileItemLabelStyle}"
+                            Margin="0,0,0,14"/>
+                        <Label
+                            Text="Skype"
+                            Style="{StaticResource ProfileTitleLabelStyle}"/>
+                        <Label
+                            Text="{Binding Profile.Skype}"
+                            Style="{StaticResource ProfileItemLabelStyle}"/>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </ScrollView>
+        <ActivityIndicator
+            Color="{StaticResource BlueColor}"
+            IsRunning="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+            <ActivityIndicator.WidthRequest>
+                <OnPlatform 
+                    x:TypeArguments="x:Double" 
+                    iOS="100" 
+                    Android="100"
+                    WinPhone="400" />
+            </ActivityIndicator.WidthRequest>
+        </ActivityIndicator>
+    </Grid>
+</ContentPage>

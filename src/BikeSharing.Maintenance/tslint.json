@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "curly": true,
+    "eofline": true,
+    "indent": [ true, "spaces" ],
+    "no-duplicate-variable": true,
+    "no-empty": true,
+    "no-trailing-whitespace": true,
+    "no-unused-variable": [ true ],
+    "radix": true,
+    "quotemark": [ true, "single" ],
+    "semicolon": [ true, "always" ],
+    "whitespace": [ true, "check-branch", "check-operator", "check-typecast" ]
+  },
+  "rulesDirectory": [
+    "node_modules/tslint-eslint-rules/dist/rules"
+  ]
+}

@@ -1,0 +1,273 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:core="clr-namespace:BikeSharing.Clients.Core;assembly=BikeSharing.Clients.Core"
+             xmlns:animations="clr-namespace:BikeSharing.Clients.Core.Animations;assembly=BikeSharing.Clients.Core"
+             xmlns:triggers="clr-namespace:BikeSharing.Clients.Core.Triggers;assembly=BikeSharing.Clients.Core"
+             xmlns:ctrl="clr-namespace:BikeSharing.Clients.Core.Controls"
+             xmlns:eff="clr-namespace:BikeSharing.Clients.Core.Effects;assembly=BikeSharing.Clients.Core"
+             xmlns:helpers="clr-namespace:BikeSharing.Clients.Core.Helpers;assembly=BikeSharing.Clients.Core"
+             x:Class="BikeSharing.Clients.Core.Pages.BookingPage"
+             Title="{Binding Booking.RideType, Converter={StaticResource RideTypeToStringConverter}}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="BookingTitleLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource ExtraBigSize}" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+            </Style>
+
+            <Style x:Key="BookingSubtitleLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LargerSize}" />
+                <Setter Property="Margin"
+                        Value="0" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+            </Style>
+
+            <Style x:Key="BookingDateAndLocationLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LargeSize}" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+            </Style>
+
+            <Style x:Key="BookingRemainingLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+            </Style>
+
+            <Style x:Key="BookingBikeLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource GrayColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+            </Style>
+
+            <Style x:Key="BookingBikeNumberStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratBoldLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource GreenColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LargerSize}" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+            </Style>
+
+            <animations:StoryBoard x:Key="BookingBackgroundAnimation"
+                                   Target="{x:Reference BookingBackground}"
+                                   Delay="1000"
+                                   RepeatForever="True">
+                <animations:ScaleToAnimation Scale="1.05"
+                                             Duration="8000">
+                    <animations:ScaleToAnimation.Scale>
+                        <OnPlatform x:TypeArguments="x:Double"
+                              Android="1.05"
+                              iOS="1.05"
+                              WinPhone="1"/>
+                    </animations:ScaleToAnimation.Scale></animations:ScaleToAnimation>
+                <animations:ScaleToAnimation Scale="1"
+                                             Duration="8000" />
+            </animations:StoryBoard>
+
+            <animations:StoryBoard x:Key="InformationPanelTranslationAnimation"
+                                   Target="{x:Reference InformationPanel}"
+                                   Delay="1000">
+                <animations:TranslateToAnimation TranslateY="0"
+                                                 Easing="CubicOut"       
+                                                 Delay="500"
+                                                 Duration="1500" />
+            </animations:StoryBoard>
+
+            <animations:StoryBoard x:Key="InformationPanelOpacityAnimation"
+                                   Target="{x:Reference InformationPanel}"
+                                   Delay="1000">
+                <animations:FadeToAnimation Opacity="1"
+											Delay="500"
+                                            Duration="1500" />
+            </animations:StoryBoard>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Triggers>
+        <EventTrigger Event="Appearing">
+            <triggers:BeginAnimation
+                    Animation="{StaticResource BookingBackgroundAnimation}" />
+            <triggers:BeginAnimation
+                    Animation="{StaticResource InformationPanelTranslationAnimation}" />
+            <triggers:BeginAnimation
+                    Animation="{StaticResource InformationPanelOpacityAnimation}" />
+        </EventTrigger>
+    </ContentPage.Triggers>
+    <ContentPage.Effects>
+        <eff:ContentPageTitleFontEffect />
+    </ContentPage.Effects>
+    <Grid BackgroundColor="{StaticResource BlueColor}">
+        <Image 
+            x:Name="BookingBackground"
+            Aspect="AspectFill">
+            <Image.Source>
+                <helpers:OnCustomPlatform 
+                    x:TypeArguments="ImageSource"
+                    Android="booking_background"
+                    iOS="booking_background"
+                    WinPhone="Assets\booking_background.png"            
+                    Windows="Assets\booking_background_desktop.png"/>
+            </Image.Source>
+        </Image>
+        <ScrollView>
+            <Grid 
+                x:Name="InformationPanel" 
+                TranslationY="150"
+                Opacity="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackLayout x:Name="ThanksPanel"
+                             IsVisible="{Binding ShowThanks}"
+                             Grid.Row="0"
+                             Orientation="Vertical">
+                    <Label Text="THANK YOU FOR BOOKING"
+                           Style="{StaticResource BookingTitleLabelStyle}" />
+                    <Label Text="Your bike will be available for 30 minutes"
+                           Style="{StaticResource BookingSubtitleLabelStyle}" />
+                    <Label Text="{Binding Booking.DueDate, Converter={StaticResource DateTimeConverter}, ConverterParameter=ToLocal}"
+                           Style="{StaticResource BookingDateAndLocationLabelStyle}" />
+                    <Label Text="{x:Static core:GlobalSettings.City}"
+                           Style="{StaticResource BookingDateAndLocationLabelStyle}" />
+                </StackLayout>
+                <StackLayout 
+                    x:Name="EnjoyPanel"
+                    Grid.Row="0"
+                    IsVisible="{Binding IsVisible, Source={x:Reference ThanksPanel}, Converter={StaticResource InverseBoolConverter}}"
+                    Orientation="Vertical">
+                    <StackLayout IsVisible="{Binding IsVisible, Source={x:Reference FromToContainer}, Converter={StaticResource InverseBoolConverter}}">
+                        <Label Text="{Binding Event.Name}"
+                           Style="{StaticResource BookingTitleLabelStyle}" />
+                        <Label Text="{Binding Event.Venue.Name}"
+                           Style="{StaticResource BookingSubtitleLabelStyle}" />
+                    </StackLayout>
+                    <StackLayout 
+                        x:Name="FromToContainer"
+                        IsVisible="{Binding Event, Converter={StaticResource InverseNullToBoolConverter}}">
+                        <Label Text="From"
+                           Style="{StaticResource BookingDateAndLocationLabelStyle}" />
+                        <Label Text="{Binding Booking.FromStation.Name}"
+                           Style="{StaticResource BookingSubtitleLabelStyle}" />
+                        <Label Text="To"
+                           Style="{StaticResource BookingDateAndLocationLabelStyle}" />
+                        <Label Text="{Binding Booking.ToStation.Name}"
+                           Style="{StaticResource BookingSubtitleLabelStyle}" />
+                    </StackLayout>
+                    <Label Text="{Binding Booking.DueDate, Converter={StaticResource DateTimeConverter}, ConverterParameter=ToLocal}"
+                           Style="{StaticResource BookingDateAndLocationLabelStyle}" />
+                    <Label Text="{x:Static core:GlobalSettings.City}"
+                           Style="{StaticResource BookingDateAndLocationLabelStyle}" />
+                    <Grid x:Name="CountdownContainer">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <ctrl:CircularProgressControl Grid.Row="0"
+                                                      Progress="{Binding OverallProgress}">
+                          <ctrl:CircularProgressControl.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double"
+                                        WinPhone="80"/>
+                          </ctrl:CircularProgressControl.WidthRequest>
+                          <ctrl:CircularProgressControl.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double"
+                                        WinPhone="80"/>
+                          </ctrl:CircularProgressControl.HeightRequest>  
+                        <ctrl:CircularProgressControl.HorizontalOptions>
+                            <OnPlatform x:TypeArguments="LayoutOptions"
+                                        Android="Fill"
+                                        iOS="Fill"
+                                        WinPhone="Center"/>
+                          </ctrl:CircularProgressControl.HorizontalOptions> 
+                        <ctrl:CircularProgressControl.VerticalOptions>
+                            <OnPlatform x:TypeArguments="LayoutOptions"
+                                        Android="Fill"
+                                        iOS="Fill"
+                                        WinPhone="Center"/>
+                          </ctrl:CircularProgressControl.VerticalOptions> 
+                      </ctrl:CircularProgressControl>
+                        <Label Grid.Row="0"
+                               Text="{Binding RemainingTime, StringFormat='{}{0:mm\\:ss}'}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Style="{StaticResource BookingSubtitleLabelStyle}"/>
+                        <Label Grid.Row="1"
+                               Text="Time remaining"
+                               Style="{StaticResource BookingRemainingLabelStyle}"
+                               Margin="0, 5, 0, 20"/>
+                    </Grid>
+                </StackLayout>
+                <Grid
+                    x:Name="BikeNumberPanel"
+                    HorizontalOptions="Center"
+                    VerticalOptions="End"
+                    WidthRequest="100"
+                    HeightRequest="100"
+                    Grid.Row="1">
+                    <Image 
+                        Aspect="AspectFit">
+                      <Image.Source>
+                        <OnPlatform x:TypeArguments="ImageSource"
+                                    Android="booking_circle_white"
+                                    iOS="booking_circle_white"
+                                    WinPhone="Assets/booking_circle_white.png"/>
+                      </Image.Source>
+                    </Image>
+                    <StackLayout
+                        VerticalOptions="Center">
+                        <Label Text="YOUR BIKE NUMBER IS"
+                               Style="{StaticResource BookingBikeLabelStyle}"
+                               LineBreakMode="WordWrap"/>
+                        <Label Text="{Binding Booking.BikeId}"
+                               Style="{StaticResource BookingBikeNumberStyle}" />
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </ScrollView>
+        <ActivityIndicator
+            Color="{StaticResource BrightYellowColor}"
+            IsRunning="{Binding IsBusy}"  
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+            <ActivityIndicator.WidthRequest>
+                <OnPlatform 
+                    x:TypeArguments="x:Double" 
+                    iOS="100" 
+                    Android="100"
+                    WinPhone="400" />
+            </ActivityIndicator.WidthRequest>
+        </ActivityIndicator>
+    </Grid>
+</ContentPage>

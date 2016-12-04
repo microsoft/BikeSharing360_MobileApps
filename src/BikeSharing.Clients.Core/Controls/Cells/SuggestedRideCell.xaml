@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:core="clr-namespace:BikeSharing.Clients.Core;assembly=BikeSharing.Clients.Core"
+          xmlns:controls="clr-namespace:BikeSharing.Clients.Core.Controls;assembly=BikeSharing.Clients.Core"
+          x:Class="BikeSharing.Clients.Core.Controls.Cells.SuggestedRideCell">
+    <ViewCell.View>
+        <Grid
+            BackgroundColor="{StaticResource WhiteColor}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <!-- SELECTED -->
+            <Grid 
+                Grid.Column="0"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                BackgroundColor="{StaticResource BlueColor}"
+                IsVisible="{Binding IsSelected}" />
+            <!-- CONTENT -->
+            <Grid    
+                Grid.Column="1"
+                Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid
+                    Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image 
+                        Grid.Column="0"
+                        Margin="16"
+                        HeightRequest="42"
+                        WidthRequest="42"
+                        VerticalOptions="Start">
+                        <Image.Source>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                                        Android="myrides_ic_favorite.png"
+                                        iOS="myrides_ic_favorite.png"
+                                        WinPhone="Assets\myrides_ic_favorite.png"/>
+                        </Image.Source>
+                    </Image>
+                    <StackLayout 
+                        Grid.Column="1"
+                        Margin="0,16,0,0"
+                        Orientation="Vertical"
+                        Spacing="0"
+                        VerticalOptions="Start">
+                        <Label 
+                            Text="Suggested Ride"
+                            Style="{StaticResource EventTypeLabelStyle}"
+                            Margin="0,0,0,4" />
+                        <Label 
+                            Text="{Binding To}"
+                            Style="{StaticResource EventNameLabelStyle}"
+                            Margin="0,0,0,5" />
+                        <StackLayout 
+                            Orientation="Horizontal"
+                            Spacing="0">
+                            <Label 
+                                Style="{StaticResource LocationAndDateLabelStyle}"
+                                Text="{Binding Stop, Converter={StaticResource DateTimeConverter}, ConverterParameter=ToLocal}" />
+                            <Label 
+                                Style="{StaticResource LocationAndDateLabelStyle}"
+                                Text=", " />
+                            <Label 
+                                Style="{StaticResource LocationAndDateLabelStyle}"
+                                Text="{x:Static core:GlobalSettings.City}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <Grid
+                    Grid.Row="1"
+                    Margin="0,5,0,12">
+                    <controls:CellInfoControl 
+                        HorizontalOptions="End"
+                        VerticalOptions="End"
+                        Margin="0,0,16,0" />
+                </Grid>
+            </Grid>
+            <!-- SEPARATOR -->
+            <Grid   
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+                BackgroundColor="#dfdfe3"
+                HeightRequest="1">
+                <Grid.Margin>
+                    <OnPlatform   
+                        x:TypeArguments="Thickness"
+                        Android="12, 0"
+                        iOS="12, 0"
+                        WinPhone="0"/>
+                </Grid.Margin>
+            </Grid>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

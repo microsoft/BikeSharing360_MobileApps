@@ -1,0 +1,341 @@
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ride="clr-namespace:BikeSharing.Clients.Core.Controls.Rides"
+             xmlns:animations="clr-namespace:BikeSharing.Clients.Core.Animations;assembly=BikeSharing.Clients.Core"
+             xmlns:helpers="clr-namespace:BikeSharing.Clients.Core.Helpers;assembly=BikeSharing.Clients.Core"
+             xmlns:triggers="clr-namespace:BikeSharing.Clients.Core.Triggers;assembly=BikeSharing.Clients.Core"
+             x:Class="BikeSharing.Clients.Core.Controls.Rides.RideSummaryControl"
+             x:Name="Control">
+    <StackLayout.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="RideSummaryTitleLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+              <Setter Property="FontSize">
+                <Setter.Value>
+                  <helpers:OnCustomPlatform x:TypeArguments="x:Double"
+                                            Android="44"
+                                            iOS="44"
+                                            WinPhone="44"
+                                            Windows="48"/>
+                </Setter.Value>
+              </Setter>
+            </Style>
+
+            <Style x:Key="RideSummarySubtitleLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+              <Setter Property="FontSize"
+                      Value="{StaticResource BigSize}">
+                <Setter.Value>
+                  <helpers:OnCustomPlatform x:TypeArguments="x:Double"
+                                            Android="{StaticResource BigSize}"
+                                            iOS="{StaticResource BigSize}"
+                                            WinPhone="{StaticResource BigSize}"
+                                            Windows="{StaticResource ExtraBigSize}"/>
+                </Setter.Value>
+              </Setter>
+                <Setter Property="Margin"
+                        Value="0" />
+            </Style>
+
+            <Style x:Key="RideSummaryDateAndLocationLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LargerSize}" />
+            </Style>
+
+            <Style x:Key="RideDestinationTitleLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+            </Style>
+
+            <Style x:Key="BookingButtonStyle"
+                   TargetType="{x:Type Button}"
+                   BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="HorizontalOptions"
+                        Value="Start" />
+                <Setter Property="HeightRequest"
+                        Value="52" />
+                <Setter Property="WidthRequest"
+                        Value="200" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LargeSize}" />
+                <Setter Property="Margin"
+                        Value="-2, 0, 0, 0" />
+                <Setter Property="BorderRadius"
+                        Value="0" />
+            </Style>
+
+            <Style x:Key="UwpBookingButtonStyle"
+                   TargetType="{x:Type Button}"
+                   BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="HorizontalOptions"
+                    Value="Start" />
+                <Setter Property="HeightRequest"
+                    Value="52" />
+                <Setter Property="WidthRequest"
+                    Value="200" />
+                <Setter Property="FontSize"
+                    Value="{StaticResource LargeSize}" />
+                <Setter Property="BackgroundColor"
+                   Value="Transparent" />
+                <Setter Property="BorderWidth"
+                    Value="4"/>
+                <Setter Property="BorderColor"
+                    Value="{StaticResource WhiteColor}" />
+                <Setter Property="TextColor"
+                    Value="{StaticResource WhiteColor}" />
+            </Style>
+
+            <Style x:Key="BookingAvailabilityLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource BrightYellowColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+            </Style>
+
+            <Style x:Key="BaseStationInfoStyle"
+                   TargetType="{x:Type ride:RideStationInformationControl}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource GrayColor}" />
+                <Setter Property="Margin"
+                        Value="0" />
+            </Style>
+
+            <Style x:Key="FromStationInfoStyle"
+                   TargetType="{x:Type ride:RideStationInformationControl}"
+                   BasedOn="{StaticResource BaseStationInfoStyle}">
+                <Setter Property="StationTextColor"
+                        Value="{StaticResource BlueColor}" />
+                <Setter Property="IsFromStation"
+                        Value="True" />
+            </Style>
+
+            <Style x:Key="ToStationInfoStyle"
+                   TargetType="{x:Type ride:RideStationInformationControl}"
+                   BasedOn="{StaticResource BaseStationInfoStyle}">
+                <Setter Property="StationTextColor"
+                        Value="{StaticResource ErrorColor}" />
+                <Setter Property="IsFromStation"
+                        Value="False" />
+            </Style>
+
+            <animations:StoryBoard 
+                x:Key="RideSummaryFadeInformationContainerAnimation"
+                Target="{x:Reference InformationContainer}">
+                <animations:FadeToAnimation 
+                    Opacity="0"
+                    Duration="0" />
+                <animations:FadeToAnimation 
+                    Opacity="1"
+					Delay="500"
+                    Duration="1500" />
+            </animations:StoryBoard>
+
+            <animations:StoryBoard 
+                x:Key="RideSummaryTranslationInformationContainerAnimation"
+                Target="{x:Reference InformationContainer}">
+                <animations:TranslateToAnimation 
+                    TranslateY="150"
+                    Duration="0" />
+                <animations:TranslateToAnimation 
+                    TranslateY="0"
+                    Easing="CubicOut"
+					Delay="500"
+                    Duration="1500" />
+            </animations:StoryBoard>
+
+            <animations:StoryBoard 
+                x:Key="RideSummaryStationsContainerAnimation"           
+                Target="{x:Reference StationsContainer}">
+                <animations:TranslateToAnimation 
+                    TranslateY="1000"                       
+                    Duration="0" />
+                <animations:TranslateToAnimation 
+                    TranslateY="0"
+                    Easing="CubicOut"
+					Delay="500"
+                    Duration="1500" />
+            </animations:StoryBoard>
+
+        </ResourceDictionary>
+    </StackLayout.Resources>
+    <StackLayout.Triggers>
+        <EventTrigger Event="AddedToParent">
+            <triggers:BeginAnimation    
+                Animation="{StaticResource RideSummaryFadeInformationContainerAnimation}" />
+            <triggers:BeginAnimation
+                Animation="{StaticResource RideSummaryTranslationInformationContainerAnimation}" />
+            <triggers:BeginAnimation
+                Animation="{StaticResource RideSummaryStationsContainerAnimation}" />
+        </EventTrigger>
+    </StackLayout.Triggers>
+    <StackLayout 
+        x:Name="InformationContainer" 
+        Spacing="0">
+        <Label 
+            Text="{Binding Title, Source={x:Reference Control}}}" 
+            Style="{StaticResource RideSummaryTitleLabelStyle}" />
+        <Label 
+           Text="{Binding Subtitle, Source={x:Reference Control}}}"
+           Style="{StaticResource RideSummarySubtitleLabelStyle}" />
+        <Label 
+            Text="From"
+            IsVisible="{Binding From, Source={x:Reference Control}, Converter={StaticResource StringToBoolConverter}}}"
+            Style="{StaticResource RideDestinationTitleLabelStyle}"/>
+        <Label 
+           Text="{Binding From, Source={x:Reference Control}}}"
+           IsVisible="{Binding From, Source={x:Reference Control}, Converter={StaticResource StringToBoolConverter}}}"
+           Style="{StaticResource RideSummarySubtitleLabelStyle}" />
+        <Label 
+            Text="To"         
+            IsVisible="{Binding To, Source={x:Reference Control}, Converter={StaticResource StringToBoolConverter}}}"
+            Style="{StaticResource RideDestinationTitleLabelStyle}"/>
+        <Label 
+           Text="{Binding To, Source={x:Reference Control}}}"
+           IsVisible="{Binding To, Source={x:Reference Control}, Converter={StaticResource StringToBoolConverter}}}"
+           Style="{StaticResource RideSummarySubtitleLabelStyle}" />
+        <Label 
+            Text="{Binding Date, Source={x:Reference Control}, Converter={StaticResource DateTimeConverter}}" 
+            Margin="0, 20, 0, 0"
+            Style="{StaticResource RideSummaryDateAndLocationLabelStyle}" />
+        <Label 
+            Text="{Binding Location, Source={x:Reference Control}}}"  
+            Style="{StaticResource RideSummaryDateAndLocationLabelStyle}" />
+        <Button x:Name="BookingButton"
+            Text="Book a bike"
+            Command="{Binding BookingCommand, Source={x:Reference Control}}"
+            IsVisible="{Binding BookingCommand, Source={x:Reference Control}, Converter={StaticResource NullToBoolConverter}}">
+            <Button.Style>
+                <OnPlatform 
+                    x:TypeArguments="Style"
+                    Android="{StaticResource BookingButtonStyle}"
+                    iOS="{StaticResource BookingButtonStyle}"
+                    WinPhone="{StaticResource UwpBookingButtonStyle}"/>
+            </Button.Style>
+        </Button>
+        <Label 
+            Text="Available for 30 minutes"
+            Style="{StaticResource BookingAvailabilityLabelStyle}"
+            IsVisible="{Binding BookingCommand, Source={x:Reference Control}, Converter={StaticResource NullToBoolConverter}}">
+            <Label.Margin>
+                <OnPlatform
+                    x:TypeArguments="Thickness"
+                    Android="0"
+                    iOS="0"
+                    WinPhone="0, 10, 0, 0"/>
+            </Label.Margin>
+        </Label>
+    </StackLayout>
+    <Grid
+        x:Name="StationsContainer"        
+        Padding="10"
+        IsVisible="{Binding IsStationsVisible, Source={x:Reference Control}}">
+        <Grid.VerticalOptions>
+            <OnPlatform 
+                x:TypeArguments="LayoutOptions"
+                Android="EndAndExpand"
+                iOS="EndAndExpand"
+                WinPhone="Center"/>
+        </Grid.VerticalOptions>
+        <Grid.HeightRequest>
+            <OnPlatform 
+                x:TypeArguments="x:Double"
+                Android="110"
+                iOS="110"
+                WinPhone="160"/>
+        </Grid.HeightRequest>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="1" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <BoxView
+            Grid.Column="0"
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="3"
+            BackgroundColor="{StaticResource BackgroundGrayColor}"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Margin="-10"/>
+        <Image
+            Grid.Column="0"
+            Grid.Row="0"
+            Aspect="AspectFit">
+            <Image.Source>
+                <OnPlatform  
+                    x:TypeArguments="ImageSource"
+                    Android="myrides_ic_event.png"
+                    iOS="myrides_ic_event.png"
+                    WinPhone="Assets\myrides_ic_event.png"/>
+            </Image.Source>
+            <Image.Margin>
+                <OnPlatform  
+                    x:TypeArguments="Thickness"
+                    Android="0"
+                    iOS="0"
+                    WinPhone="10, 10, 0, 0"/>
+            </Image.Margin>
+        </Image>
+        <BoxView
+            Grid.Column="1"
+            Grid.Row="1"
+            HeightRequest="1"
+            Color="{StaticResource GrayColor}"
+            Opacity="0.22">
+            <BoxView.Margin>
+                <OnPlatform 
+                    x:TypeArguments="Thickness"
+                    Android="0"
+                    iOS="0"
+                    WinPhone="15, 0, 0, 0"/>
+            </BoxView.Margin>
+        </BoxView>
+        <ride:RideStationInformationControl
+            Grid.Row="0" 
+            Grid.Column="1"
+            Station="{Binding FromStation}"
+            Style="{StaticResource FromStationInfoStyle}">
+            <ride:RideStationInformationControl.Margin>
+                <OnPlatform
+                    x:TypeArguments="Thickness"
+                    Android="6, 0"
+                    iOS="6, 0"
+                    WinPhone="15, 10, 0, 0"/>
+            </ride:RideStationInformationControl.Margin>
+        </ride:RideStationInformationControl>
+        <ride:RideStationInformationControl 
+            Grid.Row="2"
+            Grid.Column="1"
+            Station="{Binding ToStation}"
+            Style="{StaticResource ToStationInfoStyle}">
+            <ride:RideStationInformationControl.Margin>
+                <OnPlatform 
+                    x:TypeArguments="Thickness"
+                    Android="6, 0"
+                    iOS="6, 0"
+                    WinPhone="15, 10, 0, 0"/>
+            </ride:RideStationInformationControl.Margin>
+        </ride:RideStationInformationControl>
+    </Grid>
+</StackLayout>

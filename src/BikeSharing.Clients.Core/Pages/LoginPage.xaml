@@ -1,0 +1,225 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:BikeSharing.Clients.Core.Behaviors;assembly=BikeSharing.Clients.Core"
+             xmlns:effects="clr-namespace:BikeSharing.Clients.Core.Effects;assembly=BikeSharing.Clients.Core"
+             xmlns:helpers="clr-namespace:BikeSharing.Clients.Core.Helpers;assembly=BikeSharing.Clients.Core"
+             x:Class="BikeSharing.Clients.Core.Pages.LoginPage"
+             xmlns:windows="clr-namespace:Windows.UI.Xaml.Controls;assembly=Windows, Version=255.255.255.255, Culture=neutral, PublicKeyToken=null, ContentType=WindowsRuntime;targetPlatform=Windows">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ForgotPwdLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+                <Setter Property="Margin"
+                        Value="0, 5, 5, 15" />
+            </Style>
+
+            <Style x:Key="SignInButtonStyle"
+                   TargetType="{x:Type Button}"
+                   BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="HeightRequest"
+                        Value="54" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LargeSize}" />
+            </Style>
+
+            <Style x:Key="HaveAccountLabelStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource MontserratRegular}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource MidMediumSize}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+            </Style>
+
+            <Style x:Key="SignUpLabelStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource MontserratRegular}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource MidMediumSize}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource BrightYellowColor}" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Image Aspect="AspectFill">
+            <Image.Source>
+                <OnPlatform 
+                    x:TypeArguments="ImageSource"
+                    WinPhone="Assets\Uwp_LoginBackground.png"/>
+            </Image.Source>
+        </Image>
+        <Grid>
+            <Grid.Padding>
+                <OnPlatform 
+                    x:TypeArguments="Thickness"
+                    iOS="40, 150, 40, 30"
+                    Android="40, 150, 40, 30"
+                    WinPhone="40"/>
+            </Grid.Padding>
+            <Grid.VerticalOptions>
+                <OnPlatform x:TypeArguments="LayoutOptions"
+                    Android="FillAndExpand"
+                    iOS="FillAndExpand"
+                    WinPhone="Center"/>
+            </Grid.VerticalOptions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition>
+                    <RowDefinition.Height>
+                        <OnPlatform 
+                            x:TypeArguments="GridLength"
+                            iOS="40"
+                            Android="40"
+                            WinPhone="Auto"/>
+                    </RowDefinition.Height>
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <StackLayout.Spacing>
+                    <OnPlatform 
+                        x:TypeArguments="x:Double" 
+                        iOS="20" 
+                        WinPhone="20"/>
+                </StackLayout.Spacing>
+                <StackLayout.HorizontalOptions>
+                    <OnPlatform 
+                        x:TypeArguments="LayoutOptions"
+                        iOS="FillAndExpand"
+                        Android="FillAndExpand"
+                        WinPhone="Center"/>
+                </StackLayout.HorizontalOptions>
+                <Entry 
+                    x:Name="EntryUserName"
+                    Text="{Binding UserName.Value, Mode=TwoWay}"
+                    AutomationId="username"
+                    Placeholder="Username">
+                    <Entry.Style>
+                        <OnPlatform x:TypeArguments="Style"
+                        iOS="{StaticResource EntryStyle}"
+                        Android="{StaticResource EntryStyle}"
+                        WinPhone="{StaticResource UwpEntryStyle}"/>
+                    </Entry.Style>
+                    <Entry.Behaviors>
+                        <behaviors:TurnValidOnFocusBehavior ValidityObject="{Binding UserName}" />
+                        <behaviors:ValidateOnTextChangedBehavior ValidateCommand="{Binding ValidateCommand}"/>
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger TargetType="Entry" 
+                         Binding="{Binding UserName.IsValid}" 
+                         Value="False">
+                            <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource ErrorColor}" />
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+                <Entry 
+                    x:Name="EntryPassword"
+                   Text="{Binding Password.Value, Mode=TwoWay}"
+                   Placeholder="Password"
+                   AutomationId="password"
+                   IsPassword="true">
+                    <Entry.Style>
+                        <OnPlatform 
+                            x:TypeArguments="Style"
+                            iOS="{StaticResource EntryStyle}"
+                            Android="{StaticResource EntryStyle}"
+                            WinPhone="{StaticResource UwpEntryStyle}"/>
+                    </Entry.Style>
+                    <Entry.Behaviors>
+                        <behaviors:TurnValidOnFocusBehavior ValidityObject="{Binding Password}" />
+                        <behaviors:ValidateOnTextChangedBehavior ValidateCommand="{Binding ValidateCommand}"/>
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger 
+                            TargetType="Entry"
+                            Binding="{Binding Password.IsValid}"
+                            Value="False">
+                            <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource ErrorColor}" />
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+                <Label 
+                    Text="Forgot Password?"
+                    HorizontalOptions="End"
+                    Style="{StaticResource ForgotPwdLabelStyle}">
+                    <Label.Effects>
+                        <effects:UnderlineTextEffect />
+                    </Label.Effects>
+                </Label>
+                <Button
+                    Command="{Binding SignInCommand}"
+                    Text="Sign in"
+                    AutomationId="signin"
+                    Style="{StaticResource SignInButtonStyle}">
+                    <Button.IsVisible>
+                        <helpers:OnCustomPlatform x:TypeArguments="x:Boolean"
+                                            Android="True"
+                                            iOS="True"
+                                            WinPhone="False"
+                                            Windows="False"/>
+                    </Button.IsVisible>
+                </Button>
+                <!-- Bindable Native Views Directly to XAML -->
+                <windows:Button 
+                    Content="Sign in"
+                    Height="54"
+                    Width="200"
+                    Command="{Binding SignInCommand}"
+                    View.IsEnabled="{Binding IsEnabled}" />
+            </StackLayout>
+            <StackLayout 
+                Grid.Row="1"
+                Orientation="Horizontal"
+                HorizontalOptions="Center">
+                <StackLayout.Margin>
+                    <OnPlatform 
+                        x:TypeArguments="Thickness"
+                        iOS="0"
+                        Android="0"
+                        WinPhone="0,140,0,0"/>
+                </StackLayout.Margin>
+                <Label  
+                    Text="Don't have an account?"
+                    VerticalOptions="Center"
+                    Style="{StaticResource HaveAccountLabelStyle}" />
+                <Grid
+                    HeightRequest="40">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToSignUpCommand}" 
+                                      NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                    <Label 
+                        Text="Sign up"
+                        VerticalOptions="Center"
+                        Style="{StaticResource SignUpLabelStyle}"/>
+                </Grid>
+            </StackLayout>
+        </Grid>
+        <ActivityIndicator 
+            Color="{StaticResource WhiteColor}"
+            IsRunning="{Binding IsBusy}" 
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Margin="0, 150, 0, 0">
+            <ActivityIndicator.WidthRequest>
+                <OnPlatform 
+                    x:TypeArguments="x:Double" 
+                    iOS="100" 
+                    Android="100"
+                    WinPhone="400" />
+            </ActivityIndicator.WidthRequest>
+        </ActivityIndicator>
+    </Grid>
+</ContentPage>

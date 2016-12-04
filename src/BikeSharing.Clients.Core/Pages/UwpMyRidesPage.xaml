@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BikeSharing.Clients.Core.Pages.UwpMyRidesPage" 
+             xmlns:core="clr-namespace:BikeSharing.Clients.Core;assembly=BikeSharing.Clients.Core"
+             xmlns:ride="clr-namespace:BikeSharing.Clients.Core.Controls.Rides"
+             xmlns:animations="clr-namespace:BikeSharing.Clients.Core.Animations;assembly=BikeSharing.Clients.Core"
+             xmlns:triggers="clr-namespace:BikeSharing.Clients.Core.Triggers;assembly=BikeSharing.Clients.Core"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:templates="clr-namespace:BikeSharing.Clients.Core.TemplateSelectors;assembly=BikeSharing.Clients.Core"
+             xmlns:controls="clr-namespace:BikeSharing.Clients.Core.Controls;assembly=BikeSharing.Clients.Core"
+             Title="My Rides">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <animations:StoryBoard 
+                x:Key="ContentPanelInitialAnimation"   
+                Target="{x:Reference ContentPanel}">
+                <animations:TranslateToAnimation 
+                    TranslateY="0"
+                    Delay="250"
+                    Easing="SpringOut"
+                    Duration="500" />
+            </animations:StoryBoard>
+
+            <templates:MyRidesDataTemplateSelector x:Key="MyRidesDataTemplateSelector" />
+
+            <Style x:Key="UwpBuyTicketStyle"
+                   TargetType="{x:Type Button}"
+                   BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="HeightRequest"
+                    Value="28" />
+                <Setter Property="WidthRequest"
+                    Value="92" />
+                <Setter Property="HorizontalOptions"
+                    Value="Start" />
+                <Setter Property="FontSize"
+                    Value="{StaticResource LittleSize}" />
+                <Setter Property="BackgroundColor"
+                    Value="Transparent" />
+                <Setter Property="BorderWidth"
+                    Value="2"/>
+                <Setter Property="BorderColor"
+                    Value="{StaticResource WhiteColor}" />
+                <Setter Property="TextColor"
+                    Value="{StaticResource WhiteColor}" />
+            </Style>
+            
+            <Style x:Key="TempLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource HugeSize}" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Triggers>
+        <EventTrigger Event="Appearing">
+            <triggers:BeginAnimation
+                Animation="{StaticResource ContentPanelInitialAnimation}" />
+        </EventTrigger>
+    </ContentPage.Triggers>
+    <Grid
+        BackgroundColor="{StaticResource BlueColor}"
+        ColumnSpacing="0"
+        RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="8*" />
+        </Grid.RowDefinitions>
+        <!-- HEADER -->
+        <Grid  
+            Grid.Row="0"  
+            Margin="0">
+            <ffimageloading:CachedImage 
+                Aspect="AspectFill">
+                <ffimageloading:CachedImage.Source>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                                WinPhone="bg_header_mdpi.png"/>
+                </ffimageloading:CachedImage.Source>
+            </ffimageloading:CachedImage>
+            <StackLayout 
+                x:Name="infoPanel"          
+                AnchorX="0"
+                AnchorY="1"
+                VerticalOptions="End"
+                HeightRequest="105"
+                Margin="16, 73, 0, 0">
+                <Label Text="{Binding CurrentDate, Converter={StaticResource DateTimeConverter}, ConverterParameter=ToLocal}"   
+                       Style="{StaticResource HeaderLabelStyle}" />
+                <Label Text="{Binding Location}"  
+                       Style="{StaticResource HeaderLabelStyle}" />
+                <Label Text="{Binding Temp, StringFormat='{0}°F'}"
+                       Style="{StaticResource TempLabelStyle}" />
+            </StackLayout>
+        </Grid>
+        <Grid
+            x:Name="ContentPanel"        
+            Grid.Row="1"
+            ColumnSpacing="0"
+            RowSpacing="0"
+            TranslationY="1000">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <!-- MY RIDES LIST -->
+            <Grid
+                x:Name="MyRidesList"
+                Grid.Column="0"
+                BackgroundColor="{StaticResource BackgroundGrayColor}"
+                Margin="0">
+                <Grid    
+                    Margin="12"
+                    Padding="1"
+                    BackgroundColor="Gray"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand">
+                    <ListView 
+                        x:Name="Items"  
+                        BackgroundColor="{StaticResource WhiteColor}"
+                        CachingStrategy="RecycleElement"
+                        ItemsSource="{Binding MyRides, Mode=OneWay}"
+                        SelectedItem="{Binding SelectedRide, Mode=TwoWay}"
+                        HasUnevenRows="True"
+                        SeparatorVisibility="None"
+                        ItemTemplate="{StaticResource MyRidesDataTemplateSelector}">
+                    </ListView>
+                </Grid>
+            </Grid>
+            <!-- MAP -->
+            <Grid
+                x:Name="MyRidesMap"
+                Grid.Column="1"
+                Padding="0"
+                Margin="0">
+                <AbsoluteLayout>
+                    <!-- MAP -->
+                    <controls:CustomMap     
+                        x:Name="Map"
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" 
+                        CustomPins="{Binding CustomPins}"
+                        SelectedPin="{Binding SelectedPin, Mode=TwoWay}"
+                        From="{Binding From, Mode=TwoWay}"
+                        To="{Binding To, Mode=TwoWay}">
+                    </controls:CustomMap>
+                </AbsoluteLayout>
+            </Grid>
+            <!-- DETAIL -->
+            <Grid
+                x:Name="MyRidesDetail"
+                Grid.Column="2"
+                BackgroundColor="{StaticResource BlueColor}"
+                Padding="0"
+                Margin="0">
+                <Grid>
+                    <Image 
+                        x:Name="NoEventBackground"
+                        Source="Assets/myrides_placeholder_event.png"
+                        Aspect="AspectFill"    
+                        IsVisible="{Binding Event, Converter={StaticResource InverseNullToBoolConverter}}"/>
+                    <Image 
+                        x:Name="EventBackground"
+                        Source="{Binding Event.ImagePath}"
+                        Aspect="AspectFill"
+                        IsVisible="{Binding Event, Converter={StaticResource NullToBoolConverter}}"/>
+                    <ScrollView
+                        Padding="0">
+                        <StackLayout 
+                            Padding="6, 12, 6, 6"   
+                            Spacing="0">
+                            <ride:RideSummaryControl
+                                VerticalOptions="FillAndExpand"
+                                Location="{x:Static core:GlobalSettings.City}"
+                                Subtitle="{Binding Event.Venue.Name}"
+                                Date="{Binding SelectedRide.Stop, Converter={StaticResource DateToLocalDateConverter}}"
+                                Title="{Binding Event.Name}"
+                                From="{Binding FromStation.Name}"
+                                To="{Binding ToStation.Name}"
+                                BookingCommand="{x:Null}"
+                                IsStationsVisible="False"
+                                Margin="12, 24, 48, 0">
+                            </ride:RideSummaryControl>
+                        </StackLayout>
+                    </ScrollView>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

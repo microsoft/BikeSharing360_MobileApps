@@ -1,0 +1,74 @@
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BikeSharing.Clients.Core.Controls.Rides.RideStationInformationControl"
+             x:Name="Control" 
+             Spacing="0">
+    <StackLayout.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="StationInfoLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+            </Style>
+
+            <Style x:Key="StationNameLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="FontSize"
+                        Value="{StaticResource MediumSize}" />
+            </Style>
+
+        </ResourceDictionary>
+    </StackLayout.Resources>
+    <Label Text="From"
+           Style="{StaticResource StationInfoLabelStyle}"
+           HorizontalOptions="Start"
+           TextColor="{Binding TextColor, Source={x:Reference Control}}">
+        <Label.Triggers>
+            <DataTrigger TargetType="Label"
+                         Binding="{Binding IsFromStation, Source={x:Reference Control}}"
+                         Value="False">
+                <Setter Property="Text" Value="To" />
+            </DataTrigger>
+        </Label.Triggers>
+    </Label>
+    <Label Text="{Binding Station.Name, Source={x:Reference Control}}"
+           Style="{StaticResource StationNameLabelStyle}"
+           TextColor="{Binding StationTextColor, Source={x:Reference Control}}" />
+    <StackLayout 
+        Orientation="Horizontal" 
+        Spacing="10">
+        <StackLayout.HorizontalOptions>
+          <OnPlatform 
+              x:TypeArguments="LayoutOptions"
+              WinPhone="Start"/>
+        </StackLayout.HorizontalOptions>
+        <Label Text="Empty bike docks" 
+               Style="{StaticResource StationInfoLabelStyle}"
+               Opacity="0.6"
+               HorizontalOptions="Start"
+               TextColor="{Binding TextColor, Source={x:Reference Control}}" />
+        <Label Text="{Binding Station.EmptyDocks, Source={x:Reference Control}}"
+               Style="{StaticResource StationInfoLabelStyle}"
+               TextColor="{Binding TextColor, Source={x:Reference Control}}"
+               HorizontalOptions="Start"/>
+        <Label Text="Available bikes"
+               Opacity="0.6"
+               Style="{StaticResource StationInfoLabelStyle}"
+               HorizontalOptions="Start"
+               TextColor="{Binding TextColor, Source={x:Reference Control}}" />
+        <Label Text="{Binding Station.Occupied, Source={x:Reference Control}}"
+             Style="{StaticResource StationInfoLabelStyle}"
+             HorizontalOptions="Start"
+             TextColor="{Binding TextColor, Source={x:Reference Control}}">
+        <Label.Margin>
+          <OnPlatform
+              x:TypeArguments="Thickness"
+              WinPhone="0,0,10,0"/>
+        </Label.Margin>
+      </Label>
+    </StackLayout>
+</StackLayout>
+

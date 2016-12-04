@@ -1,0 +1,139 @@
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:core="clr-namespace:BikeSharing.Clients.Core;assembly=BikeSharing.Clients.Core"
+             xmlns:ride="clr-namespace:BikeSharing.Clients.Core.Controls.Rides"
+             xmlns:eff="clr-namespace:BikeSharing.Clients.Core.Effects;assembly=BikeSharing.Clients.Core"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:animations="clr-namespace:BikeSharing.Clients.Core.Animations;assembly=BikeSharing.Clients.Core"
+             xmlns:triggers="clr-namespace:BikeSharing.Clients.Core.Triggers;assembly=BikeSharing.Clients.Core"
+             x:Class="BikeSharing.Clients.Core.Pages.EventSummaryPage"
+             Title="Event">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+            <Style x:Key="BuyTicketStyle"
+                   TargetType="{x:Type Button}"
+                   BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="HeightRequest"
+                        Value="32" />
+                <Setter Property="WidthRequest"
+                        Value="92" />
+                <Setter Property="HorizontalOptions"
+                        Value="Start" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+                <Setter Property="Margin"
+                        Value="-2, 0, 0, 0" />
+            </Style>
+            
+            <Style x:Key="UwpBuyTicketStyle"
+                   TargetType="{x:Type Button}"
+                   BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="HeightRequest"
+                    Value="28" />
+                <Setter Property="WidthRequest"
+                    Value="92" />
+                <Setter Property="HorizontalOptions"
+                    Value="Start" />
+                <Setter Property="FontSize"
+                    Value="{StaticResource LittleSize}" />
+                <Setter Property="BackgroundColor"
+                    Value="Transparent" />
+                <Setter Property="BorderWidth"
+                    Value="2"/>
+                <Setter Property="BorderColor"
+                    Value="{StaticResource WhiteColor}" />
+                <Setter Property="TextColor"
+                    Value="{StaticResource WhiteColor}" />
+            </Style>
+            
+            <animations:StoryBoard x:Key="EventBackgroundAnimation"
+                                   Target="{x:Reference EventBackground}"
+                                   Delay="1000"
+                                   RepeatForever="True">
+                <animations:ScaleToAnimation Scale="1.2"
+                                           Duration="8000">
+                    <animations:ScaleToAnimation.Scale>
+                        <OnPlatform x:TypeArguments="x:Double"
+                              Android="1.2"
+                              iOS="1.2"
+                              WinPhone="1"/>
+                    </animations:ScaleToAnimation.Scale>
+                </animations:ScaleToAnimation>
+                <animations:ScaleToAnimation Scale="1"
+                                             Duration="8000" />
+            </animations:StoryBoard>
+
+            <animations:StoryBoard x:Key="BuyTicketButtonAnimation"
+                                   Target="{x:Reference BuyTicketButton}">
+                <animations:FadeToAnimation Opacity="1"
+                                            Duration="1500" />
+            </animations:StoryBoard>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Effects>
+        <eff:ContentPageTitleFontEffect />
+    </ContentPage.Effects>
+    <ContentPage.Triggers>
+        <EventTrigger Event="Appearing">
+            <triggers:BeginAnimation      
+                Animation="{StaticResource EventBackgroundAnimation}" />
+            <triggers:BeginAnimation
+                Animation="{StaticResource BuyTicketButtonAnimation}" />
+        </EventTrigger>
+    </ContentPage.Triggers>
+    <Grid>
+        <ffimageloading:CachedImage 
+            x:Name="EventBackground"
+            CacheType="Disk"
+            CacheDuration="30"
+            DownsampleToViewSize="True"
+            Aspect="AspectFill"  />
+        <ffimageloading:CachedImage 
+            Style="{StaticResource OverlayStyle}" />
+        <ScrollView x:Name="MainScrollView" Padding="0">
+            <StackLayout 
+                Padding="5, 15, 5, 5"   
+                Spacing="0">
+                <Button 
+                    x:Name="BuyTicketButton"
+                    Text="Buy Ticket"
+					          Opacity="0"      
+                    BorderRadius="0">
+                    <Button.Style>
+                        <OnPlatform 
+                            x:TypeArguments="Style"
+                            Android="{StaticResource BuyTicketStyle}"
+                            iOS="{StaticResource BuyTicketStyle}"
+                            WinPhone="{StaticResource UwpBuyTicketStyle}"/>
+                    </Button.Style>
+                </Button>
+                <ride:RideSummaryControl x:Name="RideSummary"
+                    VerticalOptions="FillAndExpand"
+                    Date="{Binding Event.StartTime}"
+                    BookingCommand="{Binding MakeBookingCommand}"
+                    FromStation="{Binding FromStation}"
+                    ToStation="{Binding ToStation}"
+                    Location="{x:Static core:GlobalSettings.City}"
+                    Subtitle="{Binding Event.Venue.Name}"
+                    Title="{Binding Event.Name}">
+                </ride:RideSummaryControl>
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator 
+            Color="{StaticResource BrightYellowColor}"
+            IsRunning="{Binding IsBusy}"   
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+            <ActivityIndicator.WidthRequest>
+                <OnPlatform 
+                    x:TypeArguments="x:Double" 
+                    iOS="100" 
+                    Android="100"
+                    WinPhone="400" />
+            </ActivityIndicator.WidthRequest>
+        </ActivityIndicator>
+    </Grid>
+</ContentPage>

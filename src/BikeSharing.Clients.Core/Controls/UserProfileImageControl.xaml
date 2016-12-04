@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+      xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+      x:Class="BikeSharing.Clients.Core.Controls.UserProfileImageControl"
+      x:Name="Control">
+    <ffimageloading:CachedImage
+            x:Name="Photo"
+            Source="{Binding ProfileImage, Source={x:Reference Control}}"
+            Aspect="AspectFit"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+        <ffimageloading:CachedImage.LoadingPlaceholder>
+            <OnPlatform x:TypeArguments="ImageSource"
+                        iOS="profile_placeholder.png"
+                        Android="profile_placeholder.png"
+                        WinPhone="Assets/profile_placeholder.png"/>
+        </ffimageloading:CachedImage.LoadingPlaceholder>
+    </ffimageloading:CachedImage>
+    <ffimageloading:CachedImage
+            IsVisible="{Binding UpdatePhotoCommand, Source={x:Reference Control}, Converter={StaticResource NullToBoolConverter}}"
+            Aspect="AspectFit"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+        <ffimageloading:CachedImage.Source>
+            <OnPlatform x:TypeArguments="ImageSource"
+                        iOS="profile_camera_overlay.png"
+                        Android="profile_camera_overlay.png"
+                        WinPhone="Assets/profile_camera_overlay.png"/>
+        </ffimageloading:CachedImage.Source>
+        <ffimageloading:CachedImage.Transformations>
+            <transformations:CircleTransformation BorderHexColor="{StaticResource ProfileGrayColorHexString}">
+                <transformations:CircleTransformation.BorderSize>
+                    <OnPlatform x:TypeArguments="x:Double" 
+                                                Android="20"
+                                                iOS="30"
+                                                WinPhone="20"  />
+                </transformations:CircleTransformation.BorderSize>
+            </transformations:CircleTransformation>
+        </ffimageloading:CachedImage.Transformations>
+        <ffimageloading:CachedImage.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding UpdatePhotoCommand, Source={x:Reference Control}}" />
+        </ffimageloading:CachedImage.GestureRecognizers>
+    </ffimageloading:CachedImage>
+</Grid>

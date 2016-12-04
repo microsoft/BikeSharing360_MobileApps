@@ -1,0 +1,53 @@
+@import "../../theme/variables";
+
+.bs-reports {
+    &-container {
+        background-color: #3164F6;
+    }
+
+    &-title {
+        color: $color-foreground-light;
+        display: block;
+        font-size: 3rem;
+        padding-bottom: .5rem;
+        text-align: center;
+    }
+
+    &-icon {
+        height: 35vh;
+        position: relative;
+        width: 100%;
+    }
+
+    $bottom: 0%;
+    $left: 0%;
+
+    &-error {
+        bottom: -$bottom;
+        height: 100% + $bottom;
+        left: -$left;
+        min-width: 100% + $left;
+        position: absolute;
+        width: 100% + $left;
+        z-index: 2;
+
+        &--back {
+            left: #{'calc(-' + $left +' - 4px)'};
+            z-index: 1;
+        }
+    }
+
+    &-secondary_text {
+        color: $color-foreground-light;
+        display: block;
+        font-size: 1.6rem;
+        padding-bottom: .5rem;
+        text-align: center;
+    }
+
+    &-info {
+        width: 100%;
+        text-align: center;
+        margin-top: 25vh;
+    }
+}

@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar hideWhen="ios">
+        <ion-title>
+            Today's reports
+        </ion-title>
+        <ion-buttons end>
+            <ion-badge class="badge-light">{{waiting}}</ion-badge>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-item-divider showWhen="ios" class="item-divider">
+        Today's reports
+        <ion-badge class="badge-danger" item-right>{{waiting}}</ion-badge>
+    </ion-item-divider>
+    <ion-list>
+        <ion-item *ngFor="let report of reports" (click)="itemTapped($event, report)">
+            <ion-thumbnail item-left
+                           class="item-left">
+
+                <ion-icon class="item-thumb"
+                          name="bs-{{report.type}}"
+                          [ngClass]="{'item-thumb--solved': report.solved}"></ion-icon>
+            </ion-thumbnail>
+            <h4 class="item-title">{{report.title}}</h4>
+            <p class="item-description">{{report.description}}</p>
+            <p class="item-subtitle">Station {{report.station.id}}</p>
+
+            <div class="item-footer">
+                <ion-icon class="item-icon" name="bs-time"></ion-icon>
+                <span class="item-footer-text item-footer-text--lower">{{report.time | date:"shortTime"}}</span>
+                <ion-icon class="item-icon" name="bs-pushpin"></ion-icon>
+                <span class="item-footer-text">{{report.distance || '-'}} miles</span>
+            </div>
+
+            <span class="item-status"
+                  [ngClass]="{'item-status--solved': report.solved}">
+                {{report.solved ? 'Solved' : 'Waiting'}}
+            </span>
+        </ion-item>
+    </ion-list>
+</ion-content>

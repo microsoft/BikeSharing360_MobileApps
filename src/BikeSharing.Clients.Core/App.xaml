@@ -1,0 +1,287 @@
+﻿<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:BikeSharing.Clients.Core.Effects;assembly=BikeSharing.Clients.Core"
+             xmlns:converters="clr-namespace:BikeSharing.Clients.Core.Converters;assembly=BikeSharing.Clients.Core"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="BikeSharing.Clients.Core.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- Colors -->
+            <Color x:Key="WhiteColor">#ffffff</Color>
+            <Color x:Key="TransparentWhiteColor">#BFffffff</Color>
+            <Color x:Key="BlueColor">#3063f5</Color>
+            <Color x:Key="TransparentBlueColor">#BF3063f5</Color>
+            <Color x:Key="BrightYellowColor">#ffed00</Color>
+            <Color x:Key="GrayColor">#484f63</Color>
+            <Color x:Key="ErrorColor">#ff5252</Color>
+            <Color x:Key="BackgroundGrayColor">#f4f6fa</Color>
+            <Color x:Key="ToolbarBlueColor">#3063f5</Color>
+            <Color x:Key="OrangeColor">#ff5e4d</Color>
+            <Color x:Key="ProfileGrayColor">#afb3be</Color>
+            <Color x:Key="BlackColor">#000000</Color>
+            <Color x:Key="GreenColor">#0aca91</Color>
+
+            <!-- Fonts -->
+            <OnPlatform x:Key="MontserratRegular"
+                        x:TypeArguments="x:String"
+                        iOS="Montserrat-Regular"
+                        Android="Montserrat-Regular.ttf#Montserrat"
+                        WinPhone="Assets/Fonts/Montserrat-Regular.ttf#Montserrat"/>
+
+            <OnPlatform x:Key="MontserratBold"
+                        x:TypeArguments="x:String"
+                        iOS="Montserrat-Bold"
+                        Android="Montserrat-Bold.ttf#Montserrat"
+                        WinPhone="Assets/Fonts/Montserrat-Bold.ttf#Montserrat"/>
+
+            <OnPlatform x:Key="SourceSansProRegular"
+                        x:TypeArguments="x:String"
+                        iOS="SourceSansPro-Regular"
+                        Android="SourceSansPro-Regular.ttf#Source Sans Pro"
+                        WinPhone="Assets/Fonts/SourceSansPro-Regular.ttf#Source Sans Pro"/>
+
+            <!-- Font Sizes -->
+            <OnPlatform x:Key="LittleSize"
+                        x:TypeArguments="x:Double"
+                        iOS="11"
+                        Android="12"
+                        WinPhone="12"/>
+
+            <OnPlatform x:Key="MidMediumSize"
+                        x:TypeArguments="x:Double"
+                        iOS="12"
+                        Android="14"
+                        WinPhone="14"/>
+
+            <OnPlatform x:Key="MediumSize"
+                        x:TypeArguments="x:Double"
+                        iOS="14"
+                        Android="16"
+                        WinPhone="16"/>
+
+            <OnPlatform x:Key="LargeSize"
+                        x:TypeArguments="x:Double"
+                        iOS="16"
+                        Android="18"
+                        WinPhone="18"/>
+
+            <OnPlatform x:Key="LargerSize"
+                        x:TypeArguments="x:Double"
+                        iOS="18"
+                        Android="20"
+                        WinPhone="20"/>
+
+            <OnPlatform x:Key="BigSize"
+                        x:TypeArguments="x:Double"
+                        iOS="20"
+                        Android="24"
+                        WinPhone="24"/>
+
+            <OnPlatform x:Key="ExtraBigSize"
+                      x:TypeArguments="x:Double"
+                      iOS="24"
+                      Android="32"
+                      WinPhone="32"/>
+
+            <OnPlatform x:Key="HugeSize"
+                        x:TypeArguments="x:Double"
+                        iOS="32"
+                        Android="48"
+                        WinPhone="48"/>
+
+            <!-- Converters -->
+            <converters:BirthDateConverter x:Key="BirthDateConverter" />
+            <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converters:DateTimeConverter x:Key="DateTimeConverter" />
+            <converters:DurationConverter x:Key="DurationConverter" />
+            <converters:MapColorConverter x:Key="MapColorConverter" />
+            <converters:MenuItemTypeConverter x:Key="MenuItemTypeConverter" />
+            <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
+            <converters:InverseNullToBoolConverter x:Key="InverseNullToBoolConverter" />
+            <converters:RideTypeToStringConverter x:Key="RideTypeToStringConverter" />
+            <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+            <converters:StationTypeConverter x:Key="StationTypeConverter" />
+            <converters:MetersToMilesConverter x:Key="MetersToMilesConverter" />
+            <converters:DateToLocalDateConverter x:Key="DateToLocalDateConverter" />
+            <converters:FromStationConverter x:Key="FromStationConverter" />
+
+            <!-- Styles -->
+            <Style x:Key="BaseLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="effects:NumberOfLinesEffect.ApplyNumberOfLines"
+                        Value="True" />
+                <Setter Property="effects:NumberOfLinesEffect.NumberOfLines"
+                        Value="2" />
+                <Setter Property="LineBreakMode"
+                        Value="TailTruncation" />
+            </Style>
+
+            <Style TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource BaseLabelStyle}" />
+
+            <Style x:Key="MontserratRegularLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource BaseLabelStyle}">
+                <Setter Property="FontFamily"
+                 Value="{StaticResource MontserratRegular}" />
+            </Style>
+
+            <Style x:Key="MontserratBoldLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource BaseLabelStyle}">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource MontserratBold}" />
+            </Style>
+
+            <Style x:Key="SourceSansProRegularLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource BaseLabelStyle}">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource SourceSansProRegular}" />
+            </Style>
+
+            <Style x:Key="EntryStyle"
+                   TargetType="{x:Type Entry}">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource MontserratRegular}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="PlaceholderColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LargeSize}" />
+                <Setter Property="HorizontalOptions"
+                        Value="FillAndExpand" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+                <Setter Property="Opacity"
+                        Value="0.6" />
+                <Setter Property="effects:LineColorEffect.ApplyLineColor"
+                        Value="True" />
+                <Setter Property="effects:LineColorEffect.LineColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Style.Triggers>
+                    <Trigger TargetType="Entry"
+                             Property="IsFocused" 
+                             Value="True">
+                        <Setter Property="Opacity" Value="1" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="UwpEntryStyle"
+                   TargetType="{x:Type Entry}">
+                <Setter Property="WidthRequest"
+                    Value="284" />
+                <Setter Property="FontFamily"
+                    Value="{StaticResource MontserratRegular}" />
+                <Setter Property="TextColor"
+                    Value="{StaticResource WhiteColor}" />
+                <Setter Property="PlaceholderColor"
+                    Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                    Value="{StaticResource LargeSize}" />
+                <Setter Property="HorizontalOptions"
+                    Value="Center" />
+                <Setter Property="FontAttributes"
+                    Value="Bold" />
+                <Setter Property="BackgroundColor" 
+                    Value="Transparent" />
+                <Setter Property="Opacity"
+                    Value="0.6" />
+                <Setter Property="effects:LineColorEffect.ApplyLineColor"
+                    Value="True" />
+                <Setter Property="effects:LineColorEffect.LineColor"
+                    Value="{StaticResource WhiteColor}" />
+                <Style.Triggers>
+                    <Trigger TargetType="Entry"
+                       Property="IsFocused"
+                       Value="True">
+                        <Setter Property="Opacity" Value="1" />
+                        <Setter Property="effects:LineColorEffect.LineColor"                        
+                                Value="{StaticResource WhiteColor}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="EventNameLabelStyle"  
+                   TargetType="{x:Type Label}"   
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource BlueColor}" />
+                <Setter Property="FontSize" 
+                        Value="{StaticResource MidMediumSize}" />
+            </Style>
+
+            <Style x:Key="LocationAndDateLabelStyle"   
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource GrayColor}" />
+                <Setter Property="FontSize"   
+                        Value="{StaticResource LittleSize}" />
+                <Setter Property="Opacity"
+                        Value="0.4" />
+            </Style>
+
+            <Style x:Key="EventTypeLabelStyle"   
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor" 
+                        Value="{StaticResource GrayColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+            </Style>
+
+            <Style x:Key="HeaderLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"  
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource MidMediumSize}" />
+            </Style>
+
+            <Style x:Key="UwpHeaderLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource BlueColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource MidMediumSize}" />
+            </Style>
+
+            <Style x:Key="ButtonStyle"
+                   TargetType="{x:Type Button}">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource MontserratRegular}" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource BlueColor}" />
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource WhiteColor}" />
+            </Style>
+
+            <Style x:Key="OverlayStyle"
+                   TargetType="{x:Type ffimageloading:CachedImage}">
+              <Setter Property="Source">
+                <Setter.Value>
+                  <OnPlatform x:TypeArguments="ImageSource"
+                              Android="event_overlay"
+                              iOS="event_overlay"
+                              WinPhone="Assets/event_overlay.png"/>
+                </Setter.Value>
+              </Setter>
+                <Setter Property="DownsampleToViewSize"
+                        Value="True" />
+                <Setter Property="Aspect"
+                        Value="AspectFill" />
+              <Setter Property="Opacity"
+                      Value="0.8"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

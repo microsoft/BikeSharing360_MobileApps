@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BikeSharing.Clients.Core.Controls.CellInfoControl"
+             Orientation="Horizontal"
+             Spacing="0">
+  <StackLayout.Resources>
+    <ResourceDictionary>
+      <Style x:Key="RideInfoLabelStyle"
+       TargetType="{x:Type Label}"
+       BasedOn="{StaticResource SourceSansProRegularLabelStyle}">
+        <Setter Property="TextColor"
+                Value="{StaticResource GrayColor}" />
+        <Setter Property="FontSize"
+                Value="{StaticResource MidMediumSize}" />
+      </Style>
+    </ResourceDictionary>
+  </StackLayout.Resources>
+    <Image VerticalOptions="Center"
+           Opacity="0.6"
+		   HeightRequest="20"
+		   Aspect="AspectFit">
+        <Image.Source>
+            <OnPlatform x:TypeArguments="ImageSource"
+                  Android="myrides_ic_time.png"
+                  iOS="myrides_ic_time.png"
+                  WinPhone="Assets\myrides_ic_time.png"/>
+        </Image.Source>
+    </Image>
+    <Label Text="{Binding Duration, Converter={StaticResource DurationConverter}}"
+           VerticalOptions="Center"
+           Style="{StaticResource RideInfoLabelStyle}"
+           Margin="7,0,10,0"
+           WidthRequest="50" />
+    <Image VerticalOptions="Center"
+           Opacity="0.6"
+		   HeightRequest="20"
+		   Aspect="AspectFit">
+        <Image.Source>
+            <OnPlatform x:TypeArguments="ImageSource"
+                  Android="myrides_ic_distance.png"
+                  iOS="myrides_ic_distance.png"
+                  WinPhone="Assets\myrides_ic_distance.png"/>
+        </Image.Source>
+    </Image>
+    <Label Text="{Binding Distance, Converter={StaticResource MetersToMilesConverter}, StringFormat='{0:N2} miles'}"
+           VerticalOptions="Center"
+           Style="{StaticResource RideInfoLabelStyle}"
+           Margin="7,0,0,0"
+           WidthRequest="75" />
+</StackLayout>

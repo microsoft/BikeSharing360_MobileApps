@@ -1,0 +1,15 @@
+@import "../../variables";
+
+ion-list {
+}
+
+.list {
+    &-md, &-ios {
+        box-shadow: $shadow-default;
+    }
+
+    &-wp {
+        box-shadow: none;
+        border-right: 1px solid $color-border;
+    }
+}

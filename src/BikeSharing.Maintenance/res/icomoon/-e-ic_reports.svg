@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffdc3c;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="_-e-ic_reports.svg" data-name="-e-ic_reports.svg" class="cls-1" d="M351.1,1578.7h3.8v3.8h-3.8v-3.8Zm0-15.2h3.8v11.4h-3.8v-11.4Zm1.881-9.5A19,19,0,1,0,372,1573,18.989,18.989,0,0,0,352.981,1554ZM353,1588.2a15.2,15.2,0,1,1,15.2-15.2A15.195,15.195,0,0,1,353,1588.2Z" transform="translate(-334 -1554)"/>
+</svg>

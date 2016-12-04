@@ -1,0 +1,21 @@
+<ion-content padding class="bs-reports-container">
+    <div *ngIf="failed">
+        <h1 class="bs-reports-title">Ouch!</h1>
+
+        <div class="bs-reports-icon">
+            <img class="bs-reports-error"
+                 src="./assets/vectors/illustration_error.svg" />
+            <img class="bs-reports-error bs-reports-error--back"
+                 src="./assets/vectors/illustration_error_back.svg" />
+        </div>
+
+        <div class="bs-reports-info">
+            <span class="bs-reports-secondary_text">There was a problem.</span>
+            <span class="bs-reports-secondary_text">It's impossible to connect.</span>
+            <br />
+            <div class="bs-reports-actions">
+                <div class="bs-button bs-button--light" (click)="login()"> Retry </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

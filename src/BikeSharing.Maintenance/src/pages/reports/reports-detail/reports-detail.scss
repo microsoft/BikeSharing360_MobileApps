@@ -1,0 +1,118 @@
+@import "../../../theme/variables";
+
+.bs-reports_detail {
+
+    &-header {
+        height:40px;
+    }
+
+    &-box {
+        box-shadow: $shadow-default;
+    }
+
+    &-report_number_label {
+        font-size: 14px;
+    }
+
+    &-report_number {
+        margin-left: 10px;
+    }
+
+    &-body {
+        margin-left: 60px;
+    }
+
+    &-status {
+        margin-top: 7px;
+    }
+
+    &-thumbnail {
+        position: absolute;
+        top: 0px;
+    }
+
+    &-subtitle {
+        margin-bottom: 15px !important;
+    }
+
+    &-station {
+        display: inline;
+        vertical-align: top;
+    }
+
+    &-station_icon {
+        padding-left: 0px;
+    }
+
+    &-station_address {
+        margin-left: 30px !important;
+        line-height: 150% !important;
+    }
+
+    &-station_position {
+        margin-left: 30px !important;
+        line-height: 150% !important;
+    }
+
+    &-time {
+        text-transform: lowercase;
+        vertical-align: bottom;
+    }
+
+    &-date {
+        color: $color-foreground-semidark !important;
+    }
+
+    &-description {
+        margin-top: 10px !important;
+        white-space: normal;
+        line-height: 150% !important;
+    }
+
+    &-row {
+        margin-top: 5px !important;
+    }
+
+    &-title_incidences {
+        margin-top: 10px !important;
+    }
+
+    &-row_incidences {
+        align-content: center;
+        align-items: center;
+        border-bottom: 1px solid $color-background-light;
+        height: 40px;
+        margin-top: 10px !important;
+
+        &:last-of-type {
+            border-bottom-width: 0;
+        }
+    }
+
+    &-col {
+        padding-left: 0px;
+    }
+
+    &-box_title {
+        margin: 5px 0px 5px 0px !important;
+    }
+
+    &-incidence_icon {
+        border: none;
+        color: grey;
+        font-size: 1.7rem;
+        margin-left: 0.6rem;
+        padding: 0 !important;
+        text-align: left;
+    }
+
+    &-incidence_type {
+        font-size: 13px !important;
+    }
+
+    &-solve {
+        margin: 15px 3px 15px 3px;
+        padding: 5px 35px 5px 35px;
+        width: 96%;
+    }
+}

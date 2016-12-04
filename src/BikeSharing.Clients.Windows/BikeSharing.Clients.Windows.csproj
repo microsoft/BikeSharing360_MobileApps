@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{90AF39CC-2364-47DF-B798-A512BF6842D8}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BikeSharing.Clients.Windows</RootNamespace>
+    <AssemblyName>BikeSharing.Clients.Windows</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>BikeSharing.Clients.Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>38B5583E29F3E5DF11E9B16E23A4CD90A86F7850</PackageCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="deployscripts\ZipAppxPackage.ps1" />
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Effects\DatePickerLineColorEffect.cs" />
+    <Compile Include="Effects\EntryLineColorEffect.cs" />
+    <Compile Include="Effects\MaxLinesEffect.cs" />
+    <Compile Include="Effects\PickerLineColorEffect.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\CustomProgressBarRenderer.cs" />
+    <Compile Include="Renderers\CustomDatePickerRenderer.cs" />
+    <Compile Include="Renderers\NoBarsScrollViewerRenderer.cs" />
+    <Compile Include="Services\DummyCreditCardScannerService.cs" />
+    <Compile Include="Renderers\CustomMap\CustomMapIcon.cs" />
+    <Compile Include="Renderers\CustomMap\CustomMapRenderer.cs" />
+    <Compile Include="Services\WindowStatusService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="BikeSharing.Clients.Windows_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\CommonResources\suggestion_bronx_river.png">
+      <Link>Assets\suggestion_bronx_river.png</Link>
+    </Content>
+    <Content Include="..\CommonResources\suggestion_central_park.png">
+      <Link>Assets\suggestion_central_park.png</Link>
+    </Content>
+    <Content Include="..\CommonResources\suggestion_coney_island.png">
+      <Link>Assets\suggestion_coney_island.png</Link>
+    </Content>
+    <Content Include="..\CommonResources\suggestion_corona_park.png">
+      <Link>Assets\suggestion_corona_park.png</Link>
+    </Content>
+    <Content Include="..\CommonResources\suggestion_hudson_river.png">
+      <Link>Assets\suggestion_hudson_river.png</Link>
+    </Content>
+    <Content Include="..\CommonResources\suggestion_liberty_state_park.png">
+      <Link>Assets\suggestion_liberty_state_park.png</Link>
+    </Content>
+    <Content Include="..\CommonResources\suggestion_rockways.png">
+      <Link>Assets\suggestion_rockways.png</Link>
+    </Content>
+    <Content Include="Assets\bg_1240x600.png" />
+    <Content Include="Assets\bg_620x300.png" />
+    <Content Include="Assets\menu_bg.png" />
+    <Content Include="Assets\menu_bg_desktop.png" />
+    <Content Include="Assets\bg_header_mdpi.png" />
+    <Content Include="Assets\bg_profile.png" />
+    <Content Include="Assets\booking_background.png" />
+    <Content Include="Assets\b_scan_normal.png" />
+    <Content Include="Assets\background.png" />
+    <Content Include="Assets\bike.png" />
+    <Content Include="Assets\building.png" />
+    <Content Include="Assets\card.png" />
+    <Content Include="Assets\city-gray_mdpi.png" />
+    <Content Include="Assets\cloud_1.png" />
+    <Content Include="Assets\cloud_2.png" />
+    <Content Include="Assets\cloud_card_1.png" />
+    <Content Include="Assets\cloud_card_2.png" />
+    <Content Include="Assets\drawer_mdpi.png" />
+    <Content Include="Assets\fence.png" />
+    <Content Include="Assets\floating_action_button_disable.png" />
+    <Content Include="Assets\floating_action_button_normal.png" />
+    <Content Include="Assets\home_new_ride.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\icon.png" />
+    <Content Include="Assets\ic_close.png" />
+    <Content Include="Assets\ic_distance_white.png" />
+    <Content Include="Assets\myrides_ic_distance.png" />
+    <Content Include="Assets\NewStoreLogo.scale-100.png" />
+    <Content Include="Assets\NewStoreLogo.scale-125.png" />
+    <Content Include="Assets\NewStoreLogo.scale-150.png" />
+    <Content Include="Assets\NewStoreLogo.scale-200.png" />
+    <Content Include="Assets\NewStoreLogo.scale-400.png" />
+    <Content Include="Assets\myrides_placeholder_event.png" />
+    <Content Include="Assets\profile_camera_overlay.png" />
+    <Content Include="Assets\profile_placeholder.png" />
+    <Content Include="Assets\pushpin.png" />
+    <Content Include="Assets\pushpin_destiny.png" />
+    <Content Include="Assets\pushpin_origen.png" />
+    <Content Include="Assets\report_done_message.png" />
+    <Content Include="Assets\report_open_bot.png" />
+    <Content Include="Assets\SignUp\bike.png" />
+    <Content Include="Assets\SignUp\building.png" />
+    <Content Include="Assets\SignUp\card.png" />
+    <Content Include="Assets\SignUp\cloud_1.png" />
+    <Content Include="Assets\SignUp\cloud_2.png" />
+    <Content Include="Assets\SignUp\cloud_card_1.png" />
+    <Content Include="Assets\SignUp\cloud_card_2.png" />
+    <Content Include="Assets\SignUp\fence.png" />
+    <Content Include="Assets\SignUp\floating_action_button_disable.png" />
+    <Content Include="Assets\SignUp\floating_action_button_normal.png" />
+    <Content Include="Assets\SignUp\ic_arrow_drop_down.png" />
+    <Content Include="Assets\SignUp\ic_close.png" />
+    <Content Include="Assets\SignUp\signup_annual_active.png" />
+    <Content Include="Assets\SignUp\signup_annual_normal.png" />
+    <Content Include="Assets\SignUp\signup_boy_bike.png" />
+    <Content Include="Assets\SignUp\signup_buildings_2.png" />
+    <Content Include="Assets\SignUp\signup_cloud_1.png" />
+    <Content Include="Assets\SignUp\signup_cloud_2.png" />
+    <Content Include="Assets\SignUp\signup_man.png" />
+    <Content Include="Assets\SignUp\signup_man_select.png" />
+    <Content Include="Assets\SignUp\signup_monthly_active.png" />
+    <Content Include="Assets\SignUp\signup_monthly_normal.png" />
+    <Content Include="Assets\SignUp\signup_mountain_3.png" />
+    <Content Include="Assets\SignUp\signup_padlock.png" />
+    <Content Include="Assets\SignUp\signup_quarterly_active.png" />
+    <Content Include="Assets\SignUp\signup_quarterly_normal.png" />
+    <Content Include="Assets\SignUp\signup_sun.png" />
+    <Content Include="Assets\SignUp\signup_trees.png" />
+    <Content Include="Assets\SignUp\signup_woman.png" />
+    <Content Include="Assets\SignUp\signup_woman_select.png" />
+    <Content Include="Assets\SignUp\sun.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\Square310x310Logo.scale-125.png" />
+    <Content Include="Assets\Square310x310Logo.scale-150.png" />
+    <Content Include="Assets\Square310x310Logo.scale-200.png" />
+    <Content Include="Assets\Square310x310Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48_altform-unplated.png" />
+    <Content Include="Assets\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-125.png" />
+    <Content Include="Assets\Square71x71Logo.scale-150.png" />
+    <Content Include="Assets\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\logo_splash.png" />
+    <Content Include="Assets\logo_splash.scale-200.png" />
+    <Content Include="Assets\logo_splashBig.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\uwp_ic_home.png" />
+    <Content Include="Assets\uwp_ic_logout.png" />
+    <Content Include="Assets\uwp_ic_my_rides.png" />
+    <Content Include="Assets\uwp_ic_new_ride.png" />
+    <Content Include="Assets\uwp_ic_report.png" />
+    <Content Include="Assets\uwp_ic_upcoming_ride.png" />
+    <Content Include="Assets\uwp_ic_user.png" />
+    <Content Include="Assets\Man.png" />
+    <Content Include="Assets\Man_select.png" />
+    <Content Include="Assets\menu_ic_bike.png" />
+    <Content Include="Assets\menu_ic_card.png" />
+    <Content Include="Assets\menu_ic_chain.png" />
+    <Content Include="Assets\menu_ic_current_book.png" />
+    <Content Include="Assets\menu_ic_logout.png" />
+    <Content Include="Assets\menu_ic_ranking.png" />
+    <Content Include="Assets\menu_ic_report_incident.png" />
+    <Content Include="Assets\menu_ic_user.png" />
+    <Content Include="Assets\myrides_ic_custom_ride.png" />
+    <Content Include="Assets\myrides_ic_event.png" />
+    <Content Include="Assets\myrides_ic_favorite.png" />
+    <Content Include="Assets\myrides_ic_time.png" />
+    <Content Include="Assets\placeholder_240x170.png" />
+    <Content Include="Assets\profile_illustration.png" />
+    <Content Include="Assets\splash_logo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Assets\booking_background_desktop.png" />
+    <Content Include="Assets\booking_background.png" />
+    <Content Include="Assets\booking_circle_white.png" />
+    <Content Include="Assets\progress_done.png" />
+    <Content Include="Assets\progress_pending.png" />
+    <Content Include="Assets\sun.png" />
+    <Content Include="Assets\Uwp_LoginBackground.png" />
+    <Content Include="Assets\Woman.png" />
+    <Content Include="Assets\Woman_select.png" />
+    <Content Include="Assets\ic_report_chain.png" />
+    <Content Include="Assets\ic_report_chain_selec.png" />
+    <Content Include="Assets\ic_report_flat_tire.png" />
+    <Content Include="Assets\ic_report_flat_tire_selec.png" />
+    <Content Include="Assets\ic_report_fork.png" />
+    <Content Include="Assets\ic_report_fork_selec.png" />
+    <Content Include="Assets\ic_report_handlebar.png" />
+    <Content Include="Assets\ic_report_handlebar_selec.png" />
+    <Content Include="Assets\ic_report_loss.png" />
+    <Content Include="Assets\ic_report_loss_selec.png" />
+    <Content Include="Assets\ic_report_pedals.png" />
+    <Content Include="Assets\ic_report_pedals_selec.png" />
+    <Content Include="Assets\event_overlay.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BikeSharing.Clients.Core\BikeSharing.Clients.Core.csproj">
+      <Project>{89c9b6f2-1cd6-4a98-9ccc-eefb7ddbf6fa}</Project>
+      <Name>BikeSharing.Clients.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsDesktop, Version=10.0.14393.0">
+      <Name>Windows Desktop Extensions for the UWP %28WindowsDesktop, Version=10.0.14393.0%29</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
+      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.14393.0%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

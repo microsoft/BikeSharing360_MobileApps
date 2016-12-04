@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{199EBECE-99D0-4772-9092-E62B07E130C8}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>BikeSharing.Clients.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>BikeSharingClientsiOS</AssemblyName>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <BuildIpa>True</BuildIpa>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppStore|iPhoneSimulator'">
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhoneSimulator'">
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Effects\MaxLinesEffect.cs" />
+    <Compile Include="Effects\PickerLineColorEffect.cs" />
+    <Compile Include="Effects\DatePickerLineColorEffect.cs" />
+    <Compile Include="Effects\EntryLineColorEffect.cs" />
+    <Compile Include="Effects\UnderlineTextEffect.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <BundleResource Include="Resources\background.png" />
+    <BundleResource Include="Resources\splash_logo.png" />
+    <Compile Include="Renderers\CustomMap\CustomMapRenderer.cs" />
+    <Compile Include="Renderers\CustomMap\CustomMKAnnotation.cs" />
+    <Compile Include="Renderers\CustomMap\CustomMKAnnotationView.cs" />
+    <Compile Include="Renderers\CustomPageRenderer.cs" />
+    <BundleResource Include="..\CommonResources\Fonts\Montserrat-Bold.ttf">
+      <Link>Resources\fonts\Montserrat-Bold.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\CommonResources\Fonts\Montserrat-Regular.ttf">
+      <Link>Resources\fonts\Montserrat-Regular.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\CommonResources\Fonts\SourceSansPro-Regular.ttf">
+      <Link>Resources\fonts\SourceSansPro-Regular.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="Resources\cloud_2.png" />
+    <BundleResource Include="Resources\cloud_card_1.png" />
+    <BundleResource Include="Resources\cloud_card_2.png" />
+    <BundleResource Include="Resources\fence.png" />
+    <BundleResource Include="Resources\floating_action_button_disable.png" />
+    <BundleResource Include="Resources\floating_action_button_normal.png" />
+    <BundleResource Include="Resources\ic_close.png" />
+    <BundleResource Include="Resources\signup_man.png" />
+    <BundleResource Include="Resources\signup_man_select.png" />
+    <BundleResource Include="Resources\menu_ic_card.png" />
+    <BundleResource Include="Resources\menu_ic_current_book.png" />
+    <BundleResource Include="Resources\menu_ic_logout.png" />
+    <BundleResource Include="Resources\myrides_ic_custom_ride.png" />
+    <BundleResource Include="Resources\myrides_ic_event.png" />
+    <BundleResource Include="Resources\myrides_ic_favorite.png" />
+    <BundleResource Include="Resources\myrides_ic_time.png" />
+    <BundleResource Include="Resources\placeholder_240x170.png" />
+    <BundleResource Include="Resources\profile_illustration.png" />
+    <BundleResource Include="Resources\sun.png" />
+    <BundleResource Include="Resources\signup_woman.png" />
+    <BundleResource Include="Resources\signup_woman_select.png" />
+    <BundleResource Include="Resources\b_scan_normal.png" />
+    <BundleResource Include="Resources\bike.png" />
+    <BundleResource Include="Resources\building.png" />
+    <BundleResource Include="Resources\card.png" />
+    <BundleResource Include="Resources\cloud_1.png" />
+    <BundleResource Include="Resources\signup_padlock%402x.png" />
+    <BundleResource Include="Resources\signup_padlock%403x.png" />
+    <BundleResource Include="Resources\signup_monthly_active%402x.png" />
+    <BundleResource Include="Resources\signup_monthly_active%403x.png" />
+    <BundleResource Include="Resources\signup_monthly_normal%402x.png" />
+    <BundleResource Include="Resources\signup_monthly_normal%403x.png" />
+    <BundleResource Include="Resources\signup_quarterly_active%402x.png" />
+    <BundleResource Include="Resources\signup_quarterly_active%403x.png" />
+    <BundleResource Include="Resources\signup_quarterly_normal%402x.png" />
+    <BundleResource Include="Resources\signup_quarterly_normal%403x.png" />
+    <BundleResource Include="Resources\signup_annual_normal%402x.png" />
+    <BundleResource Include="Resources\signup_annual_normal%403x.png" />
+    <BundleResource Include="Resources\signup_annual_active%402x.png" />
+    <BundleResource Include="Resources\signup_annual_active%403x.png" />
+    <BundleResource Include="Resources\signup_sun%402x.png" />
+    <BundleResource Include="Resources\signup_sun%403x.png" />
+    <BundleResource Include="Resources\signup_building_2%402x.png" />
+    <BundleResource Include="Resources\signup_building_2%403x.png" />
+    <BundleResource Include="Resources\signup_boy_bike.png" />
+    <BundleResource Include="Resources\signup_cloud_2.png" />
+    <BundleResource Include="Resources\signup_buildings_2.png" />
+    <BundleResource Include="Resources\signup_monthly_normal.png" />
+    <BundleResource Include="Resources\signup_quarterly_active.png" />
+    <BundleResource Include="Resources\signup_quarterly_normal.png" />
+    <BundleResource Include="Resources\signup_annual_active.png" />
+    <BundleResource Include="Resources\signup_annual_normal.png" />
+    <BundleResource Include="Resources\signup_monthly_active.png" />
+    <BundleResource Include="Resources\signup_woman%403x.png" />
+    <BundleResource Include="Resources\signup_woman%402x.png" />
+    <BundleResource Include="Resources\background%402x.png" />
+    <BundleResource Include="Resources\background%403x.png" />
+    <BundleResource Include="Resources\bike%403x.png" />
+    <BundleResource Include="Resources\bike%402x.png" />
+    <BundleResource Include="Resources\signup_boy_bike%402x.png" />
+    <BundleResource Include="Resources\signup_boy_bike%403x.png" />
+    <BundleResource Include="Resources\ic_close%402x.png" />
+    <BundleResource Include="Resources\ic_close%403x.png" />
+    <BundleResource Include="Resources\signup_woman_active%402x.png" />
+    <BundleResource Include="Resources\signup_woman_active%403x.png" />
+    <BundleResource Include="Resources\signup_man%403x.png" />
+    <BundleResource Include="Resources\signup_man_active%402x.png" />
+    <BundleResource Include="Resources\signup_man_active%403x.png" />
+    <BundleResource Include="Resources\signup_man%402x.png" />
+    <BundleResource Include="Resources\fence%403x.png" />
+    <BundleResource Include="Resources\fence%402x.png" />
+    <BundleResource Include="Resources\ic_arrow_forward_active%402x.png" />
+    <BundleResource Include="Resources\ic_arrow_forward_active%403x.png" />
+    <BundleResource Include="Resources\ic_arrow_forward_dissable%402x.png" />
+    <BundleResource Include="Resources\ic_arrow_forward_dissable%403x.png" />
+    <BundleResource Include="Resources\ic_report_handlebar%402x.png" />
+    <BundleResource Include="Resources\ic_report_handlebar%403x.png" />
+    <BundleResource Include="Resources\ic_report_handlebar_selec%402x.png" />
+    <BundleResource Include="Resources\ic_report_handlebar_selec%403x.png" />
+    <BundleResource Include="Resources\ic_report_chain_selec%403x.png" />
+    <BundleResource Include="Resources\ic_report_chain.png" />
+    <BundleResource Include="Resources\ic_report_chain%402x.png" />
+    <BundleResource Include="Resources\ic_report_chain%403x.png" />
+    <BundleResource Include="Resources\ic_report_chain_selec.png" />
+    <BundleResource Include="Resources\ic_report_chain_selec%402x.png" />
+    <BundleResource Include="Resources\ic_report_loss_selec%403x.png" />
+    <BundleResource Include="Resources\ic_report_flat_tire.png" />
+    <BundleResource Include="Resources\ic_report_flat_tire%402x.png" />
+    <BundleResource Include="Resources\ic_report_flat_tire%403x.png" />
+    <BundleResource Include="Resources\ic_report_flat_tire_selec.png" />
+    <BundleResource Include="Resources\ic_report_flat_tire_selec%402x.png" />
+    <BundleResource Include="Resources\ic_report_flat_tire_selec%403x.png" />
+    <BundleResource Include="Resources\ic_report_fork.png" />
+    <BundleResource Include="Resources\ic_report_fork%402x.png" />
+    <BundleResource Include="Resources\ic_report_fork%403x.png" />
+    <BundleResource Include="Resources\ic_report_fork_selec.png" />
+    <BundleResource Include="Resources\ic_report_fork_selec%402x.png" />
+    <BundleResource Include="Resources\ic_report_fork_selec%403x.png" />
+    <BundleResource Include="Resources\ic_report_handlebar.png" />
+    <BundleResource Include="Resources\ic_report_handlebar_selec.png" />
+    <BundleResource Include="Resources\ic_report_loss.png" />
+    <BundleResource Include="Resources\ic_report_loss%402x.png" />
+    <BundleResource Include="Resources\ic_report_loss%403x.png" />
+    <BundleResource Include="Resources\ic_report_loss_selec.png" />
+    <BundleResource Include="Resources\ic_report_loss_selec%402x.png" />
+    <BundleResource Include="Resources\ic_report_pedals_selec%403x.png" />
+    <BundleResource Include="Resources\ic_report_pedals.png" />
+    <BundleResource Include="Resources\ic_report_pedals%402x.png" />
+    <BundleResource Include="Resources\ic_report_pedals%403x.png" />
+    <BundleResource Include="Resources\ic_report_pedals_selec.png" />
+    <BundleResource Include="Resources\ic_report_pedals_selec%402x.png" />
+    <BundleResource Include="Resources\booking_background%402x.png" />
+    <BundleResource Include="Resources\booking_background%403x.png" />
+    <BundleResource Include="Resources\booking_circle_white.png" />
+    <BundleResource Include="Resources\booking_circle_white%402x.png" />
+    <BundleResource Include="Resources\booking_circle_white%403x.png" />
+    <BundleResource Include="Resources\menu_ic_bike%402x.png" />
+    <BundleResource Include="Resources\menu_ic_bike%403x.png" />
+    <BundleResource Include="Resources\menu_ic_home%402x.png" />
+    <BundleResource Include="Resources\menu_ic_home%403x.png" />
+    <BundleResource Include="Resources\menu_ic_profile%402x.png" />
+    <BundleResource Include="Resources\menu_ic_profile%403x.png" />
+    <BundleResource Include="Resources\menu_ic_report_incident%402x.png" />
+    <BundleResource Include="Resources\menu_ic_report_incident%403x.png" />
+    <BundleResource Include="Resources\menu_ic_upcoming_ride%402x.png" />
+    <BundleResource Include="Resources\menu_ic_upcoming_ride%403x.png" />
+    <BundleResource Include="Resources\progress_done%402x.png" />
+    <BundleResource Include="Resources\progress_done%403x.png" />
+    <BundleResource Include="Resources\progress_pending%402x.png" />
+    <BundleResource Include="Resources\progress_pending%403x.png" />
+    <BundleResource Include="Resources\profile_logout%403x.png" />
+    <BundleResource Include="Resources\profile_logout%402x.png" />
+    <BundleResource Include="Resources\home_new_ride%403x.png" />
+    <BundleResource Include="Resources\home_new_ride%402x.png" />
+    <BundleResource Include="Resources\pushpin_origen%403x.png" />
+    <BundleResource Include="Resources\pushpin%402x.png" />
+    <BundleResource Include="Resources\pushpin%403x.png" />
+    <BundleResource Include="Resources\pushpin_destiny%402x.png" />
+    <BundleResource Include="Resources\pushpin_destiny%403x.png" />
+    <BundleResource Include="Resources\pushpin_origen%402x.png" />
+    <BundleResource Include="Resources\ic_distance_white%403x.png" />
+    <BundleResource Include="Resources\myrides_ic_distance%402x.png" />
+    <BundleResource Include="Resources\myrides_ic_distance%403x.png" />
+    <BundleResource Include="Resources\ic_distance_white%402x.png" />
+    <BundleResource Include="Resources\report_done_message%403x.png" />
+    <BundleResource Include="Resources\report_done_message%402x.png" />
+    <BundleResource Include="Resources\profile_placeholder%403x.png" />
+    <BundleResource Include="Resources\profile_camera_overlay%402x.png" />
+    <BundleResource Include="Resources\profile_camera_overlay%403x.png" />
+    <BundleResource Include="Resources\profile_placeholder%402x.png" />
+    <BundleResource Include="Resources\signup_cloud_1%402x.png" />
+    <BundleResource Include="Resources\signup_cloud_1%403x.png" />
+    <BundleResource Include="Resources\signup_trees%403x.png" />
+    <BundleResource Include="Resources\signup_trees%402x.png" />
+    <BundleResource Include="Resources\splash_logo%403x.png" />
+    <BundleResource Include="Resources\splash_logo%402x.png" />
+    <BundleResource Include="Resources\event_overlay.png" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="..\CommonResources\suggestion_central_park.png">
+      <Link>Resources\suggestion_central_park.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\CommonResources\suggestion_corona_park.png">
+      <Link>Resources\suggestion_corona_park.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\CommonResources\suggestion_liberty_state_park.png">
+      <Link>Resources\suggestion_liberty_state_park.png</Link>
+    </BundleResource>
+    <Content Include="Entitlements.plist" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <Compile Include="Renderers\CustomProgressBarRenderer.cs" />
+    <Compile Include="Renderers\TabbedPageRenderer.cs" />
+    <Compile Include="Services\CreditCardScannerService.cs" />
+    <Compile Include="Renderers\NoBarsScrollViewerRenderer.cs" />
+    <Compile Include="CardIOController.cs" />
+    <BundleResource Include="Resources\report_open_bot%402x.png" />
+    <BundleResource Include="Resources\report_open_bot%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.Support.2.1.0\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.2.3\lib\Xamarin.iOS10\Acr.UserDialogs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.2.3\lib\Xamarin.iOS10\Acr.UserDialogs.Interface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.1.8\lib\Xamarin.iOS10\FFImageLoading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.1.8\lib\Xamarin.iOS10\FFImageLoading.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Forms.Touch, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.1.8\lib\Xamarin.iOS10\FFImageLoading.Forms.Touch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.1.8\lib\Xamarin.iOS10\FFImageLoading.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Transformations, Version=1.0.6112.22075, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Transformations.2.1.8\lib\Xamarin.iOS10\FFImageLoading.Transformations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HockeySDK, Version=1.0.6103.22142, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HockeySDK.Xamarin.4.1.0\lib\Xamarin.iOS10\HockeySDK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HockeySDK.iOSBindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HockeySDK.Xamarin.4.1.0\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Geolocator, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Geolocator.3.0.4\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Geolocator.Abstractions, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Geolocator.3.0.4\lib\Xamarin.iOS10\Plugin.Geolocator.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Media, Version=2.6.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Media.2.6.0.12-beta\lib\Xamarin.iOS10\Plugin.Media.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Media.Abstractions, Version=2.6.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Media.2.6.0.12-beta\lib\Xamarin.iOS10\Plugin.Media.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.1.0\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.1.0\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Splat.1.6.2\lib\Xamarin.iOS10\Splat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="WebP.Touch, Version=1.0.5923.35383, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebP.Touch.1.0.2\lib\Xamarin.iOS10\WebP.Touch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.Maps.2.3.3.152-pre2\lib\Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps.iOS, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.Maps.2.3.3.152-pre2\lib\Xamarin.iOS10\Xamarin.Forms.Maps.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.iOS, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Card.IO">
+      <HintPath>..\..\Components\cardioios-5.4.1.0\lib\ios-unified\Card.IO.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BikeSharing.Clients.Core\BikeSharing.Clients.Core.csproj">
+      <Project>{89c9b6f2-1cd6-4a98-9ccc-eefb7ddbf6fa}</Project>
+      <Name>BikeSharing.Clients.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BikeSharing.Clients.WatchOSApp\BikeSharing.Clients.WatchOSApp.WatchOSApp\BikeSharing.Clients.WatchOSApp.WatchOSApp.csproj">
+      <IsWatchApp>true</IsWatchApp>
+      <Project>{7B7ED51B-B684-46F2-83C7-EEA5F632AF2B}</Project>
+      <Name>BikeSharing.Clients.WatchOSApp.WatchOSApp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%401x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-57x57%401x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%401x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%401x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon_Launcher_114x114.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon_Launcher_120x120.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon_Launcher_180x180.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="cardioios">
+      <Version>5.4.1.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\..\packages\Xamarin.Forms.2.3.3.152-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.3.152-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.3.152-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.3.152-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
+  </Target>
+</Project>

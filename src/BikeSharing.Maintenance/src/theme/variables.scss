@@ -1,0 +1,125 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+@import "ionic.globals";
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+
+$color-brand: #3164F6;
+$color-brand-dark: #3063F5;
+$color-brand-darker: #1D3B93;
+$color-secondary: #FFDC3C;
+
+$color-positive: #0ACA91;
+$color-warning: #FF5252;
+
+$color-background-light: #F4F6FA;
+$color-background-lighter: #FFF;
+$color-background-dark: #081023;
+$color-background-dark: #000;
+
+$color-foreground-light: #FFF;
+$color-foreground-semidark: #B6B9C1;
+$color-foreground-dark: #484F63;
+
+$color-border: #DEDFE3;
+
+$font-weight-light: 200;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+
+$shadow-default: 1px 1px 2px 0 rgba($color-background-dark, .15);
+
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+  primary:    $color-brand,
+  secondary:  $color-secondary,
+  danger:     $color-warning,
+  light:      $color-background-light,
+  dark:       $color-foreground-dark,
+  favorite:   $color-positive
+);
+
+// Generics
+$background-color: $color-background-light;
+$content-padding: 8px;
+$font-family-base: "Montserrat";
+
+// Toolbar
+$toolbar-background: $color-brand;
+$toolbar-text-color: $color-foreground-light;
+$toolbar-inactive-color: $color-foreground-light;
+$toolbar-active-color: $color-foreground-light;
+
+// List
+$list-background-color: $color-background-lighter;
+
+// Fonts
+$font-family-ios-base: $font-family-base;
+$font-family-md-base: $font-family-base;
+$font-family-wp-base: $font-family-base;
+
+// Item
+$item-font-size: 2rem;
+$item-ios-body-text-font-size: $item-font-size;
+$item-md-body-text-font-size: $item-font-size;
+$item-wp-body-text-font-size: $item-font-size;
+
+$item-padding-top: 13px;
+$item-ios-padding-top: $item-padding-top;
+$item-md-padding-top: $item-padding-top;
+$item-wp-padding-top: $item-padding-top;
+
+// Badge
+$badge-font-weight: 200;
+$badge-font-size: 1.3rem;
+$badge-border-radius: 1.3rem;
+
+$badge-ios-font-weight: $badge-font-weight;
+$badge-ios-font-size: $badge-font-size;
+$badge-ios-border-radius: $badge-border-radius;
+
+$badge-md-font-weight: $badge-font-weight;
+$badge-md-font-size: $badge-font-size;
+$badge-md-border-radius: $badge-border-radius;
+
+$badge-wp-font-weight: $badge-font-weight;
+$badge-wp-font-size: $badge-font-size;
+$badge-wp-border-radius: 0;
+
+// Toolbar
+$toolbar-ios-height: 0;
+$toolbar-md-height: 0;
+$toolbar-wp-height: 0;
+
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+$ionicons-font-path: "../assets/fonts";
+@import "ionicons";

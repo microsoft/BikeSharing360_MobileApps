@@ -1,0 +1,18 @@
+@import "../../variables";
+
+ion-badge {
+    border-radius: 50% !important;
+    padding: 8px 5px 5px 6px !important;
+    min-width: 26px;
+}
+
+.badge {
+    &-danger {
+        background-color: color($colors, danger);
+    }
+
+    &-light {
+        background-color: color($colors, light);
+        color: color($colors, danger);
+    }
+}

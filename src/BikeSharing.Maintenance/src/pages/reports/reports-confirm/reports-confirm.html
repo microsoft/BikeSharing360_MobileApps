@@ -1,0 +1,19 @@
+<ion-content padding>
+    <div class="bs-reports_confirm-container">
+        <div class="bs-reports_confirm-modal">
+            <h1 class="bs-reports_confirm-title">Report</h1>
+            <h2 class="bs-reports_confirm-status">Solved!</h2>
+            <span class="bs-reports_confirm-date">{{today| date:"longDate"}}</span>
+            <span class="bs-reports_confirm-station">Station {{report.station.id}}</span>
+
+            <div class="bs-reports_confirm-actions">
+                <div class="bs-button bs-button--light" (click)="goToReports($event)"> Go to reports </div>
+                <div class="bs-button bs-button--secondary bs-button--frameless" (click)="undoSolved($event)"> Undo this </div>
+            </div>
+        </div>
+        <img class="bs-reports_confirm-mechanic"
+             src="./assets/vectors/maintenance.svg"/>
+        <img class="bs-reports_confirm-mechanic bs-reports_confirm-mechanic--back" 
+             src="./assets/vectors/maintenance_back.svg"/>
+    </div>
+</ion-content>

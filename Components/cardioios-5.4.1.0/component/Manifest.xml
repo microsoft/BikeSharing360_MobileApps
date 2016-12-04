@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="cardioios">
+  <name>Card.io for iOS</name>
+  <publisher>Xamarin Inc</publisher>
+  <publisher-url>https://xamarin.com</publisher-url>
+  <src-url>https://github.com/card-io/card.io-iOS-SDK</src-url>
+  <version>5.4.1.0</version>
+  <summary>Credit card scanning for mobile apps</summary>
+  <samples>
+    <sample id="CardIOSampleiOS">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>

@@ -1,0 +1,26 @@
+@import "../../variables";
+
+.bs-button {
+    border: 4px solid $color-brand;
+    color: $color-brand;
+    font-size: 1.6rem;
+    margin: 0 auto .3rem auto;
+    padding: .6rem;
+    text-align: center;
+    width: 80%;
+    cursor: pointer;
+
+    &--frameless {
+        border-color: transparent !important;
+    }
+
+    &--light {
+        border-color: $color-background-lighter;
+        color: $color-background-lighter;
+    }
+
+    &--secondary {
+        border-color: $color-secondary;
+        color: $color-secondary;
+    }
+}

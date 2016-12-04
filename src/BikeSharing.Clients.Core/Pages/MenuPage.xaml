@@ -1,0 +1,340 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title=" "
+             x:Name="MainPage"
+             xmlns:behaviors="clr-namespace:BikeSharing.Clients.Core.Behaviors;assembly=BikeSharing.Clients.Core"
+             xmlns:controls="clr-namespace:BikeSharing.Clients.Core.Controls;assembly=BikeSharing.Clients.Core"
+             xmlns:helpers="clr-namespace:BikeSharing.Clients.Core.Helpers;assembly=BikeSharing.Clients.Core"
+             xmlns:windows="clr-namespace:Windows.UI.Xaml.Controls;assembly=Windows, Version=255.255.255.255, Culture=neutral, PublicKeyToken=null, ContentType=WindowsRuntime;targetPlatform=Windows"
+             x:Class="BikeSharing.Clients.Core.Pages.MenuPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ProfileNameLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                    Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                    Value="{StaticResource BigSize}" />
+            </Style>
+
+            <Style x:Key="UwpProfileNameLabelStyle"
+                 TargetType="{x:Type Label}"
+                 BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                    Value="{StaticResource BlueColor}" />
+                <Setter Property="FontSize"
+                    Value="{StaticResource MediumSize}" />
+            </Style>
+
+            <Style x:Key="MenuItemLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource MediumSize}" />
+                <Setter Property="Opacity"
+                        Value="0.87" />
+            </Style>
+
+            <Style x:Key="UwpMenuItemLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource BlueColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource MediumSize}" />
+                <Setter Property="Opacity"
+                        Value="0.87" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.BackgroundColor>
+            <helpers:OnCustomPlatform   
+                x:TypeArguments="Color"
+                Android="{StaticResource BlueColor}"
+                iOS="{StaticResource BlueColor}" 
+                WinPhone="{StaticResource WhiteColor}"
+                Windows="{StaticResource WhiteColor}"/>
+        </Grid.BackgroundColor>
+        <Grid.RowDefinitions>
+            <RowDefinition>
+                <RowDefinition.Height>
+                    <helpers:OnCustomPlatform 
+                        x:TypeArguments="GridLength"
+                        Android="*"
+                        WinPhone="*"
+                        Windows="*"/>
+                </RowDefinition.Height>
+            </RowDefinition>
+            <RowDefinition>
+                <RowDefinition.Height>
+                    <helpers:OnCustomPlatform 
+                        x:TypeArguments="GridLength"
+                        Android="Auto"
+                        WinPhone="Auto"
+                        Windows="Auto"/>
+                </RowDefinition.Height>
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.Margin>
+            <helpers:OnCustomPlatform         
+                x:TypeArguments="Thickness"
+                Android="0"
+                WinPhone="0,0,0,48"
+                Windows="0,0,0,48"/>
+        </Grid.Margin>
+        <!-- MENU -->
+        <Grid     
+            Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <!-- BACKGROUND -->
+            <Image
+                Grid.Row="0"
+                Grid.RowSpan="5">
+                <Image.Source>
+                    <helpers:OnCustomPlatform 
+                        x:TypeArguments="ImageSource"
+                        Android="menu_bg.png"
+                        iOS="menu_bg.png"
+                        WinPhone="Assets\menu_bg_desktop.png"
+                        Windows="Assets\menu_bg_desktop.png"/>
+                </Image.Source>
+                <Image.Aspect>
+                    <helpers:OnCustomPlatform  
+                        x:TypeArguments="Aspect"
+                        Android="AspectFit"
+                        iOS="AspectFill"
+                        WinPhone="AspectFill"
+                        Windows="AspectFit"/>
+                </Image.Aspect>
+                <Image.HorizontalOptions>
+                    <helpers:OnCustomPlatform  
+                        x:TypeArguments="LayoutOptions"
+                        Android="FillAndExpand"
+                        iOS="FillAndExpand"
+                        WinPhone="FillAndExpand"
+                        Windows="FillAndExpand"/>
+                </Image.HorizontalOptions>
+                <Image.VerticalOptions>
+                    <helpers:OnCustomPlatform   
+                        x:TypeArguments="LayoutOptions"
+                        Android="End"
+                        iOS="FillAndExpand"
+                        WinPhone="End"
+                        Windows="EndAndExpand"/>
+                </Image.VerticalOptions>
+            </Image>
+            <!-- MOBILE PROFILE -->
+            <Grid
+                Grid.Row="0">
+                <Grid.IsVisible>
+                    <OnPlatform 
+                        x:TypeArguments="x:Boolean" 
+                        Android="True"
+                        iOS="True" 
+                        WinPhone="False"/>
+                </Grid.IsVisible>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <controls:UserProfileImageControl
+                    Grid.Column="0"
+                    WidthRequest="64"
+                    HeightRequest="64"
+                    Margin="16,25,16,20"
+                    BorderColor="#00000000"
+                    ProfileImage="{Binding Profile.PhotoUrl}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />
+                <StackLayout 
+                    Grid.Column="1"
+                    Margin="0,25"
+                    Orientation="Horizontal"
+                    VerticalOptions="CenterAndExpand">
+                    <Label 
+                        Text="{Binding ProfileFullName}"
+                        Style="{StaticResource ProfileNameLabelStyle}" />
+                </StackLayout>
+            </Grid>
+            <!-- SEPARATOR -->
+            <Grid 
+                Grid.Row="1"
+                BackgroundColor="{StaticResource WhiteColor}"
+                Opacity="0.2"
+                HeightRequest="1" />
+            <!-- MENU -->
+            <ListView 
+                Grid.Row="2"
+                x:Name="Items" 
+                CachingStrategy="RecycleElement"
+                ItemsSource="{Binding MenuItems, Mode=OneWay}"
+                behaviors:ItemTappedCommandListView.ItemTappedCommand="{Binding ItemSelectedCommand}"
+                SeparatorVisibility="None"
+                VerticalOptions="StartAndExpand"
+                Margin="0,5,0,0">
+                <ListView.Margin>
+                    <helpers:OnCustomPlatform 
+                        x:TypeArguments="Thickness"
+                        Android="0,5,0,0"
+                        iOS="0,5,0,0"
+                        WinPhone="0,5,0,0"
+                        Windows="0"/>
+                </ListView.Margin>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <StackLayout.Margin>
+                                    <helpers:OnCustomPlatform  
+                                        x:TypeArguments="Thickness"
+                                        Android="38, 9, 0, 0"
+                                        iOS="38, 9, 0, 0"
+                                        WinPhone="14, 9, 0, 14"
+                                        Windows="14, 14, 0, 14"/>
+                                </StackLayout.Margin>
+                                <StackLayout.Triggers>
+                                    <DataTrigger
+                                        TargetType="StackLayout"
+                                        Binding="{Binding IsEnabled, Mode=TwoWay}"
+                                        Value="False">
+                                        <Setter Property="Opacity"
+                                                Value="0.6" />
+                                    </DataTrigger>
+                                </StackLayout.Triggers>
+                                <Image 
+                                    Source="{Binding MenuItemType, Converter={StaticResource MenuItemTypeConverter}}"
+                                    Aspect="AspectFit"
+                                    WidthRequest="22"
+                                    HeightRequest="22"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+                                <Label 
+                                    Text="{Binding Title}"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center">
+                                    <Label.Style>
+                                        <helpers:OnCustomPlatform
+                                            x:TypeArguments="Style"
+                                            Android="{StaticResource MenuItemLabelStyle}"
+                                            iOS="{StaticResource MenuItemLabelStyle}"         
+                                            WinPhone="{StaticResource UwpMenuItemLabelStyle}"
+                                            Windows="{StaticResource UwpMenuItemLabelStyle}"/>
+                                    </Label.Style>
+                                    <Label.Margin>
+                                        <helpers:OnCustomPlatform  
+                                            x:TypeArguments="Thickness"
+                                            Android="5,0,0,0"
+                                            iOS="5,0,0,0"
+                                            WinPhone="5,0,0,0"
+                                            Windows="23, 0, 0, 0"/>
+                                    </Label.Margin>
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!-- UWP PROFILE -->
+            <Grid 
+                Grid.Row="3"
+                VerticalOptions="End">
+                <Grid.IsVisible>
+                    <OnPlatform
+                        x:TypeArguments="x:Boolean"
+                        Android="False"
+                        iOS="False"
+                        WinPhone="True"/>
+                </Grid.IsVisible>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <controls:UserProfileImageControl
+                    Grid.Column="0"
+                    WidthRequest="32"
+                    HeightRequest="32"
+                    Margin="14,0,0,14"
+                    BorderColor="#00000000"
+                    ProfileImage="{Binding Profile.PhotoUrl}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand" />
+                <StackLayout 
+                    Grid.Column="1"
+                    Orientation="Horizontal"
+                    Margin="14,0,0,14"
+                    VerticalOptions="CenterAndExpand">
+                    <Label 
+                        Text="{Binding ProfileFullName}"
+                        Style="{StaticResource UwpProfileNameLabelStyle}" />
+                </StackLayout>
+            </Grid>
+            <!-- SEPARATOR -->
+            <Grid 
+                Grid.Row="4"
+                BackgroundColor="{StaticResource WhiteColor}"
+                Opacity="0.2"
+                HeightRequest="1" />
+        </Grid>
+        <!-- LOG OUT -->
+        <Grid  
+            Grid.Row="1">
+            <Grid.IsVisible>
+                <helpers:OnCustomPlatform 
+                    x:TypeArguments="x:Boolean"
+                    Android="True"
+                    iOS="True"
+                    WinPhone="True"
+                    Windows="False"/>
+            </Grid.IsVisible>
+            <controls:LogoutButton 
+                x:Name="LogoutButton" 
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Command="{Binding LogoutCommand}">
+                <controls:LogoutButton.HeightRequest>
+                    <helpers:OnCustomPlatform    
+                        x:TypeArguments="x:Double"
+                        Android="24"
+                        WinPhone="48"
+                        Windows="48"/>
+                </controls:LogoutButton.HeightRequest>
+                <controls:LogoutButton.Margin>
+                    <helpers:OnCustomPlatform    
+                        x:TypeArguments="Thickness"
+                        Android="8,0,0,0"
+                        WinPhone="8,0,0,0"
+                        Windows="8,0,0,0"/>
+                </controls:LogoutButton.Margin>
+            </controls:LogoutButton>
+        </Grid>
+        <!-- UWP DESKTOP LOG OUT -->
+        <Grid  
+            Grid.Row="1">
+            <Grid.IsVisible>
+                <helpers:OnCustomPlatform 
+                    x:TypeArguments="x:Boolean"
+                    Android="False"
+                    iOS="False"
+                    WinPhone="False"
+                    Windows="True"/>
+            </Grid.IsVisible>
+            <windows:Button 
+                    Content="Logout"
+                    Command="{Binding LogoutCommand}">
+            </windows:Button>
+        </Grid>
+    </Grid>
+</ContentPage>

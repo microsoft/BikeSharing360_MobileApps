@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-navbar hide-tabs>
+        <ion-title class="bs-reports_detail-header_title">
+            Report Info
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content id="detail_view" padding>
+    <div showWhen="ios" class="bs-reports_detail-header"></div>
+    <ion-item-divider class="item-divider">
+        <span class="bs-reports_detail-report_number_label">Report number</span><span class="bs-reports_detail-report_number">{{report.id}}</span>
+        <span class="bs-reports_detail-title"></span>
+        <span class="bs-reports_detail-status item-status"
+              [ngClass]="{'item-status--solved': report.solved}">
+            {{report.solved ? 'Solved' : 'Waiting'}}
+        </span>
+    </ion-item-divider>
+    <ion-item class="bs-reports_detail-box">
+        <ion-thumbnail item-left
+                       class="item-left bs-reports_detail-thumbnail">
+
+            <ion-icon class="item-thumb"
+                      name="bs-{{report.type}}"
+                      [ngClass]="{'item-thumb--solved': report.solved}"></ion-icon>
+        </ion-thumbnail>
+        <div class="bs-reports_detail-body">
+            <h4 class="item-title">{{report.title}}</h4>
+            <p class="item-description bs-reports_detail-subtitle">{{report.subtitle}}</p>
+            <ion-icon class="item-icon bs-reports_detail-station_icon" name="bs-pushpin"></ion-icon>
+            <p class="item-title  bs-reports_detail-station">Station {{report.station.id}}</p>
+            <p class="item-subtitle bs-reports_detail-station_position">{{report.distance}} miles from your position</p>
+            <p>
+                <ion-icon class="item-icon bs-reports_detail-time" name="bs-time"></ion-icon>
+                <span class="item-title bs-reports_detail-time">{{report.time | date:"shortTime"}}</span>
+            </p>
+        </div>
+    </ion-item>
+    <ion-item class="bs-reports_detail-box">
+        <h2 class="bs-reports_detail-box_title">Description</h2>
+        <p class="item-subtitle bs-reports_detail-description">{{report.description || '-'}}</p>
+    </ion-item>
+    <ion-item class="bs-reports_detail-box">
+        <h2 class="bs-reports_detail-box_title">Bike info</h2>
+        <ion-row class="bs-reports_detail-row">
+            <ion-col width-50 class="bs-reports_detail-col">
+                <p class="item-title bs-reports_detail-station">Serial Number</p>
+                <p class="item-subtitle">{{bikeInfo.serialNumber}}</p>
+            </ion-col>
+            <ion-col width-50 class="bs-reports_detail-col">
+                <p class="item-title bs-reports_detail-station">Total distance traveled</p>
+                <p class="item-subtitle">{{bikeInfo.totalDistanceTraveled}} miles</p>
+            </ion-col>
+        </ion-row>
+        <ion-row class="bs-reports_detail-row">
+            <ion-col width-50 class="bs-reports_detail-col">
+                <p class="item-title bs-reports_detail-station">Total incidences</p>
+                <p class="item-subtitle">{{getTotalIncidences()}}</p>
+            </ion-col>
+            <ion-col width-50 class="bs-reports_detail-col">
+                <p class="item-title bs-reports_detail-station">In circulation since</p>
+                <p class="item-subtitle">{{bikeInfo.inCirculationSince | date:"mediumDate"}}</p>
+            </ion-col>
+        </ion-row>
+        <div class="item-title bs-reports_detail-title_incidences">Last incidences</div>
+        <ion-row class="bs-reports_detail-row_incidences" 
+                 *ngFor="let incidence of report.incidences">
+
+            <ion-col width-10 class="bs-reports_detail-col">
+                <ion-icon class="item-thumb item-left bs-reports_detail-incidence_icon"
+                          name="bs-{{incidence.type}}"
+                          [ngClass]="{'item-thumb--solved': incidence.solved}"></ion-icon>
+            </ion-col>
+            <ion-col width-40 class="bs-reports_detail-col">
+                <p class="item-description bs-reports_detail-incidence_type">{{incidence.type}}</p>
+            </ion-col>
+            <ion-col width-30 class="bs-reports_detail-col">
+                <p class="item-title bs-reports_detail-date">{{incidence.time | date:"longDate"}}</p>
+            </ion-col>
+        </ion-row>
+    </ion-item>
+    <div (click)="markAsSolved()" *ngIf="!report.solved" class="bs-button bs-reports_detail-solve">Mark this incidence as solved</div>
+</ion-content>

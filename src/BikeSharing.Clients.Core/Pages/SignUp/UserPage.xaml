@@ -1,0 +1,252 @@
+﻿<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BikeSharing.Clients.Core.Pages.UserPage"             
+             xmlns:behaviors="clr-namespace:BikeSharing.Clients.Core.Behaviors;assembly=BikeSharing.Clients.Core"    
+             xmlns:helpers="clr-namespace:BikeSharing.Clients.Core.Helpers;assembly=BikeSharing.Clients.Core"
+             xmlns:effects="clr-namespace:BikeSharing.Clients.Core.Effects;assembly=BikeSharing.Clients.Core"
+             xmlns:controls="clr-namespace:BikeSharing.Clients.Core.Controls;assembly=BikeSharing.Clients.Core">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="HeaderFieldStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BlueColor}" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="HeightRequest" Value="24" />
+                <Setter Property="Margin" Value="6, 0" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource MontserratRegular}" />
+            </Style>
+
+            <Style x:Key="FormEntryStyle" TargetType="Entry" BasedOn="{StaticResource EntryStyle}">
+                <Setter Property="HeightRequest" Value="36" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="effects:LineColorEffect.ApplyLineColor" Value="True" />
+                <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource BlueColor}" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+            <Style x:Key="FormDatePickerStyle" TargetType="DatePicker">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="effects:LineColorEffect.ApplyLineColor" Value="True" />
+                <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid
+        BackgroundColor="Gray"
+        Padding="0,0,0,1">
+        <!-- BACKGROUND -->
+        <BoxView 
+            BackgroundColor="{StaticResource WhiteColor}"/>
+        <!-- FENCE -->
+        <Image 
+            Source="fence" 
+            Aspect="AspectFill"
+            HorizontalOptions="Start"
+            VerticalOptions="EndAndExpand">
+            <Image.Source>
+                <OnPlatform x:TypeArguments="ImageSource"
+                          Android="fence.png"
+                          iOS="fence.png"
+                          WinPhone="Assets\SignUp\fence.png"/>
+            </Image.Source>
+        </Image>
+        <!-- BIKE -->
+        <Image
+            HorizontalOptions="End"
+            VerticalOptions="End">
+            <Image.HeightRequest>
+                <helpers:OnCustomPlatform       
+                    x:TypeArguments="x:Double" 
+                    Android="48"
+                    iOS="60"
+                    WinPhone="60"
+                    Windows="96"/>
+            </Image.HeightRequest>
+            <Image.Source>
+                <OnPlatform x:TypeArguments="ImageSource"
+                          Android="bike.png"
+                          iOS="bike.png"
+                          WinPhone="Assets\SignUp\bike.png"/>
+            </Image.Source>
+        </Image>
+        <AbsoluteLayout
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+            <!-- CLOSE -->
+            <Image
+                AbsoluteLayout.LayoutFlags="All"
+                Margin="0, 6">
+                <Image.AbsoluteLayout.LayoutBounds>
+                    <helpers:OnCustomPlatform 
+                        x:TypeArguments="Rectangle"
+                        iOS="0.05, 0.0, 0.065, 0.065"
+                        Android="0.05, 0.0, 0.065, 0.065"
+                        WinPhone="0.05, 0.0, 0.065, 0.065"
+                        Windows="0.01, 0.0, 0.065, 0.065"/>
+                </Image.AbsoluteLayout.LayoutBounds>
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                          Android="ic_close.png"
+                          iOS="ic_close.png"
+                          WinPhone="Assets\SignUp\ic_close.png"/>
+                </Image.Source>
+            </Image>
+            <Grid  
+                BackgroundColor="Transparent"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Grid.AbsoluteLayout.LayoutBounds>
+                    <helpers:OnCustomPlatform 
+                        x:TypeArguments="Rectangle"
+                        iOS="0.05, 0.0, 30, 30"
+                        Android="0.05, 0.0, 30, 30"
+                        WinPhone="0.05, 0.0, 30, 30"
+                        Windows="0.01, 0.0, 34, 34"/>
+                </Grid.AbsoluteLayout.LayoutBounds>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CloseCommand}" 
+                                          NumberOfTapsRequired="1" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <!-- NEXT -->
+            <Image        
+                HorizontalOptions="End" 
+                VerticalOptions="End"
+                IsVisible="{Binding IsValid, Converter={StaticResource InverseBoolConverter}}"
+                AbsoluteLayout.LayoutFlags="All"
+                Margin="0, 12, 12, 0">
+                <Image.AbsoluteLayout.LayoutBounds>
+                    <helpers:OnCustomPlatform 
+                        x:TypeArguments="Rectangle"
+                        iOS="1.0, 1.0, 0.3, 0.3"
+                        Android="1.0, 1.0, 0.3, 0.3"
+                        WinPhone="1.0, 1.0, 0.3, 0.3"
+                        Windows="1.0, 1.0, 0.25, 0.25"/>
+                </Image.AbsoluteLayout.LayoutBounds>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NextCommand}" 
+                                          CommandParameter="True"
+                                          NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                          Android="floating_action_button_disable.png"
+                          iOS="floating_action_button_disable.png"
+                          WinPhone="Assets\SignUp\floating_action_button_disable.png"/>
+                </Image.Source>
+            </Image>
+            <Image      
+                HorizontalOptions="End" 
+                VerticalOptions="End"
+                IsVisible="{Binding IsValid}"
+                AbsoluteLayout.LayoutFlags="All"
+                Margin="0, 12, 12, 0">
+                <Image.AbsoluteLayout.LayoutBounds>
+                    <helpers:OnCustomPlatform 
+                        x:TypeArguments="Rectangle"
+                        iOS="1.0, 1.0, 0.3, 0.3"
+                        Android="1.0, 1.0, 0.3, 0.3"
+                        WinPhone="1.0, 1.0, 0.3, 0.3"
+                        Windows="1.0, 1.0, 0.25, 0.25"/>
+                </Image.AbsoluteLayout.LayoutBounds>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NextCommand}" 
+                                          CommandParameter="True"
+                                          NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource"
+                          Android="floating_action_button_normal.png"
+                          iOS="floating_action_button_normal.png"
+                          WinPhone="Assets\SignUp\floating_action_button_normal.png"/>
+                </Image.Source>
+            </Image>
+        </AbsoluteLayout>
+        <!-- FORM -->
+        <StackLayout
+            Margin="24, 24, 24, 96">
+            <Label
+                Text="First Name"    
+                Style="{StaticResource HeaderFieldStyle}" />
+            <Entry        
+                Text="{Binding FirstName.Value, Mode=TwoWay}"
+                Style="{StaticResource FormEntryStyle}">
+                <Entry.Behaviors>
+                    <behaviors:TurnValidOnFocusBehavior ValidityObject="{Binding UserName}" />
+                </Entry.Behaviors>
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry" 
+                                 Binding="{Binding FirstName.IsValid}" 
+                                 Value="False">
+                        <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource ErrorColor}" />
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Label 
+                Text="Last Name"
+                Style="{StaticResource HeaderFieldStyle}" />
+            <Entry  
+                Text="{Binding LastName.Value, Mode=TwoWay}"
+                Style="{StaticResource FormEntryStyle}">
+                <Entry.Behaviors>
+                    <behaviors:TurnValidOnFocusBehavior ValidityObject="{Binding UserName}" />
+                </Entry.Behaviors>
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry" 
+                                 Binding="{Binding LastName.IsValid}" 
+                                 Value="False">
+                        <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource ErrorColor}" />
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Label 
+                Text="Birthdate"
+                Style="{StaticResource HeaderFieldStyle}" />
+            <DatePicker 
+                Date="{Binding BirthDate, Mode=TwoWay}"
+                Style="{StaticResource FormDatePickerStyle}">
+                <DatePicker.HorizontalOptions>
+                    <helpers:OnCustomPlatform        
+                        x:TypeArguments="LayoutOptions" 
+                        Android="StartAndExpand"
+                        iOS="StartAndExpand"
+                        WinPhone="Fill"
+                        Windows="Start"/>
+                </DatePicker.HorizontalOptions>
+                <DatePicker.Triggers>
+                    <Trigger TargetType="DatePicker"
+                             Property="IsFocused" Value="True">
+                        <Setter Property="Opacity" Value="1" />
+                        <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource BlueColor}" />
+                    </Trigger>
+                </DatePicker.Triggers>
+            </DatePicker>
+        </StackLayout>
+        <!-- TREES -->
+        <Image
+            HorizontalOptions="Start"
+            VerticalOptions="End">
+            <Image.HeightRequest>
+                <helpers:OnCustomPlatform        
+                    x:TypeArguments="x:Double" 
+                    Android="96"
+                    iOS="120"
+                    WinPhone="96"
+                    Windows="144"/>
+            </Image.HeightRequest>
+            <Image.Source>
+                <OnPlatform 
+                    x:TypeArguments="ImageSource"
+                    Android="signup_trees.png"
+                    iOS="signup_trees.png"
+                    WinPhone="Assets\SignUp\signup_trees.png"/>
+            </Image.Source>
+        </Image>
+    </Grid>
+</ContentView>

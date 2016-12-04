@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{89C9B6F2-1CD6-4A98-9CCC-EEFB7DDBF6FA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BikeSharing.Clients.Core</RootNamespace>
+    <AssemblyName>BikeSharing.Clients.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Animations\Base\AnimationBase.cs" />
+    <Compile Include="Animations\ScaleToAnimation.cs" />
+    <Compile Include="Animations\EasingType.cs" />
+    <Compile Include="Animations\FadeToAnimation.cs" />
+    <Compile Include="Animations\RotateToAnimation.cs" />
+    <Compile Include="Animations\StoryBoard.cs" />
+    <Compile Include="Animations\TranslateAnimation.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Behaviors\Base\BindableBehavior.cs" />
+    <Compile Include="Behaviors\TurnValidOnFocusBehavior.cs" />
+    <Compile Include="Behaviors\ValidateOnLostFocusBehavior.cs" />
+    <Compile Include="Behaviors\ValidateOnTextChangedBehavior.cs" />
+    <Compile Include="Controls\CircularProgressControl.cs" />
+    <Compile Include="Controls\CustomMap\CustomMap.cs" />
+    <Compile Include="Controls\CustomMap\CustomPin.cs" />
+    <Compile Include="Controls\CustomProgressBar\CustomProgressBar.cs" />
+    <Compile Include="Controls\FloatingActionButtonView\FloatingActionButtonView.cs" />
+    <Compile Include="Controls\LogoutButton.xaml.cs">
+      <DependentUpon>LogoutButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NoBarsScrollViewer.cs" />
+    <Compile Include="Controls\CellInfoControl.xaml.cs">
+      <DependentUpon>CellInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Behaviors\BeginAnimationBehavior.cs" />
+    <Compile Include="Behaviors\MaxLengthTextBehavior.cs" />
+    <Compile Include="Controls\BindablePicker\BindablePicker.cs" />
+    <Compile Include="Controls\ImageButton\ImageButton.cs" />
+    <Compile Include="Controls\ImageButton\ImageOrientation.cs" />
+    <Compile Include="Controls\Rides\RideStationInformationControl.xaml.cs">
+      <DependentUpon>RideStationInformationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Rides\RideSummaryControl.xaml.cs">
+      <DependentUpon>RideSummaryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToggleButton\ToggleButton.cs" />
+    <Compile Include="Controls\Cells\CustomRideCell.xaml.cs">
+      <DependentUpon>CustomRideCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cells\EventRideCell.xaml.cs">
+      <DependentUpon>EventRideCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cells\SuggestedRideCell.xaml.cs">
+      <DependentUpon>SuggestedRideCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StackedList.cs" />
+    <Compile Include="Controls\UserProfileImageControl.xaml.cs">
+      <DependentUpon>UserProfileImageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BirthDateConverter.cs" />
+    <Compile Include="Converters\DateToLocalDateConverter.cs" />
+    <Compile Include="Converters\DurationConverter.cs" />
+    <Compile Include="Converters\DateTimeConverter.cs" />
+    <Compile Include="Converters\FromStationConverter.cs" />
+    <Compile Include="Converters\InverseNullToBoolConverter.cs" />
+    <Compile Include="Converters\MapColorConverter.cs" />
+    <Compile Include="Converters\MenuItemTypeConverter.cs" />
+    <Compile Include="Converters\InverseBoolConverter.cs" />
+    <Compile Include="Converters\BoolToColorConverter.cs" />
+    <Compile Include="Converters\MetersToMilesConverter.cs" />
+    <Compile Include="Converters\NullToBoolConverter.cs" />
+    <Compile Include="Converters\RideTypeToStringConverter.cs" />
+    <Compile Include="Converters\StationTypeConverter.cs" />
+    <Compile Include="Converters\StringToBoolConverter.cs" />
+    <Compile Include="DataServices\Base\ServiceAuthenticationException.cs" />
+    <Compile Include="DataServices\EventsService.cs" />
+    <Compile Include="DataServices\Fake\FakeAuthenticationService.cs" />
+    <Compile Include="DataServices\Fake\FakeEventsService.cs" />
+    <Compile Include="DataServices\Fake\FakeRidesService.cs" />
+    <Compile Include="DataServices\FeedbackService.cs" />
+    <Compile Include="DataServices\Interfaces\IEventsService.cs" />
+    <Compile Include="DataServices\Interfaces\IFeedbackService.cs" />
+    <Compile Include="DataServices\Interfaces\IRidesService.cs" />
+    <Compile Include="DataServices\Interfaces\IWeatherService.cs" />
+    <Compile Include="DataServices\NoAvailableBikesException.cs" />
+    <Compile Include="DataServices\OpenWeatherMapService.cs" />
+    <Compile Include="DataServices\RidesService.cs" />
+    <Compile Include="Effects\LineColorEffect.cs" />
+    <Compile Include="Effects\ContentPageTitleFontEffect.cs" />
+    <Compile Include="Effects\MaxLinesEffect.cs" />
+    <Compile Include="Effects\UnderlineTextEffect.cs" />
+    <Compile Include="DataServices\Interfaces\IProfileService.cs" />
+    <Compile Include="DataServices\Fake\FakeProfileService.cs" />
+    <Compile Include="DataServices\ProfileService.cs" />
+    <Compile Include="Events\IsValidMessageEventArgs.cs" />
+    <Compile Include="Extensions\AnimationExtension.cs" />
+    <Compile Include="GlobalSettings.cs" />
+    <Compile Include="Behaviors\ItemTappedCommandListView.cs" />
+    <Compile Include="DataServices\Base\IRequestProvider.cs" />
+    <Compile Include="DataServices\Base\RequestProvider.cs" />
+    <Compile Include="Helpers\CacheHelper.cs" />
+    <Compile Include="Helpers\MapHelper.cs" />
+    <Compile Include="Helpers\OnCustomPlatform.cs" />
+    <Compile Include="Models\CreditCardInformation.cs" />
+    <Compile Include="Models\Events\Event.cs" />
+    <Compile Include="Models\Events\Venue.cs" />
+    <Compile Include="Models\ILocationResponse.cs" />
+    <Compile Include="Helpers\EasingHelper.cs" />
+    <Compile Include="Models\IWeatherResponse.cs" />
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\ReportIncident\ReportedIssue.cs" />
+    <Compile Include="Models\ReportIncident\ReportedIssueType.cs" />
+    <Compile Include="Models\Rides\Booking.cs" />
+    <Compile Include="Models\Rides\BookingRequest.cs" />
+    <Compile Include="Models\Rides\RideType.cs" />
+    <Compile Include="Models\SignUp.cs" />
+    <Compile Include="Models\Subscription.cs" />
+    <Compile Include="Models\Rides\Station.cs" />
+    <Compile Include="Models\Rides\Suggestion.cs" />
+    <Compile Include="Models\Users\ImageModel.cs" />
+    <Compile Include="Models\Users\Tenant.cs" />
+    <Compile Include="Models\UnknownLocation.cs" />
+    <Compile Include="Models\UnknownWeather.cs" />
+    <Compile Include="Models\Users\User.cs" />
+    <Compile Include="Models\Users\UserAndProfileModel.cs" />
+    <Compile Include="Models\Rides\Ride.cs" />
+    <Compile Include="Pages\CustomNavigationPage.xaml.cs">
+      <DependentUpon>CustomNavigationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CustomRidePage.xaml.cs">
+      <DependentUpon>CustomRidePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BookingPage.xaml.cs">
+      <DependentUpon>BookingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SignUp\AccountPage.xaml.cs">
+      <DependentUpon>AccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SignUp\UwpSignUpPage.xaml.cs">
+      <DependentUpon>UwpSignUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UwpMyRidesPage.xaml.cs">
+      <DependentUpon>UwpMyRidesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UwpProfilePage.xaml.cs">
+      <DependentUpon>UwpProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ReportIncidentPage.xaml.cs">
+      <DependentUpon>ReportIncidentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EventSummaryPage.xaml.cs">
+      <DependentUpon>EventSummaryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\iOSMainPage.xaml.cs">
+      <DependentUpon>iOSMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SignUp\CredentialPage.xaml.cs">
+      <DependentUpon>CredentialPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SignUp\GenrePage.xaml.cs">
+      <DependentUpon>GenrePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SignUp\PaymentPage.xaml.cs">
+      <DependentUpon>PaymentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SignUp\SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SignUp\SubscriptionPage.xaml.cs">
+      <DependentUpon>SubscriptionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SignUp\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\INavigationService.cs" />
+    <Compile Include="Services\Interfaces\ICreditCardScannerService.cs" />
+    <Compile Include="Services\Interfaces\IMediaPickerService.cs" />
+    <Compile Include="Services\iOSNavigationService.cs" />
+    <Compile Include="Services\MediaPickerService.cs" />
+    <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Controls\TemplateSelectors\MyRidesDataTemplateSelector.cs" />
+    <Compile Include="Triggers\BeginAnimation.cs" />
+    <Compile Include="Utils\ColorHelper.cs" />
+    <Compile Include="Utils\DemoHelper.cs" />
+    <Compile Include="Utils\MathHelper.cs" />
+    <Compile Include="Utils\MD5.cs" />
+    <Compile Include="Utils\ObservableRangeCollection.cs" />
+    <Compile Include="Utils\StaticData.cs" />
+    <Compile Include="Utils\TimeSpanHumanizeExtensions.cs" />
+    <Compile Include="Validations\IValidity.cs" />
+    <Compile Include="Validations\EmailRule.cs" />
+    <Compile Include="Validations\RepeatPasswordRule.cs" />
+    <Compile Include="Validations\YearRule.cs" />
+    <Compile Include="Validations\MonthRule.cs" />
+    <Compile Include="ViewModels\Base\ExtendedBindableObject.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Models\Users\AuthenticationRequest.cs" />
+    <Compile Include="Models\Users\AuthenticationResponse.cs" />
+    <Compile Include="Models\OpenWeatherMapResponse.cs" />
+    <Compile Include="Models\Enums\MenuItemType.cs" />
+    <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Models\Enums\TempUnit.cs" />
+    <Compile Include="Models\Users\UserProfile.cs" />
+    <Compile Include="Models\WeatherInfo.cs" />
+    <Compile Include="Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MyRidesPage.xaml.cs">
+      <DependentUpon>MyRidesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataServices\AuthenticationService.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="DataServices\Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Models\GeoLocation.cs" />
+    <Compile Include="Services\Interfaces\IDialogService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\Interfaces\ILocationProvider.cs" />
+    <Compile Include="Providers\LocationProvider.cs" />
+    <Compile Include="Validations\ActionValidationRule.cs" />
+    <Compile Include="Validations\IsNotNullOrEmptyRule.cs" />
+    <Compile Include="Validations\ValidatableObject.cs" />
+    <Compile Include="Validations\IValidationRule.cs" />
+    <Compile Include="ViewModels\Base\MessengerKeys.cs" />
+    <Compile Include="ViewModels\Base\ViewModelLocator.cs" />
+    <Compile Include="ViewModels\BookingViewModel.cs" />
+    <Compile Include="ViewModels\CustomRideViewModel.cs" />
+    <Compile Include="ViewModels\EventSummaryViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\MyRidesViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\RideSummaryViewModel.cs" />
+    <Compile Include="ViewModels\SignUp\AccountViewModel.cs" />
+    <Compile Include="ViewModels\SignUp\CredentialViewModel.cs" />
+    <Compile Include="ViewModels\ReportIncidentViewModel.cs" />
+    <Compile Include="ViewModels\SignUp\GenreViewModel.cs" />
+    <Compile Include="ViewModels\SignUp\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\SignUp\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\SignUp\SubscriptionViewModel.cs" />
+    <Compile Include="ViewModels\SignUp\UserViewModel.cs" />
+    <Compile Include="ViewModels\UwpMyRidesViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Pages\IPageWithParameters.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.2.3\lib\portable-win+net45+wp8+win8+wpa81\Acr.UserDialogs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.2.3\lib\portable-win+net45+wp8+win8+wpa81\Acr.UserDialogs.Interface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.1.8\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.1.8\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.1.8\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Transformations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Transformations.2.1.8\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.Transformations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Geolocator, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Geolocator.3.0.4\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Geolocator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Geolocator.Abstractions, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Geolocator.3.0.4\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Geolocator.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Media, Version=2.6.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Media.2.6.0.12-beta\lib\portable-net45+wp80+win8+wpa81\Plugin.Media.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Media.Abstractions, Version=2.6.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Media.2.6.0.12-beta\lib\portable-net45+wp80+win8+wpa81\Plugin.Media.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.1.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.1.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.Maps.2.3.3.152-pre2\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\MyRidesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SignUp\GenrePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\Cells\EventRideCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\EventSummaryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CustomRidePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\Cells\CustomRideCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SignUp\SignUpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\SignUp\UserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SignUp\PaymentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\Cells\SuggestedRideCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\CellInfoControl.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\LogoutButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\iOSMainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CustomNavigationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ReportIncidentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\BookingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SignUp\CredentialPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SignUp\SubscriptionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\Rides\RideSummaryControl.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\Rides\RideStationInformationControl.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\UwpProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\UserProfileImageControl.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SignUp\AccountPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\UwpMyRidesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SignUp\UwpSignUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\..\packages\Xamarin.Forms.2.3.3.152-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.3.152-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.3.152-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.3.152-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

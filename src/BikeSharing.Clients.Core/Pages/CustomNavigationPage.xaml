@@ -1,0 +1,7 @@
+﻿<NavigationPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BarBackgroundColor="{StaticResource ToolbarBlueColor}" 
+             BarTextColor="{StaticResource WhiteColor}" 
+             BackgroundColor="Transparent"
+             x:Class="BikeSharing.Clients.Core.Pages.CustomNavigationPage">
+</NavigationPage>

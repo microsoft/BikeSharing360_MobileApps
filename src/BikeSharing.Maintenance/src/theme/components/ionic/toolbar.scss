@@ -1,0 +1,35 @@
+@import "../../variables";
+
+.toolbar {
+    height: 50px;
+}
+
+.tab-button {
+    display: none;
+}
+
+.back-button-icon-ios,
+.back-button-icon-md,
+.back-button-icon-wp {
+    font-size: 2rem;
+}
+
+.back-button-icon-ios {
+    margin-left: 1rem;
+    margin-top: -.5rem;
+}
+
+.toolbar-ios {
+    padding: 5px !important;
+}
+
+.toolbar-title-ios {
+    font-weight: 500;
+    font-size: 2rem;
+    margin-top: -2rem;
+}
+
+.header-wp::after,
+.tabs-wp[tabsPlacement="top"] > .tabbar::after {
+    content: initial;
+}

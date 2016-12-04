@@ -1,0 +1,646 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BikeSharing.Clients.Core.Pages.ReportIncidentPage"
+             xmlns:controls="clr-namespace:BikeSharing.Clients.Core.Controls;assembly=BikeSharing.Clients.Core"
+             xmlns:animations="clr-namespace:BikeSharing.Clients.Core.Animations;assembly=BikeSharing.Clients.Core"
+             xmlns:behaviors="clr-namespace:BikeSharing.Clients.Core.Behaviors;assembly=BikeSharing.Clients.Core"
+             xmlns:triggers="clr-namespace:BikeSharing.Clients.Core.Triggers;assembly=BikeSharing.Clients.Core"
+             xmlns:effects="clr-namespace:BikeSharing.Clients.Core.Effects;assembly=BikeSharing.Clients.Core"
+             Title="Report">
+    <ContentPage.Triggers>
+        <EventTrigger Event="Appearing">
+            <triggers:BeginAnimation
+                Animation="{StaticResource IncidentSelectorAnimation}" />
+            <triggers:BeginAnimation
+                Animation="{StaticResource IncidentInformationAnimation}" />
+            <triggers:BeginAnimation
+                Animation="{StaticResource SendIncidentAnimation}" />
+        </EventTrigger>
+    </ContentPage.Triggers>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="ReportIncidentBackgroundColor">#F4F6FA</Color>
+
+            <animations:FadeInAnimation
+                x:Key="IncidentSelectorAnimation"
+                Direction="Up"
+                Target="{x:Reference IncidentSelector}">
+                <animations:FadeInAnimation.Duration>
+                    <OnPlatform 
+                        x:TypeArguments="x:String" 
+                        Android="500"
+                        iOS="1000"/>
+                </animations:FadeInAnimation.Duration>
+            </animations:FadeInAnimation>
+
+            <animations:FadeInAnimation
+                x:Key="IncidentInformationAnimation"
+                Direction="Up"
+                Target="{x:Reference IncidentInformation}">
+                <animations:FadeInAnimation.Duration>
+                    <OnPlatform 
+                        x:TypeArguments="x:String" 
+                        Android="750"
+                        iOS="1500"/>
+                </animations:FadeInAnimation.Duration>
+            </animations:FadeInAnimation>
+
+            <animations:FadeInAnimation
+                x:Key="SendIncidentAnimation"
+                Direction="Up"
+                Target="{x:Reference SendIncident}">
+                <animations:FadeInAnimation.Duration>
+                    <OnPlatform 
+                        x:TypeArguments="x:String" 
+                        Android="1000"
+                        iOS="2000"/>
+                </animations:FadeInAnimation.Duration>
+            </animations:FadeInAnimation>
+
+            <Style TargetType="controls:ToggleButton">
+                <Setter Property="HeightRequest" 
+                        Value="120" />
+                <Setter Property="WidthRequest" 
+                        Value="120" />
+                <Setter Property="HorizontalOptions" 
+                        Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" 
+                        Value="FillAndExpand" />
+                <Setter Property="Margin" 
+                        Value="0, 0, 6, 6" />
+            </Style>
+
+            <Style x:Key="ReportFieldStyle" TargetType="Label">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource MontserratRegular}" />
+                <Setter Property="TextColor" 
+                        Value="#474e62" />
+                <Setter Property="FontSize" 
+                        Value="12" />
+                <Setter Property="HorizontalOptions" >
+                    <Setter.Value >
+                        <OnPlatform x:TypeArguments="LayoutOptions"
+                              Android="Center"
+                              iOS="Center"
+                              WinPhone="Center"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="HeaderFieldStyle" TargetType="Label">
+                <Setter Property="TextColor" 
+                        Value="{StaticResource BlueColor}" />
+                <Setter Property="FontSize" 
+                        Value="14" />
+                <Setter Property="HorizontalOptions" 
+                        Value="Start" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource MontserratRegular}" />
+            </Style>
+
+            <Style x:Key="FormEntryStyle" TargetType="Entry" BasedOn="{StaticResource EntryStyle}">
+                <Setter Property="HeightRequest" 
+                        Value="36" />
+                <Setter Property="FontSize" 
+                        Value="14" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource BlackColor}" />
+                <Setter Property="effects:LineColorEffect.LineColor" 
+                        Value="#dfe2e8" />
+                <Setter Property="Margin" 
+                        Value="0, 6, 0, 0" />
+            </Style>
+
+            <Style x:Key="ReportIncidentButtonStyle"
+                   TargetType="{x:Type Button}">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource MontserratRegular}" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource BlueColor}" />
+                <Setter Property="HeightRequest"
+                        Value="48" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LargeSize}" />
+                <Setter Property="BorderRadius"
+                        Value="0" />
+                <Setter Property="Margin"
+                        Value="36, 6, 36, 12" />
+                <Style.Triggers>
+                    <Trigger TargetType="Button" Property="IsEnabled" Value="False">
+                        <Setter Property="BackgroundColor" 
+                                Value="#C0C3CC" />
+                        <Setter Property="TextColor" 
+                                Value="{StaticResource WhiteColor}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Effects>
+        <effects:ContentPageTitleFontEffect />
+    </ContentPage.Effects>
+    <ScrollView BackgroundColor="{StaticResource ReportIncidentBackgroundColor}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="GridRow0" 
+                           Height="Auto" />
+                <RowDefinition x:Name="GridRow1"
+                           Height="200" />
+                <RowDefinition x:Name="GridRow2"
+                           Height="Auto" />
+                <RowDefinition x:Name="GridRow3"
+                           Height="Auto" />
+            </Grid.RowDefinitions>
+            <!-- BOT BUTTON -->
+            <Grid x:Name="BotButtonContainer"
+              Grid.Row="0">
+                <Button Text="Customer service"
+                    VerticalOptions="Center"
+                    Margin="30, 15"
+                    HeightRequest="60"
+                    HorizontalOptions="Fill"
+                    FontFamily="{StaticResource MontserratRegular}"
+                    FontSize="{StaticResource LargerSize}"
+                    TextColor="{StaticResource WhiteColor}"
+                    BackgroundColor="{StaticResource BlueColor}"
+                    Command="{Binding OpenBotCommand}">
+                    <Button.Image>
+                        <OnPlatform
+					    x:TypeArguments="FileImageSource"
+					    Android="report_open_bot"
+					    iOS="report_open_bot"
+					    WinPhone="Assets\report_open_bot.png" />
+                    </Button.Image>
+                </Button>
+                <BoxView 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="End"
+                    Color="{StaticResource GrayColor}"
+                    Opacity="0.22"
+                    HeightRequest="1" />
+            </Grid>
+            <!-- INCIDENT SELECTOR -->
+            <Grid
+            x:Name="IncidentSelector"
+            Grid.Row="1">
+                <Grid.Margin>
+                    <OnPlatform
+					x:TypeArguments="Thickness"
+					Android="50, 10, 50, 0"
+					iOS="30, 10, 30, 0" />
+                </Grid.Margin>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout 
+                    Grid.Column="0" 
+                    Grid.Row="0">
+                    <controls:ToggleButton
+                          Animate="True"
+                          Checked="{Binding Handlebar, Mode=TwoWay}"
+                          Command="{Binding HandleBarCommand}"
+                          CommandParameter="Handlebar">
+                        <controls:ToggleButton.CheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_handlebar_selec"
+                              iOS="ic_report_handlebar_selec"
+                              WinPhone="Assets/ic_report_handlebar_selec.png"/>
+                        </controls:ToggleButton.CheckedImage>
+                        <controls:ToggleButton.UnCheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_handlebar"
+                              iOS="ic_report_handlebar"
+                              WinPhone="Assets/ic_report_handlebar.png"/>
+                        </controls:ToggleButton.UnCheckedImage>
+                        <controls:ToggleButton.Margin>
+                            <OnPlatform x:TypeArguments="Thickness"
+                              Android="0"
+                              iOS="0"
+                              WinPhone="15,0,0,0"/>
+                        </controls:ToggleButton.Margin>
+                    </controls:ToggleButton>
+                    <Label 
+                        Text="Handlebar"
+                        Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+                <StackLayout 
+                    Grid.Column="1"
+                    Grid.Row="0">
+                    <controls:ToggleButton
+                      Animate="True"
+                      Checked="{Binding Fork, Mode=TwoWay}"
+                      Command="{Binding ForkCommand}"
+                      CommandParameter="Fork">
+                        <controls:ToggleButton.CheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_fork_selec"
+                              iOS="ic_report_fork_selec"
+                              WinPhone="Assets/ic_report_fork_selec.png"/>
+                        </controls:ToggleButton.CheckedImage>
+                        <controls:ToggleButton.UnCheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_fork"
+                              iOS="ic_report_fork"
+                              WinPhone="Assets/ic_report_fork.png"/>
+                        </controls:ToggleButton.UnCheckedImage>
+                        <controls:ToggleButton.Margin>
+                            <OnPlatform x:TypeArguments="Thickness"
+                              Android="0"
+                              iOS="0"
+                              WinPhone="15,0,0,0"/>
+                        </controls:ToggleButton.Margin>
+                    </controls:ToggleButton>
+                    <Label 
+                    Text="Fork"
+                    Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="2"
+                    Grid.Row="0">
+                    <controls:ToggleButton
+                          Animate="True"
+                          Checked="{Binding Pedals, Mode=TwoWay}"
+                          Command="{Binding PedalsCommand}"
+                          CommandParameter="Pedals">
+                        <controls:ToggleButton.CheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_pedals_selec"
+                              iOS="ic_report_pedals_selec"
+                              WinPhone="Assets/ic_report_pedals_selec.png"/>
+                        </controls:ToggleButton.CheckedImage>
+                        <controls:ToggleButton.UnCheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_pedals"
+                              iOS="ic_report_pedals"
+                              WinPhone="Assets/ic_report_pedals.png"/>
+                        </controls:ToggleButton.UnCheckedImage>
+                        <controls:ToggleButton.Margin>
+                            <OnPlatform x:TypeArguments="Thickness"
+                              Android="0"
+                              iOS="0"
+                              WinPhone="15,0,0,0"/>
+                        </controls:ToggleButton.Margin>
+                    </controls:ToggleButton>
+                    <Label 
+                    Text="Pedals"
+                    Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="0"
+                    Grid.Row="1">
+                    <controls:ToggleButton
+                      Animate="True"
+                      Checked="{Binding FlatTire, Mode=TwoWay}"
+                      Command="{Binding FlatTireCommand}"
+                      CommandParameter="FlatTire">
+                        <controls:ToggleButton.CheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_flat_tire_selec"
+                              iOS="ic_report_flat_tire_selec"
+                              WinPhone="Assets/ic_report_flat_tire_selec.png"/>
+                        </controls:ToggleButton.CheckedImage>
+                        <controls:ToggleButton.UnCheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_flat_tire"
+                              iOS="ic_report_flat_tire"
+                              WinPhone="Assets/ic_report_flat_tire.png"/>
+                        </controls:ToggleButton.UnCheckedImage>
+                        <controls:ToggleButton.Margin>
+                            <OnPlatform x:TypeArguments="Thickness"
+                              Android="0"
+                              iOS="0"
+                              WinPhone="15,0,0,0"/>
+                        </controls:ToggleButton.Margin>
+                    </controls:ToggleButton>
+                    <Label 
+                        Text="Flat tire"
+                        Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.Row="1">
+                    <controls:ToggleButton
+                          Animate="True"
+                          Checked="{Binding Chain, Mode=TwoWay}"
+                          Command="{Binding ChainCommand}"
+                          CommandParameter="Chain">
+                        <controls:ToggleButton.CheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_chain_selec"
+                              iOS="ic_report_chain_selec"
+                              WinPhone="Assets/ic_report_chain_selec.png"/>
+                        </controls:ToggleButton.CheckedImage>
+                        <controls:ToggleButton.UnCheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_chain"
+                              iOS="ic_report_chain"
+                              WinPhone="Assets/ic_report_chain.png"/>
+                        </controls:ToggleButton.UnCheckedImage>
+                        <controls:ToggleButton.Margin>
+                            <OnPlatform x:TypeArguments="Thickness"
+                              Android="0"
+                              iOS="0"
+                              WinPhone="15,0,0,0"/>
+                        </controls:ToggleButton.Margin>
+                    </controls:ToggleButton>
+                    <Label 
+                        Text="Chain"
+                        Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="2"
+                    Grid.Row="1">
+                    <controls:ToggleButton
+                      Animate="True"
+                      Checked="{Binding Loss, Mode=TwoWay}"
+                      Command="{Binding LossCommand}"
+                      CommandParameter="Loss">
+                        <controls:ToggleButton.CheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_loss_selec"
+                              iOS="ic_report_loss_selec"
+                              WinPhone="Assets/ic_report_loss_selec.png"/>
+                        </controls:ToggleButton.CheckedImage>
+                        <controls:ToggleButton.UnCheckedImage>
+                            <OnPlatform x:TypeArguments="ImageSource"
+                              Android="ic_report_loss"
+                              iOS="ic_report_loss"
+                              WinPhone="Assets/ic_report_loss.png"/>
+                        </controls:ToggleButton.UnCheckedImage>
+                        <controls:ToggleButton.Margin>
+                            <OnPlatform x:TypeArguments="Thickness"
+                              Android="0"
+                              iOS="0"
+                              WinPhone="15,0,0,0"/>
+                        </controls:ToggleButton.Margin>
+                    </controls:ToggleButton>
+                    <Label 
+                        Text="Loss"
+                        Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+            </Grid>
+            <!-- UWP INCIDENT INFORMATION -->
+            <Grid                
+              x:Name="UwpIncidentSelector"
+              WidthRequest="620"
+              HeightRequest="100"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              Grid.Row="1"
+              Margin="24,40,24,24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackLayout
+                    Grid.Column="0">
+                    <controls:ToggleButton
+                          CheckedImage="Assets/ic_report_handlebar_selec.png"
+                          UnCheckedImage="Assets/ic_report_handlebar.png"
+                          Animate="True"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center"
+                          Checked="{Binding Handlebar, Mode=TwoWay}"
+                          Command="{Binding HandleBarCommand}"
+                          CommandParameter="Handlebar"/>
+                    <Label
+                      Margin="10, 0, 0, 0"
+                      HorizontalOptions="Start"
+                      VerticalOptions="Center"
+                      Text="Handlebar"
+                      Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1">
+                    <controls:ToggleButton
+                          CheckedImage="Assets/ic_report_fork_selec.png"
+                          UnCheckedImage="Assets/ic_report_fork.png"
+                          Animate="True"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center"
+                          Checked="{Binding Fork, Mode=TwoWay}"
+                          Command="{Binding ForkCommand}"
+                          CommandParameter="Fork"/>
+                    <Label
+                      Margin="20, 0, 0, 0"
+                      HorizontalOptions="Start"
+                      VerticalOptions="Center"
+                      Text="Fork"
+                      Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="2">
+                    <controls:ToggleButton
+                      CheckedImage="Assets/ic_report_pedals_selec.png"
+                      UnCheckedImage="Assets/ic_report_pedals.png"
+                      Animate="True"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center"
+                      Checked="{Binding Pedals, Mode=TwoWay}"
+                      Command="{Binding PedalsCommand}"
+                      CommandParameter="Pedals"/>
+                    <Label
+                      Margin="20, 0, 0, 0"
+                      HorizontalOptions="Start"
+                      VerticalOptions="Center"
+                      Text="Pedals"
+                      Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="3">
+                    <controls:ToggleButton
+                      CheckedImage="Assets/ic_report_flat_tire_selec.png"
+                      UnCheckedImage="Assets/ic_report_flat_tire.png"
+                      Animate="True"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center"
+                      Checked="{Binding FlatTire, Mode=TwoWay}"
+                      Command="{Binding FlatTireCommand}"
+                      CommandParameter="FlatTire"/>
+                    <Label
+                      Margin="20, 0, 0, 0"
+                      HorizontalOptions="Start"
+                      VerticalOptions="Center"
+                      Text="Flat tire"
+                      Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="4">
+                    <controls:ToggleButton
+                      CheckedImage="Assets/ic_report_chain_selec.png"
+                      UnCheckedImage="Assets/ic_report_chain.png"
+                      Animate="True"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center"
+                      Checked="{Binding Chain, Mode=TwoWay}"
+                      Command="{Binding ChainCommand}"
+                      CommandParameter="Chain"/>
+                    <Label
+                      Margin="20, 0, 0, 0"
+                      HorizontalOptions="Start"
+                      VerticalOptions="Center"
+                      Text="Chain"
+                      Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="5">
+                    <controls:ToggleButton
+                      CheckedImage="Assets/ic_report_loss_selec.png"
+                      UnCheckedImage="Assets/ic_report_loss.png"
+                      Animate="True"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center"
+                      Checked="{Binding Loss, Mode=TwoWay}"
+                      Command="{Binding LossCommand}"
+                      CommandParameter="Loss"/>
+                    <Label
+                      Margin="20, 0, 0, 0"
+                      HorizontalOptions="Start"
+                      VerticalOptions="Center"
+                      Text="Loss"
+                      Style="{StaticResource ReportFieldStyle}"/>
+                </StackLayout>
+            </Grid>
+            <!-- INCIDENT INFORMATION -->
+            <StackLayout
+            x:Name="IncidentInformation"
+            Grid.Row="2"
+            Margin="12, 0">
+                <StackLayout.HorizontalOptions>
+                    <OnPlatform 
+                    x:TypeArguments="LayoutOptions"
+                    Android="Fill"
+                    iOS="Fill"
+                    WinPhone="Center"/>
+                </StackLayout.HorizontalOptions>
+                <StackLayout.VerticalOptions>
+                    <OnPlatform 
+                    x:TypeArguments="LayoutOptions"    
+                    Android="Fill"
+                    iOS="Fill" 
+                    WinPhone="Start"/>
+                </StackLayout.VerticalOptions>
+                <Label x:Name="LabelTitle"
+                  Text="Title"
+                  Style="{StaticResource HeaderFieldStyle}">
+                </Label>
+                <Entry   
+                    Text="{Binding Title.Value, Mode=TwoWay}"
+                    Style="{StaticResource FormEntryStyle}">
+                    <Entry.Behaviors>
+                        <behaviors:ValidateOnLostFocusBehavior ValidateCommand="{Binding ValidateCommand}"/>
+                        <behaviors:TurnValidOnFocusBehavior ValidityObject="{Binding Title}" />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger TargetType="Entry" 
+                                 Binding="{Binding Title.IsValid}" 
+                                 Value="False">
+                            <Setter Property="effects:LineColorEffect.LineColor"
+                                Value="{StaticResource ErrorColor}" />
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+                <Label x:Name="LabelDescription"
+                  Text="Description"
+                  Style="{StaticResource HeaderFieldStyle}">
+                </Label>
+                <Entry  
+                Text="{Binding Description.Value, Mode=TwoWay}"
+                Style="{StaticResource FormEntryStyle}">
+                    <Entry.Behaviors>
+                        <behaviors:ValidateOnLostFocusBehavior ValidateCommand="{Binding ValidateCommand}"/>
+                        <behaviors:TurnValidOnFocusBehavior ValidityObject="{Binding Description}" />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger TargetType="Entry" 
+                                 Binding="{Binding Description.IsValid}" 
+                                 Value="False">
+                            <Setter Property="effects:LineColorEffect.LineColor" 
+                                Value="{StaticResource ErrorColor}" />
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+            </StackLayout>
+            <!-- SEND INCIDENT -->
+            <Button
+            x:Name="SendIncident"
+            Grid.Row="3"
+            Text="Report" 
+            Style="{StaticResource ReportIncidentButtonStyle}"
+            IsEnabled="{Binding IsValid}"  
+            Command="{Binding ReportCommand}">
+                <Button.HorizontalOptions>
+                    <OnPlatform 
+                    x:TypeArguments="LayoutOptions"
+                    Android="Fill"
+                    iOS="Fill"
+                    WinPhone="Center"/>
+                </Button.HorizontalOptions>
+                <Button.VerticalOptions>
+                    <OnPlatform 
+                    x:TypeArguments="LayoutOptions"
+                    Android="Fill"
+                    iOS="Fill"
+                    WinPhone="Start"/>
+                </Button.VerticalOptions>
+            </Button>
+            <!-- DONE MESSAGE -->
+            <ActivityIndicator 
+            Grid.RowSpan="3"
+            Color="{StaticResource BlueColor}"
+            IsRunning="{Binding IsBusy}" 
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+                <ActivityIndicator.WidthRequest>
+                    <OnPlatform 
+                    x:TypeArguments="x:Double" 
+                    iOS="100" 
+                    Android="100"
+                    WinPhone="400" />
+                </ActivityIndicator.WidthRequest>
+            </ActivityIndicator>
+            <Grid 
+            x:Name="DoneMessageContainer" 
+            Grid.RowSpan="3"
+            VerticalOptions="Fill">
+                <Grid.HorizontalOptions>
+                    <OnPlatform 
+                    x:TypeArguments="LayoutOptions"
+                    Android="Fill"
+                    iOS="Fill"
+                    WinPhone="CenterAndExpand"/>
+                </Grid.HorizontalOptions>
+                <Image 
+                    Source="report_done_message"
+                    HeightRequest="200"
+                    Aspect="AspectFit"
+                    VerticalOptions="Center">
+                    <Image.Source>
+                        <OnPlatform 
+                        x:TypeArguments="ImageSource"
+                        Android="report_done_message"
+                        iOS="report_done_message"
+                        WinPhone="Assets\report_done_message.png"/>
+                    </Image.Source>
+                </Image>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

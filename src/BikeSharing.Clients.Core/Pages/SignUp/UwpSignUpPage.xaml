@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BikeSharing.Clients.Core.Pages.SignUp.UwpSignUpPage"
+             xmlns:controls="clr-namespace:BikeSharing.Clients.Core.Controls;assembly=BikeSharing.Clients.Core"
+             xmlns:animations="clr-namespace:BikeSharing.Clients.Core.Animations;assembly=BikeSharing.Clients.Core"
+             xmlns:triggers="clr-namespace:BikeSharing.Clients.Core.Triggers;assembly=BikeSharing.Clients.Core">
+    <ContentPage.Triggers>
+        <EventTrigger Event="Appearing">
+            <triggers:BeginAnimation
+                Animation="{StaticResource SignUpViewAnimation}" />
+            <triggers:BeginAnimation
+                Animation="{StaticResource CardStackViewAnimation}" />
+            <triggers:BeginAnimation
+                Animation="{StaticResource BackCardStackViewAnimation}" />
+            <triggers:BeginAnimation
+                Animation="{StaticResource ProgressAnimation}" />
+        </EventTrigger>
+    </ContentPage.Triggers>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+            <animations:FadeToAnimation
+                x:Key="SignUpViewAnimation"
+                Opacity="1"
+                Target="{x:Reference SignUpView}"
+                Duration="250" />
+            
+            <animations:FadeInAnimation
+                x:Key="CardStackViewAnimation"
+                Direction="Up"
+                Target="{x:Reference CardStackView}"
+                Duration="1500" />
+
+            <animations:FadeInAnimation
+                x:Key="BackCardStackViewAnimation" 
+                Direction="Up"
+                Target="{x:Reference BackCardStackView}"
+                Duration="1250" />
+
+            <animations:FadeInAnimation
+                x:Key="ProgressAnimation"
+                Direction="Up"
+                Target="{x:Reference Progress}"
+                Duration="2000" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentView
+        x:Name="SignUpView"
+        Opacity="0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="SignUpColumn1" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition x:Name="SignUpColumn4" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="SignUpRow1" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="6" />
+                <RowDefinition x:Name="SignUpRow5" />
+            </Grid.RowDefinitions>
+            <AbsoluteLayout
+              Grid.Column="0"
+              Grid.ColumnSpan="4"
+              Grid.Row="0"
+              Grid.RowSpan="5">
+                <Image
+                    Source="Assets/background.png"
+                    Aspect="AspectFill"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="1.0, 1.0, 1.0, 1.0" />
+            </AbsoluteLayout>
+            <!-- BACK CARD STACK -->
+            <RelativeLayout   
+                x:Name="BackCardStackView"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="24"/>
+            <!-- CARD STACK -->
+            <RelativeLayout   
+                x:Name="CardStackView" 
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="24"/>
+            <controls:CustomProgressBar    
+                x:Name="Progress"            
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Grid.Row="3"
+                Progress="{Binding Progress, Mode=TwoWay}"
+                Margin="24, 0"/>
+            <ActivityIndicator  
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Grid.Row="0"
+                Grid.RowSpan="5"
+                Color="{StaticResource BlueColor}"
+                IsRunning="{Binding IsBusy}"            
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <ActivityIndicator.WidthRequest>
+                    <OnPlatform 
+                    x:TypeArguments="x:Double" 
+                    iOS="100" 
+                    Android="100"
+                    WinPhone="400" />
+                </ActivityIndicator.WidthRequest>
+            </ActivityIndicator>
+        </Grid>
+    </ContentView>
+</ContentPage>

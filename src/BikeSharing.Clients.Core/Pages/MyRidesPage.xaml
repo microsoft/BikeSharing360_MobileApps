@@ -1,0 +1,53 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:BikeSharing.Clients.Core.Behaviors;assembly=BikeSharing.Clients.Core"
+             x:Class="BikeSharing.Clients.Core.Pages.MyRidesPage"
+             xmlns:animations="clr-namespace:BikeSharing.Clients.Core.Animations;assembly=BikeSharing.Clients.Core"
+             xmlns:templates="clr-namespace:BikeSharing.Clients.Core.TemplateSelectors;assembly=BikeSharing.Clients.Core"
+             xmlns:effects="clr-namespace:BikeSharing.Clients.Core.Effects;assembly=BikeSharing.Clients.Core"
+             xmlns:triggers="clr-namespace:BikeSharing.Clients.Core.Triggers;assembly=BikeSharing.Clients.Core"
+             Title="My Rides">
+    <ContentPage.Effects>
+        <effects:ContentPageTitleFontEffect />
+    </ContentPage.Effects>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <templates:MyRidesDataTemplateSelector x:Key="MyRidesDataTemplateSelector" />
+
+            <animations:StoryBoard x:Key="MyRydesAnimation"
+                                   Target="{x:Reference Items}">
+                <animations:FadeToAnimation 
+                    Opacity="1"
+                    Duration="1000" />
+            </animations:StoryBoard>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Triggers>
+        <EventTrigger Event="Appearing">
+            <triggers:BeginAnimation   
+                Animation="{StaticResource MyRydesAnimation}" />
+        </EventTrigger>
+    </ContentPage.Triggers>
+    <Grid
+        BackgroundColor="{StaticResource BackgroundGrayColor}">
+        <ListView 
+            x:Name="Items"
+            CachingStrategy="RecycleElement"
+            ItemsSource="{Binding MyRides, Mode=OneWay}"
+            HasUnevenRows="True"
+            SeparatorVisibility="None"
+            ItemTemplate="{StaticResource MyRidesDataTemplateSelector}"
+            IsPullToRefreshEnabled="True"
+            RefreshCommand="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+            Opacity="0">
+            <ListView.Margin>
+                <OnPlatform x:TypeArguments="Thickness" 
+                            Android="8"
+                            WinPhone="8"/>
+            </ListView.Margin>
+        </ListView>
+    </Grid>
+</ContentPage>

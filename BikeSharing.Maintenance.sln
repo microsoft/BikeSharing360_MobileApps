@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.25618.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "BikeSharing.Maintenance.Cordova", "src\BikeSharing.Maintenance\BikeSharing.Maintenance.Cordova.jsproj", "{BC8C8297-704B-411F-AEEE-757494947CB9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Android = Debug|Android
+		Debug|iOS = Debug|iOS
+		Debug|Windows-ARM = Debug|Windows-ARM
+		Debug|Windows-x64 = Debug|Windows-x64
+		Debug|Windows-x86 = Debug|Windows-x86
+		Release|Android = Release|Android
+		Release|iOS = Release|iOS
+		Release|Windows-ARM = Release|Windows-ARM
+		Release|Windows-x64 = Release|Windows-x64
+		Release|Windows-x86 = Release|Windows-x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Android.ActiveCfg = Debug|Android
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Android.Build.0 = Debug|Android
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Android.Deploy.0 = Debug|Android
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|iOS.ActiveCfg = Debug|iOS
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|iOS.Build.0 = Debug|iOS
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|iOS.Deploy.0 = Debug|iOS
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Windows-ARM.ActiveCfg = Debug|Windows-ARM
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Windows-ARM.Build.0 = Debug|Windows-ARM
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Windows-ARM.Deploy.0 = Debug|Windows-ARM
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Windows-x64.ActiveCfg = Debug|Windows-x64
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Windows-x64.Build.0 = Debug|Windows-x64
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Windows-x64.Deploy.0 = Debug|Windows-x64
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Windows-x86.ActiveCfg = Debug|Windows-x86
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Windows-x86.Build.0 = Debug|Windows-x86
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Debug|Windows-x86.Deploy.0 = Debug|Windows-x86
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Android.ActiveCfg = Release|Android
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Android.Build.0 = Release|Android
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Android.Deploy.0 = Release|Android
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|iOS.ActiveCfg = Release|iOS
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|iOS.Build.0 = Release|iOS
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|iOS.Deploy.0 = Release|iOS
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Windows-ARM.ActiveCfg = Release|Windows-ARM
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Windows-ARM.Build.0 = Release|Windows-ARM
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Windows-ARM.Deploy.0 = Release|Windows-ARM
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Windows-x64.ActiveCfg = Release|Windows-x64
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Windows-x64.Build.0 = Release|Windows-x64
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Windows-x64.Deploy.0 = Release|Windows-x64
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Windows-x86.ActiveCfg = Release|Windows-x86
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Windows-x86.Build.0 = Release|Windows-x86
+		{BC8C8297-704B-411F-AEEE-757494947CB9}.Release|Windows-x86.Deploy.0 = Release|Windows-x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
