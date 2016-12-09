@@ -72,7 +72,7 @@ This project uses some third-party assets with a license that requires attributi
 
 **Download** or clone the repository. There are a solution with seven projects.
 
-<img src="Images/solution.png" alt="BikeRider" Width="300" />
+<img src="Images/Solution.png" alt="BikeRider" Width="300" />
 
 **Rebuild** the solution to get all neccesary **NuGet** packages.
 
