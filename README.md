@@ -1,43 +1,40 @@
 #BikeRider
 
-During Connect(); //2016 we showcased many technologies available to you as a developer across Azure, Office, Windows, Visual Studio and Visual Studio Team Services. We’ve also heard from you that you love to have real-world applications through which you can directly experience what’s possible using those technologies. This year, then, we built out a full bikerider scenario for our Connect(); //2016 demos and are delighted to share all the source code with you.
+During Connect(); //2016 we showcased many technologies available to you as a developer across Azure, Office, Windows, Visual Studio and Visual Studio Team Services. We’ve also heard from you that you love to have real-world applications through which you can directly experience what’s possible using those technologies. This year, we built the technology stack for a fictional company named BikeSharing360, which allows users to rent bikes from one location to another. This repository contains the BikeRider consumer-facing mobile apps for renting bikes shown during our Connect(); //2016 demos, and we are delighted to share all the source code with you.
 
 **Note:** This document is about the **Xamarin apps**. For the [Cordova app click here](./Cordova.md).
 
 <img src="Images/hero_image.png" alt="BikeRider" Width="800" />
 
-###Supported platforms: iOS, Android and Windows
+### Supported Platforms: iOS, Android, and Windows
+The BikeRider app is available for three platforms:
+
+* iOS (including a watchOS app)
+* Android
+* Universal Windows Platform (UWP)
+
+BikeRider features **93.7% code share** across all platforms (7.34% iOS / 8.61% Android / 2.72% Windows).
 
 ## Xamarin.Forms App (BikeRider)
 
-This project exercises the following platforms, frameworks or features:
+[Xamarin.Forms](https://www.xamarin.com/forms) allows you to build native UIs for iOS, Android, and Windows from a single, shared codebase. You can dive into mobile development with Xamarin.Forms by following our [free self-guided learning](https://university.xamarin.com/classes/track/self-guided) from Xamarin University. This project exercises the following patterns and features:
 
 * Xamarin.Forms
-  * XAML
-  * Bindings
+  * [XAML UI](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/)
+  * [Animations](https://developer.xamarin.com/guides/xamarin-forms/user-interface/animation/)
   * Converters
-  * Central Styles
-  * Custom Renderers
-  * Animations
-  * IoC
-  * Messaging Center
   * Custom Controls
-  * Cross Plugins
-  * Effects
-  * Native Views
-
-##Three platforms
-The app targets **three** platforms:
-
-* iOS (include WatchOS App)
-* Android
-* Universal Windows Platform (UWP)
-    * UWP supported only in Visual Studio, not Xamarin Studio
-
-
+  * [Custom Renderers](https://developer.xamarin.com/guides/xamarin-forms/custom-renderer/)
+  * [Data Binding](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/data_binding_basics/)
+  * [Effects](https://developer.xamarin.com/guides/xamarin-forms/effects/)
+  * IoC
+  * [Messaging Center](https://developer.xamarin.com/guides/xamarin-forms/messaging-center/)
+  * [MVVM](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/data_bindings_to_mvvm/)
+  * [Native View Declaration](https://developer.xamarin.com/guides/xamarin-forms/user-interface/native-views/)
+  * [Plugins for Xamarin](https://www.xamarin.com/plugins)
+  * [Styles](https://developer.xamarin.com/guides/xamarin-forms/user-interface/styles/)
+  
 <img src="Images/UWP.png" alt="Three platforms" Width="800" />
-
-BikeRider features **93.7% code share** (7.34% iOS / 8.61% Android / 2.72% Windows).
 
 ## Screens
 
@@ -81,7 +78,7 @@ This project uses some third-party assets with a license that requires attributi
 
 Access to **GlobalSettings.cs** file available in the Portable Class Library to introduce your Azure endpoints and APIs keys.
 
-<img src="Images/GlobalSettings.png" alt="GlobalSettings.cs" Width=600" />
+<img src="Images/GlobalSettings.png" alt="GlobalSettings.cs" Width="600" />
 
 Enjoy!
 
