@@ -87,7 +87,7 @@ This project uses some third-party assets with a license that requires attributi
 
 ## Setup
 
-**Download** or clone the repository. There are a solution with seven projects.
+**Download** or clone the repository. This is a solution with seven projects.
 
 <img src="Images/Solution.png" alt="BikeRider" Width="300" />
 
@@ -96,6 +96,10 @@ This project uses some third-party assets with a license that requires attributi
 Access to **GlobalSettings.cs** file available in the Portable Class Library to introduce your Azure endpoints and APIs keys.
 
 <img src="Images/GlobalSettings.png" alt="GlobalSettings.cs" Width="600" />
+
+**Deploy to Azure**
+
+Use the [Backend Services repository](https://github.com/Microsoft/BikeSharing360_BackendServices) to deploy backend services for Xamarin App to your subscription.
 
 Enjoy!
 
