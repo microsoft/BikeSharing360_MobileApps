@@ -1,6 +1,23 @@
-#BikeRider
+#BikeSharing360
 
-During Connect(); //2016 we showcased many technologies available to you as a developer across Azure, Office, Windows, Visual Studio and Visual Studio Team Services. We’ve also heard from you that you love to have real-world applications through which you can directly experience what’s possible using those technologies. This year, we built the technology stack for a fictional company named BikeSharing360, which allows users to rent bikes from one location to another. This repository contains the BikeRider consumer-facing mobile apps for renting bikes shown during our Connect(); //2016 demos, and we are delighted to share all the source code with you.
+During our Connect(); event this year we presented 15 demos in Scott Guthrie’s and Scott Hanselman’s keynotes. If you missed the keynotes, you can watch the recording in [Channel 9](https://channel9.msdn.com/Events/Connect/2016/Keynotes-Scott-Guthrie-and-Scott-Hanselman).
+
+This year, we built the technology stack for a fictional company named BikeSharing360, which allows users to rent bikes from one location to another.
+
+BikeSharing360 is a fictitious example of a smart bike sharing system with 10,000 bikes distributed in 650 stations located throughout New York City and Seattle. Their vision is to provide a modern and personalized experience to riders and to run their business with intelligence.
+
+In this demo scenario, we built several apps for both the enterprise and the consumer (bike riders). You can find all other BikeSharing360 repos in the following locations:
+
+*[Mobile Apps](https://github.com/Microsoft/BikeSharing360_MobileApps)
+*[Backend Services](https://github.com/Microsoft/BikeSharing360_BackendServices)
+*[Websites](https://github.com/Microsoft/BikeSharing360_Websites)
+*[Single Container Apps](https://github.com/Microsoft/BikeSharing360_SingleContainer)
+*[Multi Container Apps](https://github.com/Microsoft/BikeSharing360_MultiContainer)
+*[Cognitive Services Kiosk App](https://github.com/Microsoft/BikeSharing360_CognitiveServicesKioskApp)
+*[Azure Bot App](https://github.com/Microsoft/BikeSharing360_BotApps)
+
+#BikeRider Xamarin app and Maintenance Cordova app
+This repository contains the BikeRider consumer-facing mobile apps for renting bikes and the BikeSharing360 maintenance app built with Cordova.
 
 **Note:** This document is about the **Xamarin apps**. For the [Cordova app click here](./Cordova.md).
 
