@@ -1,7 +1,7 @@
 Maintenance App
 ===============
 
-The BikeSharing 360 Maintentance App is an application developed in **Apache Cordova** used by maintenance poeple of the company.
+The BikeSharing 360 Maintentance App is an application developed in **Apache Cordova** used by maintenance people of the company.
 
 Every user can see incidences assigned to him, view its details and mark incidences resolved.
 
