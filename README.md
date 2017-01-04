@@ -111,14 +111,18 @@ You need an Azure account to work with this demo code. You can:
 - [Activate Visual Studio subscriber benefits](https://www.visualstudio.com/products/visual-studio-dev-essentials-vs). Your Visual Studio subscription gives you credits every month that you can use for paid Azure services.
 - Not a Visual Studio subscriber? Get a $25 monthly Azure credit by joining [Visual Studio Dev Essentials](https://www.visualstudio.com/products/visual-studio-dev-essentials-vs).
 
-## Blogs posts
+## Blogs posts and videos
 
 Here's links to blog posts related to this project:
 
-- Xamarin Blog: [Microsoft Connect(); 2016 Recap](https://blog.xamarin.com/microsoft-connect-2016-recap/)
+- The Visual Studio Blog: [Connect(“demos”); // 2016: BikeSharing360 on GitHub](https://blogs.msdn.microsoft.com/visualstudio/2016/12/14/connectdemos-2016-bikesharing360-on-github/)
 - The Visual Studio Blog: [Announcing the new Visual Studio for Mac](https://blogs.msdn.microsoft.com/visualstudio/2016/11/16/visual-studio-for-mac/)
 - The Visual Studio Blog: [Introducing Visual Studio Mobile Center (Preview)](https://blogs.msdn.microsoft.com/visualstudio/2016/11/16/visual-studio-mobile-center/)
 - The Visual Studio Blog: [Visual Studio 2017 Release Candidate](https://blogs.msdn.microsoft.com/visualstudio/2016/11/16/visual-studio-2017-rc/)
+- Visual Studio Toolbox: [Exploring our newest sample app, BikeSharing360](https://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Exploring-our-newest-sample-app-BikeSharing360)
+- Xamarin Blog: [Microsoft Connect(); 2016 Recap](https://blog.xamarin.com/microsoft-connect-2016-recap/)
+- Xamarin Blog: [Introducing the BikeRider Xamarin.Forms Sample App](https://blog.xamarin.com/introducing-bikerider-app/)
+
 
 ## Clean and Rebuild
 If you see build issues when pulling updates from the repo, try cleaning and rebuilding the solution.
