@@ -3015,13 +3015,13 @@ namespace BikeSharing.Clients.Droid
 			public const int splash_logo = 2130837792;
 			
 			// aapt resource value: 0x7f020121
-			public const int suggestion_central_park = 2130837793;
+			public const int suggestion_beacon_hill = 2130837793;
 			
 			// aapt resource value: 0x7f020122
-			public const int suggestion_corona_park = 2130837794;
+			public const int suggestion_golden_gardens = 2130837794;
 			
 			// aapt resource value: 0x7f020123
-			public const int suggestion_liberty_state_park = 2130837795;
+			public const int suggestion_lake_union_loop = 2130837795;
 			
 			// aapt resource value: 0x7f020124
 			public const int sun = 2130837796;

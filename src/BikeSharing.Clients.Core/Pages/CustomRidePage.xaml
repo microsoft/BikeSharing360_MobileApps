@@ -47,10 +47,11 @@
     </ContentPage.Effects>
     <AbsoluteLayout>
         <!-- MAP -->
-        <controls:CustomMap   
+        <controls:CustomMap  
             x:Name="Map"
             AbsoluteLayout.LayoutFlags="All"
-            AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" 
+            AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0"  
+            IsVisible="{Binding ShowMap}"
             CustomPins="{Binding CustomPins}"
             SelectedPin="{Binding SelectedPin, Mode=TwoWay}"
             From="{Binding From, Mode=TwoWay}"

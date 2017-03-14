@@ -1,5 +1,4 @@
 ﻿using BikeSharing.Clients.Core.Models;
-using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms.Maps;
 
 namespace BikeSharing.Clients.Core.Utils
@@ -8,13 +7,13 @@ namespace BikeSharing.Clients.Core.Utils
     {
         public static GeoLocation DefaultLocation = new GeoLocation
         {
-            Latitude = 40.7211514,
-            Longitude = -74.0057011
+            Latitude = 47.608013,
+            Longitude = -122.335167
         };
 
         public static void CenterMapInDefaultLocation(Map map)
         {
-            var initialPosition = new Xamarin.Forms.Maps.Position(
+            var initialPosition = new Position(
                 DefaultLocation.Latitude,
                 DefaultLocation.Longitude);
 

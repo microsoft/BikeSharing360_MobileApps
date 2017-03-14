@@ -38,7 +38,6 @@ namespace BikeSharing.Clients.Core.Services
                 Debug.WriteLine(ex);
             }
 
-            //return new UnknownLocation();
             return DemoHelper.DefaultLocation;
         }
     }

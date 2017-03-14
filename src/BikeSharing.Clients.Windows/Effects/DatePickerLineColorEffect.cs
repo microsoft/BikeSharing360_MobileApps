@@ -40,6 +40,11 @@ namespace BikeSharing.Clients.Windows.Effects
         {
             try
             {
+                if(control== null)
+                {
+                    return;
+                }
+
                 control.BorderThickness = new Xaml.Thickness(0, 0, 0, 1);
                 var lineColor = XamarinFormColorToWindowsColor(LineColorEffect.GetLineColor(Element));
                 control.BorderBrush = new Media.SolidColorBrush(lineColor);

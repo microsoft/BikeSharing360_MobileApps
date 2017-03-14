@@ -79,7 +79,7 @@
                 <Setter Property="FontSize" 
                         Value="12" />
                 <Setter Property="HorizontalOptions" >
-                    <Setter.Value >
+                    <Setter.Value>
                         <OnPlatform x:TypeArguments="LayoutOptions"
                               Android="Center"
                               iOS="Center"

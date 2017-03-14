@@ -6,5 +6,6 @@ namespace BikeSharing.Clients.Core.DataServices.Interfaces
     public interface IWeatherService
     {
         Task<IWeatherResponse> GetWeatherInfoAsync();
+        Task<IWeatherResponse> GetDemoWeatherInfoAsync();
     }
 }

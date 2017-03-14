@@ -194,7 +194,7 @@ namespace BikeSharing.Clients.Core.ViewModels.SignUp
                 "None",
                 "Amex",
                 "Visa",
-                "Mastercard"
+                "Masterdcard"
             };
 
             CreditCardType = CreditCardTypes.First();

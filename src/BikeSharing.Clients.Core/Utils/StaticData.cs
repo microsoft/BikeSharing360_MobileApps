@@ -12,72 +12,72 @@ namespace BikeSharing.Clients.Core.Utils
             {
                 new Suggestion
                 {
-                    Name = "Central Park",
+                    Name = "Beacon Hill",
                     Distance = 1900,
                     ImagePath = Device.OS == TargetPlatform.Windows
-                        ? @"Assets\suggestion_central_park.png"
-                        : "suggestion_central_park",
-                    Latitude = 40.7828687f,
-                    Longitude = -73.9675438f
+                        ? @"Assets\suggestion_beacon_hill.png"
+                        : "suggestion_beacon_hill",
+                    Latitude = 47.608013f,
+                    Longitude = -122.9675438f
                 },
                 new Suggestion
                 {
-                    Name = "Flushing Meadows Corona Park",
+                    Name = "Golden Gardens",
                     Distance = 2200,
                     ImagePath = Device.OS == TargetPlatform.Windows
-                        ? @"Assets\suggestion_corona_park.png"
-                        : "suggestion_corona_park",
-                    Latitude = 40.7397176f,
-                    Longitude = -73.8429737f
+                        ? @"Assets\suggestion_golden_gardens.png"
+                        : "suggestion_golden_gardens",
+                    Latitude = 47.7397176f,
+                    Longitude = -122.8429737f
                 },
                 new Suggestion
                 {
-                    Name = "Liberty State Park",
+                    Name = "Lake Union Loop",
                     Distance = 3500,
                     ImagePath = Device.OS == TargetPlatform.Windows
-                        ? @"Assets\suggestion_liberty_state_park.png"
-                        : "suggestion_liberty_state_park",
-                    Latitude = 40.703336f,
-                    Longitude = -73.8429737f
+                        ? @"Assets\suggestion_lake_union_loop.png"
+                        : "suggestion_lake_union_loop",
+                    Latitude = 47.703336f,
+                    Longitude = -122.8429737f
                 }
             };
 
             if (Device.OS == TargetPlatform.Windows && Device.Idiom == TargetIdiom.Desktop)
             {
                 var desktopOnly = new List<Suggestion>()
-                {
+                {                
                     new Suggestion
                     {
-                        Name = "Bronx River",
-                        Distance = 3200,
-                        ImagePath = @"Assets\suggestion_bronx_river.png",
-                        Latitude = 40.7397176f,
-                        Longitude = -73.8429737f
+                        Name = "Alki Beack",
+                        Distance = 3500,
+                        ImagePath = @"Assets\suggestion_ride_in_alki_beach.png",
+                        Latitude = 47.4786896f,
+                        Longitude = -122.883552f
                     },
                     new Suggestion
                     {
-                        Name = "Coney Island",
-                        Distance = 6300,
-                        ImagePath = @"Assets\suggestion_coney_island.png",
-                        Latitude = 40.577318f,
-                        Longitude = -73.9894199f
-                    },
-                    new Suggestion
-                    {
-                        Name = "Hudson River",
-                        Distance = 8740,
-                        ImagePath = @"Assets\suggestion_hudson_river.png",
-                        Latitude = 40.762337f,
-                        Longitude = -74.0186763f
-                    },
-                    new Suggestion
-                    {
-                        Name = "Rockways",
+                        Name = "Lake Sammamish",
                         Distance = 5182,
-                        ImagePath = @"Assets\suggestion_rockways.png",
-                        Latitude = 40.5786896f,
-                        Longitude = -73.874552f
+                        ImagePath = @"Assets\suggestion_ride_in_lake_sammamish.png",
+                        Latitude = 47.5786896f,
+                        Longitude = -122.754553f
                     },
+                    new Suggestion
+                    {
+                        Name = "Seattle Watefront",
+                        Distance = 2173,
+                        ImagePath = @"Assets\suggestion_seattle_waterfront.png",
+                        Latitude = 47.6986896f,
+                        Longitude = -122.695552f
+                    },
+                    new Suggestion
+                    {
+                        Name = "West Seattle Alki",
+                        Distance = 5182,
+                        ImagePath = @"Assets\suggestion_west_seattle_alki.png",
+                        Latitude = 40.6995683f,
+                        Longitude = -122.784552f
+                    }
                 };
 
                 suggestions.AddRange(desktopOnly);

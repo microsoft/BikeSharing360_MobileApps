@@ -1,4 +1,6 @@
-﻿namespace BikeSharing.Clients.Core
+﻿using System;
+
+namespace BikeSharing.Clients.Core
 {
     public static class GlobalSettings
     {
@@ -16,8 +18,13 @@
 
         public const string BingMapsAPIKey = "YOUR_BINGMAPS_API_KEY";
 
-        public static string City => "New York City";
+
+        public static string City => "Redmond";
 
         public static int TenantId = 1;
+
+        public static DateTime EventDate = new DateTime(2017, 03, 07);
+        public static float EventLatitude = 47.673988f;
+        public static float EventLongitude = -122.121513f;
     }
 }

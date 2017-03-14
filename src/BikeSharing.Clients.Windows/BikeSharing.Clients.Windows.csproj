@@ -120,26 +120,26 @@
     <None Include="BikeSharing.Clients.Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\CommonResources\suggestion_bronx_river.png">
-      <Link>Assets\suggestion_bronx_river.png</Link>
+    <Content Include="..\CommonResources\suggestion_beacon_hill.png">
+      <Link>Assets\suggestion_beacon_hill.png</Link>
     </Content>
-    <Content Include="..\CommonResources\suggestion_central_park.png">
-      <Link>Assets\suggestion_central_park.png</Link>
+    <Content Include="..\CommonResources\suggestion_golden_gardens.png">
+      <Link>Assets\suggestion_golden_gardens.png</Link>
     </Content>
-    <Content Include="..\CommonResources\suggestion_coney_island.png">
-      <Link>Assets\suggestion_coney_island.png</Link>
+    <Content Include="..\CommonResources\suggestion_lake_union_loop.png">
+      <Link>Assets\suggestion_lake_union_loop.png</Link>
     </Content>
-    <Content Include="..\CommonResources\suggestion_corona_park.png">
-      <Link>Assets\suggestion_corona_park.png</Link>
+    <Content Include="..\CommonResources\suggestion_ride_in_alki_beach.png">
+      <Link>Assets\suggestion_ride_in_alki_beach.png</Link>
     </Content>
-    <Content Include="..\CommonResources\suggestion_hudson_river.png">
-      <Link>Assets\suggestion_hudson_river.png</Link>
+    <Content Include="..\CommonResources\suggestion_ride_in_lake_sammamish.png">
+      <Link>Assets\suggestion_ride_in_lake_sammamish.png</Link>
     </Content>
-    <Content Include="..\CommonResources\suggestion_liberty_state_park.png">
-      <Link>Assets\suggestion_liberty_state_park.png</Link>
+    <Content Include="..\CommonResources\suggestion_seattle_waterfront.png">
+      <Link>Assets\suggestion_seattle_waterfront.png</Link>
     </Content>
-    <Content Include="..\CommonResources\suggestion_rockways.png">
-      <Link>Assets\suggestion_rockways.png</Link>
+    <Content Include="..\CommonResources\suggestion_west_seattle_alki.png">
+      <Link>Assets\suggestion_west_seattle_alki.png</Link>
     </Content>
     <Content Include="Assets\bg_1240x600.png" />
     <Content Include="Assets\bg_620x300.png" />

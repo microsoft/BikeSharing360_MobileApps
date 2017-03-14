@@ -115,12 +115,12 @@ namespace BikeSharing.Clients.Core.ViewModels
 
         public override async Task InitializeAsync(object navigationData)
         {
-            CurrentDate = DateTime.Now;
+            CurrentDate = GlobalSettings.EventDate;
             IsBusy = true;
 
             try
             {
-                var weather = _weatherService.GetWeatherInfoAsync();
+                var weather = _weatherService.GetDemoWeatherInfoAsync();
                 var events = _eventsService.GetEvents();
                 var suggestions = _ridesService.GetSuggestions();
 

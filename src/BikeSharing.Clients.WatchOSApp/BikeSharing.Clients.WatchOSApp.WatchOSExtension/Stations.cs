@@ -10,9 +10,9 @@ namespace BikeSharing.Clients.WatchOSApp.WatchOSExtension
 			{
 				return new List<Station>
 				{
-					new Station { Id = 1, Name = "Central Park West & W 68 St", Latitude = 40.7734066f, Longitude = -73.97782542f },
-					new Station { Id = 2, Name = "E 85 St & York Ave", Latitude = 40.77536905f, Longitude = -73.94803392f },
-					new Station { Id = 3, Name = "1 Ave & E 62 St", Latitude = 40.7612274f, Longitude = -73.96094022f }
+					new Station { Id = 1, Name = "Children's Hospital / Sandpoint Way NE & 40th Ave NE", Latitude = 47.663509f, Longitude = -122.284119f },
+					new Station { Id = 2, Name = "Burke-Gilman Trail / NE Blakeley St & 24th Ave NE", Latitude = 47.666145f, Longitude = -122.301491f },
+					new Station { Id = 3, Name = "NE 47th St & 12th Ave NE", Latitude = 47.663143f, Longitude = -122.315086f }
 				};
 			}
 		}

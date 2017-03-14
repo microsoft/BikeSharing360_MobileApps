@@ -61,5 +61,46 @@ namespace BikeSharing.Clients.Core.DataServices
                 TempUnit = TempUnit.Fahrenheit
             };
         }
+
+        public async Task<IWeatherResponse> GetDemoWeatherInfoAsync()
+        {
+            var geolocation = new GeoLocation
+            {
+                Latitude = GlobalSettings.EventLatitude,
+                Longitude = GlobalSettings.EventLongitude
+            };
+
+            var latitude = geolocation.Latitude.ToString("0.0000", CultureInfo.InvariantCulture);
+            var longitude = geolocation.Longitude.ToString("0.0000", CultureInfo.InvariantCulture);
+
+            var builder = new UriBuilder(OpenWeatherMapEndpoint);
+            builder.Path = $"data/2.5/weather";
+            builder.Query = $"lat={latitude}&lon={longitude}&units=imperial&appid={GlobalSettings.OpenWeatherMapAPIKey}";
+            var uri = builder.ToString();
+
+            var response = await _requestProvider.GetAsync<OpenWeatherMapResponse>(uri);
+
+            if (response?.cod == OkResponseCode)
+            {
+                var weatherInfo = new WeatherInfo
+                {
+                    LocationName = GlobalSettings.City,
+                    Temp = response.main.temp,
+                    TempUnit = TempUnit.Fahrenheit
+                };
+
+                return weatherInfo;
+            }
+
+            Debug.WriteLine("OpenWeatherMap API answered with: " + ((response != null) ? $"Error code = {response.cod}." : "Invalid response."));
+            
+            // Default data for demo
+            return new WeatherInfo
+            {
+                LocationName = GlobalSettings.City,
+                Temp = 56,
+                TempUnit = TempUnit.Fahrenheit
+            };
+        }
     }
 }

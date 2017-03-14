@@ -28,6 +28,7 @@ namespace BikeSharing.Clients.Core.ViewModels
         private Station _fromStation;
         private Station _toStation;
         private bool _showInfo;
+        private bool _showMap;
 
         private IRidesService _ridesService;
 
@@ -35,6 +36,7 @@ namespace BikeSharing.Clients.Core.ViewModels
         {
             _ridesService = ridesService;
 
+            ShowMap = false;
             CustomPins = new ObservableCollection<CustomPin>();
         }
 
@@ -114,6 +116,16 @@ namespace BikeSharing.Clients.Core.ViewModels
             }
         }
 
+        public bool ShowMap
+        {
+            get { return _showMap; }
+            set
+            {
+                _showMap = value;
+                RaisePropertyChanged(() => ShowMap);
+            }
+        }
+
         public Station SelectedStation
         {
             get
@@ -166,6 +178,11 @@ namespace BikeSharing.Clients.Core.ViewModels
         {
             IsBusy = true;
 
+            if (Device.OS != TargetPlatform.Windows)
+            {
+                ShowMap = true;
+            }
+
             if (navigationData is NavigationParameter)
             {
                 await EstablishFromToStationsFromNavigation(navigationData as NavigationParameter);
@@ -173,6 +190,11 @@ namespace BikeSharing.Clients.Core.ViewModels
             else
             {
                 await LoadData(navigationData);
+            }
+
+            if (Device.OS == TargetPlatform.Windows)
+            {
+                ShowMap = true;
             }
 
             IsBusy = false;

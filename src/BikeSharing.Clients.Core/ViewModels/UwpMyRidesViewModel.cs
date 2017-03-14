@@ -221,12 +221,12 @@ namespace BikeSharing.Clients.Core.ViewModels
 
         public override async Task InitializeAsync(object navigationData)
         {
-            CurrentDate = DateTime.Now;
+            CurrentDate = GlobalSettings.EventDate;
             IsBusy = true;
 
             try
             {
-                var weather = await _weatherService.GetWeatherInfoAsync();
+                var weather = await _weatherService.GetDemoWeatherInfoAsync();
 
                 if (weather is WeatherInfo)
                 {
