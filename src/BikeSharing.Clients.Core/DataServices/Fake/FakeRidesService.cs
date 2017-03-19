@@ -16,6 +16,38 @@ namespace BikeSharing.Clients.Core.DataServices.Fake
     {
         private static List<Suggestion> suggestions = StaticData.GetSuggestions();
 
+        private static int StationsCounter = 0;
+        private static List<Station> stations = new List<Station>
+        {
+            new Station
+            {
+                Id = 1,
+                Name = "Alki Beach Park I",
+                Slots = 22,
+                Occupied = 4,
+                Latitude = 47.5790791f,
+                Longitude = -122.4136163f
+            },
+            new Station
+            {
+                Id = 2,
+                Name = "Alki Beach Park II",
+                Slots = 12,
+                Occupied = 7,
+                Latitude = 47.5743905f,
+                Longitude = -122.4023376f
+            },
+            new Station
+            {
+                Id = 3,
+                Name = "Alki Point Lighthouse",
+                Slots = 5,
+                Occupied = 15,
+                Latitude = 47.5766275f,
+                Longitude = -122.4217906f
+            }
+        };
+
         private static List<Ride> rides = new List<Ride>
         {
             new Ride
@@ -55,38 +87,6 @@ namespace BikeSharing.Clients.Core.DataServices.Fake
                 FromStation = stations[2],
                 To = stations[1].Name,
                 ToStation = stations[1]
-            }
-        };
-
-        private static int StationsCounter = 0;
-        private static List<Station> stations = new List<Station>
-        {
-            new Station
-            {
-                Id = 1,
-                Name = "Alki Beach Park I",
-                Slots = 22,
-                Occupied = 4,
-                Latitude = 47.5790791f,
-                Longitude = -122.4136163f
-            },
-            new Station
-            {
-                Id = 2,
-                Name = "Alki Beach Park II",
-                Slots = 12,
-                Occupied = 7,
-                Latitude = 47.5743905f,
-                Longitude = -122.4023376f
-            },
-            new Station
-            {
-                Id = 3,
-                Name = "Alki Point Lighthouse",
-                Slots = 5,
-                Occupied = 15,
-                Latitude = 47.5766275f,
-                Longitude = -122.4217906f
             }
         };
 
