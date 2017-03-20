@@ -22,7 +22,7 @@ namespace BikeSharing.Clients.Droid
 
             RegisterActivityLifecycleCallbacks(this);
 
-            HockeyApp.Android.CrashManager.Register(this, GlobalSettings.HockeyAppAPIKeyForAndroid);
+            //HockeyApp.Android.CrashManager.Register(this, GlobalSettings.HockeyAppAPIKeyForAndroid);
         }
 
         public override void OnTerminate()
