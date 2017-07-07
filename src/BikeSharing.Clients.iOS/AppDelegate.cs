@@ -20,24 +20,29 @@ namespace BikeSharing.Clients.iOS
                 TextColor = UIColor.White
             });
 
-            //AddHockeyApp();
+			InitHockeyApp();
+
+			#if ENABLE_TEST_CLOUD
+			Xamarin.Calabash.Start();
+			#endif
 
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
             CachedImageRenderer.Init();
 
             ViewModelLocator.Instance.RegisterSingleton<INavigationService, iOSNavigationService>();
-            ViewModelLocator.Instance.Register<ICreditCardScannerService, CreditCardScannerService>();
+			ViewModelLocator.Instance.Register<IOperatingSystemVersionProvider, OperatingSystemVersionProvider>();
 
             LoadApplication(new App());
 
             return base.FinishedLaunching(application, launchOptions);
         }
 
-        private static void AddHockeyApp()
+        private static void InitHockeyApp()
         {
             var manager = BITHockeyManager.SharedHockeyManager;
             manager.Configure(GlobalSettings.HockeyAppAPIKeyForiOS);
+			manager.CrashManager.CrashManagerStatus = BITCrashManagerStatus.AutoSend;
             manager.StartManager();
         }
     }

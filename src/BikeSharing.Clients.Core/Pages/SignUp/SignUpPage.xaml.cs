@@ -10,7 +10,7 @@ namespace BikeSharing.Clients.Core.Pages
     public partial class SignUpPage : ContentPage
     {
         // Define Card Stack movements
-        const int NumCards = 6;
+        const int NumCards = 5;
 
         // Scale of back cards
         const float BackCardScale = 0.9f;
@@ -91,11 +91,6 @@ namespace BikeSharing.Clients.Core.Pages
             var userCard = new UserPage();
             userCard.BindingContext = vm.UserViewModel;
             _cards.Add(userCard);
-
-            // Payment data Card
-            var paymentCard = new PaymentPage();
-            paymentCard.BindingContext = vm.PaymentViewModel;
-            _cards.Add(paymentCard);
 
             // Subscription data Card
             var subscriptionCard = new SubscriptionPage();
@@ -343,8 +338,6 @@ namespace BikeSharing.Clients.Core.Pages
                     return 3;
                 case 3:
                     return 4;
-                case 4:
-                    return 5;
                 default:
                     return 0;
             }

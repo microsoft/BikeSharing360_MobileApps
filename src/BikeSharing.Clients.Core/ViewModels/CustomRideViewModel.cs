@@ -243,6 +243,10 @@ namespace BikeSharing.Clients.Core.ViewModels
                 return;
             }
 
+			// HACK: Code that throws an exeception when selecting the aquarium in seattle as a ride destination. Purpose: to fake a crash for domos.
+			if (ToStation.Name.ToLower().Contains("aquarium"))
+				Device.BeginInvokeOnMainThread(() => { throw new Exception("Setting aquarium as a destination throws an exception! (for demonstrating a crash)"); });
+
             await Task.Delay(500);
 
             ShowInfo = true;

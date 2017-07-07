@@ -17,7 +17,6 @@ namespace BikeSharing.Clients.Core.ViewModels
         private AccountViewModel _accountViewModel;
         private GenreViewModel _genreViewModel;
         private UserViewModel _userViewModel;
-        private PaymentViewModel _paymentViewModel;
         private SubscriptionViewModel _subscriptionViewModel;
         private UserProfile _profile;
         private double _progress;
@@ -33,7 +32,6 @@ namespace BikeSharing.Clients.Core.ViewModels
             AccountViewModel accountViewModel,
             GenreViewModel genreViewModel,
             UserViewModel userViewModel,
-            PaymentViewModel paymentViewModel,
             SubscriptionViewModel subscriptionViewModel,
             IProfileService profileService,
             IAuthenticationService authenticationService)
@@ -42,7 +40,6 @@ namespace BikeSharing.Clients.Core.ViewModels
             _accountViewModel = accountViewModel;
             _genreViewModel = genreViewModel;
             _userViewModel = userViewModel;
-            _paymentViewModel = paymentViewModel;
             _subscriptionViewModel = subscriptionViewModel;
 
             _profileService = profileService;
@@ -86,16 +83,6 @@ namespace BikeSharing.Clients.Core.ViewModels
             {
                 _userViewModel = value;
                 RaisePropertyChanged(() => UserViewModel);
-            }
-        }
-
-        public PaymentViewModel PaymentViewModel
-        {
-            get { return _paymentViewModel; }
-            set
-            {
-                _paymentViewModel = value;
-                RaisePropertyChanged(() => PaymentViewModel);
             }
         }
 
@@ -172,7 +159,7 @@ namespace BikeSharing.Clients.Core.ViewModels
 
                 if (signUp != null)
                 {
-                    if(Profile.User == null)
+                    if (Profile.User == null)
                     {
                         Profile.User = new User();
                     }
@@ -245,30 +232,6 @@ namespace BikeSharing.Clients.Core.ViewModels
                 }
             });
 
-            // Fifth step   
-            MessagingCenter.Subscribe<PaymentViewModel>(PaymentViewModel, MessengerKeys.CloseCard, (sender) =>
-            {
-                CloseCommand.Execute(null);
-            });
-
-            MessagingCenter.Subscribe<PaymentViewModel, Models.SignUp>(PaymentViewModel, MessengerKeys.NextCard, (sender, args) =>
-            {
-                var signUp = args;
-
-                if (signUp != null)
-                {
-                    Profile.Payment = new Payment
-                    {
-                        CreditCard = signUp.Profile.Payment.CreditCard,
-                        CreditCardType = signUp.Profile.Payment.CreditCardType,
-                        ExpirationDate = signUp.Profile.Payment.ExpirationDate
-                    };
-
-                    if (signUp.Navigate)
-                        NextCommand.Execute(null);
-                }
-            });
-
             // Last step
             MessagingCenter.Subscribe<SubscriptionViewModel>(SubscriptionViewModel, MessengerKeys.CloseCard, (sender) =>
             {
@@ -293,13 +256,20 @@ namespace BikeSharing.Clients.Core.ViewModels
 
                     string gender = "NotSpecified";
 
-                    if(Profile.Gender != null)
+                    if (Profile.Gender != null)
                     {
                         if (Profile.Gender == 0)
                             gender = "Male";
                         else
                             gender = "Female";
                     }
+
+                    Profile.Payment = new Payment
+                    {
+                        CreditCard = "01234567890",
+                        CreditCardType = 0,
+                        ExpirationDate = DateTime.Now.AddYears(1)
+                    };
 
                     var userAndProfile = new UserAndProfileModel
                     {
@@ -337,7 +307,7 @@ namespace BikeSharing.Clients.Core.ViewModels
                         await DialogService.ShowAlertAsync("Invalid data", "Sign Up failure", "Try again");
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Debug.WriteLine($"Exception in sign up {ex}");
                     await DialogService.ShowAlertAsync("Invalid data", "Sign Up failure", "Try again");
@@ -352,26 +322,22 @@ namespace BikeSharing.Clients.Core.ViewModels
             switch (cardIndex)
             {
                 case 0:
-                    Progress = 0.16f;
+                    Progress = 0.2f;
                     break;
                 case 1:
-                    Progress = 0.32f;
+                    Progress = 0.4f;
                     break;
                 case 2:
-                    Progress = 0.48f;
+                    Progress = 0.6f;
                     CredentialViewModel.NextCommand.Execute(false);
                     break;
                 case 3:
-                    Progress = 0.64f;
+                    Progress = 0.8f;
                     GenreViewModel.NextCommand.Execute(false);
                     break;
                 case 4:
-                    Progress = 0.8f;
-                    UserViewModel.NextCommand.Execute(false);
-                    break;
-                case 5:
                     Progress = 1.0f;
-                    PaymentViewModel.NextCommand.Execute(false);
+                    UserViewModel.NextCommand.Execute(false);
                     break;
                 default:
                     Progress = 0.0f;
@@ -402,8 +368,6 @@ namespace BikeSharing.Clients.Core.ViewModels
                 case 3:
                     return UserViewModel.Validate();
                 case 4:
-                    return PaymentViewModel.Validate();
-                case 5:
                     return false;
                 default:
                     return false;

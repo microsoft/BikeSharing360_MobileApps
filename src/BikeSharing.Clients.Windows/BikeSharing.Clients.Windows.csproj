@@ -108,9 +108,9 @@
     <Compile Include="Renderers\CustomProgressBarRenderer.cs" />
     <Compile Include="Renderers\CustomDatePickerRenderer.cs" />
     <Compile Include="Renderers\NoBarsScrollViewerRenderer.cs" />
-    <Compile Include="Services\DummyCreditCardScannerService.cs" />
     <Compile Include="Renderers\CustomMap\CustomMapIcon.cs" />
     <Compile Include="Renderers\CustomMap\CustomMapRenderer.cs" />
+    <Compile Include="Services\OperatingSystemVersionProvider.cs" />
     <Compile Include="Services\WindowStatusService.cs" />
   </ItemGroup>
   <ItemGroup>

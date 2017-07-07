@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Plugin.CurrentActivity;
 using BikeSharing.Clients.Core;
+using HockeyApp.Android;
 
 namespace BikeSharing.Clients.Droid
 {
@@ -22,7 +23,7 @@ namespace BikeSharing.Clients.Droid
 
             RegisterActivityLifecycleCallbacks(this);
 
-            HockeyApp.Android.CrashManager.Register(this, GlobalSettings.HockeyAppAPIKeyForAndroid);
+			HockeyApp.Android.CrashManager.Register(this, GlobalSettings.HockeyAppAPIKeyForAndroid, new AutoReportingCrashManagerListener());
         }
 
         public override void OnTerminate()
@@ -62,4 +63,9 @@ namespace BikeSharing.Clients.Droid
         {
         }
     }
+
+	internal class AutoReportingCrashManagerListener : CrashManagerListener 
+	{
+		public override bool ShouldAutoUploadCrashes() => true;
+	}
 }

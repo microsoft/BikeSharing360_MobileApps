@@ -8,9 +8,6 @@
         public const string LastCard = "LastCard";
         public const string IsValid = "IsValid";
 
-        // Credit card scan keys
-        public const string CreditCardScanned = "CreditCardScanned";
-
         // Booking keys
         public const string BookingRequested = "BookingRequested";
         public const string BookingFinished = "BookingFinished";

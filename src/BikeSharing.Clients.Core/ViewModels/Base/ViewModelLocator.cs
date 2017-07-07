@@ -1,6 +1,5 @@
 ﻿using BikeSharing.Clients.Core.DataServices;
 using BikeSharing.Clients.Core.DataServices.Base;
-using BikeSharing.Clients.Core.DataServices.Fake;
 using BikeSharing.Clients.Core.DataServices.Interfaces;
 using BikeSharing.Clients.Core.Services;
 using BikeSharing.Clients.Core.Services.Interfaces;
@@ -28,16 +27,16 @@ namespace BikeSharing.Clients.Core.ViewModels.Base
         {
             _unityContainer = new UnityContainer();
 
-            // providers
+            // Providers
             _unityContainer.RegisterType<IRequestProvider, RequestProvider>();
             _unityContainer.RegisterType<ILocationProvider, LocationProvider>();
             _unityContainer.RegisterType<IMediaPickerService, MediaPickerService>();
 
-            // services
+            // Services
             _unityContainer.RegisterType<IDialogService, DialogService>();
             RegisterSingleton<INavigationService, NavigationService>();
 
-            // data services
+            // Data services
             _unityContainer.RegisterType<IAuthenticationService, AuthenticationService>();
             _unityContainer.RegisterType<IProfileService, ProfileService>();
             _unityContainer.RegisterType<IRidesService, RidesService>();
@@ -45,7 +44,7 @@ namespace BikeSharing.Clients.Core.ViewModels.Base
             _unityContainer.RegisterType<IWeatherService, OpenWeatherMapService>();
             _unityContainer.RegisterType<IFeedbackService, FeedbackService>();
 
-            // view models
+            // View models
             _unityContainer.RegisterType<CustomRideViewModel>();
             _unityContainer.RegisterType<CredentialViewModel>();
             _unityContainer.RegisterType<EventSummaryViewModel>();
@@ -55,7 +54,6 @@ namespace BikeSharing.Clients.Core.ViewModels.Base
             _unityContainer.RegisterType<MainViewModel>();
             _unityContainer.RegisterType<MenuViewModel>();
             _unityContainer.RegisterType<MyRidesViewModel>();
-            _unityContainer.RegisterType<PaymentViewModel>();
             _unityContainer.RegisterType<ProfileViewModel>();
             _unityContainer.RegisterType<SignUpViewModel>();
             _unityContainer.RegisterType<UserViewModel>();
