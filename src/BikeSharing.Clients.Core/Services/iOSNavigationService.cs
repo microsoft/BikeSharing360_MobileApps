@@ -5,7 +5,6 @@ using BikeSharing.Clients.Core.Pages;
 using BikeSharing.Clients.Core.ViewModels;
 using Xamarin.Forms;
 using BikeSharing.Clients.Core.ViewModels.Base;
-using BikeSharing.Clients.Core.Helpers;
 
 namespace BikeSharing.Clients.Core.Services
 {

@@ -12,7 +12,7 @@ namespace BikeSharing.Clients.Core.Pages.SignUp
         private const double MinWidth = 720;
 
         // Define Card Stack movements
-        const int NumCards = 6;
+        const int NumCards = 5;
 
         // Scale of back cards
         const float BackCardScale = 0.9f;
@@ -103,11 +103,6 @@ namespace BikeSharing.Clients.Core.Pages.SignUp
             var userCard = new UserPage();
             userCard.BindingContext = vm.UserViewModel;
             _cards.Add(userCard);
-
-            // Payment data Card
-            var paymentCard = new PaymentPage();
-            paymentCard.BindingContext = vm.PaymentViewModel;
-            _cards.Add(paymentCard);
 
             // Subscription data Card
             var subscriptionCard = new SubscriptionPage();
@@ -348,8 +343,6 @@ namespace BikeSharing.Clients.Core.Pages.SignUp
                     return 3;
                 case 3:
                     return 4;
-                case 4:
-                    return 5;
                 default:
                     return 0;
             }

@@ -17,7 +17,8 @@ namespace BikeSharing.Clients.Windows
 
             NavigationCacheMode = Xaml.Navigation.NavigationCacheMode.Required;
 
-            ViewModelLocator.Instance.Register<ICreditCardScannerService, DummyCreditCardScannerService>();
+            ViewModelLocator.Instance.Register<IOperatingSystemVersionProvider, OperatingSystemVersionProvider>();
+
             Xamarin.FormsMaps.Init(GlobalSettings.BingMapsAPIKey);
             LoadApplication(new Core.App());
             NativeCustomize();

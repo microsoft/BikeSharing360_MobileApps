@@ -1,6 +1,5 @@
 ﻿using BikeSharing.Clients.Core.DataServices.Base;
 using BikeSharing.Clients.Core.Helpers;
-using BikeSharing.Clients.Core.Models;
 using BikeSharing.Clients.Core.Models.Users;
 using System;
 using System.Threading.Tasks;

@@ -1,8 +1,6 @@
-﻿using BikeSharing.Clients.Core.Models;
-using BikeSharing.Clients.Core.Models.Users;
+﻿using BikeSharing.Clients.Core.Models.Users;
 using BikeSharing.Clients.Core.Validations;
 using BikeSharing.Clients.Core.ViewModels.Base;
-using System;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;

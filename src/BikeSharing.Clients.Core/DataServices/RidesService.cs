@@ -4,14 +4,12 @@ using BikeSharing.Clients.Core.Helpers;
 using BikeSharing.Clients.Core.Models;
 using BikeSharing.Clients.Core.Models.Events;
 using BikeSharing.Clients.Core.Models.Rides;
-using BikeSharing.Clients.Core.Services;
 using BikeSharing.Clients.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace BikeSharing.Clients.Core.DataServices
 {
@@ -19,69 +17,117 @@ namespace BikeSharing.Clients.Core.DataServices
     {
         private readonly IRequestProvider _requestProvider;
         private readonly IAuthenticationService _authenticationService;
-        private readonly ILocationProvider _locationProvider;
 
         private static List<Suggestion> suggestions = StaticData.GetSuggestions();
 
-        public RidesService(IRequestProvider requestProvider, IAuthenticationService authenticationService, ILocationProvider locationProvider)
+        private static int StationsCounter = 0;
+
+        private static List<Station> stations = new List<Station>
+        {
+            new Station
+            {
+                Name = "Alki Beach Park I",
+                Slots = 22,
+                Occupied = 4,
+                Latitude = 47.5790791f,
+                Longitude = -122.4136163f
+            },
+            new Station
+            {
+                Name = "Alki Beach Park II",
+                Slots = 12,
+                Occupied = 7,
+                Latitude = 47.5743905f,
+                Longitude = -122.4023376f
+            },
+            new Station
+            {
+                Name = "Alki Point Lighthouse",
+                Slots = 15,
+                Occupied = 5,
+                Latitude = 47.5766275f,
+                Longitude = -122.4217906f
+            }
+        };
+
+        private static List<Ride> rides = new List<Ride>
+        {
+            new Ride
+            {
+                EventId = 1,
+                RideType = RideType.Event,
+                Name = "Ride Cultural",
+                Start = DateTime.Now.AddDays(-7),
+                Stop = DateTime.Now.AddDays(-7),
+                Duration = 3600,
+                Distance = 19,
+                From = stations[0].Name,
+                FromStation = stations[0],
+                To = stations[2].Name,
+                ToStation = stations[2]
+            },
+            new Ride
+            {
+                RideType = RideType.Custom,
+                Start = DateTime.Now.AddDays(-14),
+                Stop = DateTime.Now.AddDays(-14),
+                Duration = 2500,
+                Distance = 8900,
+                From = stations[1].Name,
+                FromStation = stations[1],
+                To = stations[0].Name,
+                ToStation = stations[0]
+            },
+            new Ride
+            {
+                RideType = RideType.Suggestion,
+                Start = DateTime.Now.AddDays(-14),
+                Stop = DateTime.Now.AddDays(-14),
+                Duration = 1800,
+                Distance = 10100,
+                From = stations[2].Name,
+                FromStation = stations[2],
+                To = stations[1].Name,
+                ToStation = stations[1]
+            }
+        };
+
+        public RidesService(IRequestProvider requestProvider, IAuthenticationService authenticationService)
         {
             _requestProvider = requestProvider;
             _authenticationService = authenticationService;
-            _locationProvider = locationProvider;
         }
 
-        public async Task<Booking> RequestBikeBooking(Station fromStation, Station toStation, Event @event)
+        public Task<Booking> RequestBikeBooking(Station station, Event @event)
         {
-            CheckBikesAvailability(fromStation);
-
-            var userId = _authenticationService.GetCurrentUserId();
-            var fromStationId = fromStation.Id;
-
-            UriBuilder builder = new UriBuilder(GlobalSettings.RidesEndpoint);
-            builder.Path = $"api/stations/{fromStationId}/checkout";
-
-            string uri = builder.ToString();
-
-            BookingRequest request = new BookingRequest
-            {
-                EndStationId = toStation.Id,
-                UserId = userId,
-                Event = new BookingRequest.BookingRequestEvent
-                {
-                    Id = @event.Id,
-                    EventName = @event.Name,
-                    EventType = RideType.Event
-                }
-            };
-
-            int bookingId = await _requestProvider.PutAsync<BookingRequest, int>(uri, request);
-            Booking booking = await GetBooking(bookingId);
-
-            Settings.CurrentBookingId = booking.Id;
-
-            return booking;
+            return BikeBooking(station, RideType.Event, @event.Id);
         }
 
-        public async Task<Booking> RequestBikeBooking(Station fromStation, Station toStation)
+        public Task<Booking> RequestBikeBooking(Station station, Suggestion suggestion)
         {
-            CheckBikesAvailability(fromStation);
+            return BikeBooking(station, RideType.Suggestion, suggestion.Id);
+        }
 
-            var userId = _authenticationService.GetCurrentUserId();
-            var fromStationId = fromStation.Id;
+        public Task<Booking> RequestBikeBooking(Station fromStation, Station toStation)
+        {
+            return BikeBooking(fromStation, RideType.Custom, 0);
+        }
 
-            UriBuilder builder = new UriBuilder(GlobalSettings.RidesEndpoint);
-            builder.Path = $"api/stations/{fromStationId}/checkout";
+        private async Task<Booking> BikeBooking(Station station, RideType type, int id)
+        {
+            await Task.Delay(500);
 
-            string uri = builder.ToString();
-
-            BookingRequest request = new BookingRequest
+            var booking = new Booking
             {
-                EndStationId = toStation.Id,
-                UserId = userId
+                Id = 222,
+                FromStation = station,
+                ToStation = stations[0],
+                RegistrationDate = DateTime.UtcNow,
+                DueDate = DateTime.UtcNow.AddMinutes(3),
+                EventId = id,
+                BikeId = 2332,
+                RideType = type
             };
-
-            int bookingId = await _requestProvider.PutAsync<BookingRequest, int>(uri, request);
-            Booking booking = await GetBooking(bookingId);
 
             Settings.CurrentBookingId = booking.Id;
 
@@ -90,52 +136,28 @@ namespace BikeSharing.Clients.Core.DataServices
 
         public async Task<Booking> GetBooking(int bookingId)
         {
-            UriBuilder builder = new UriBuilder(GlobalSettings.RidesEndpoint);
-            builder.Path = $"api/bookings/{bookingId}";
+            await Task.Delay(500);
 
-            string uri = builder.ToString();
-
-            Booking booking = await _requestProvider.GetAsync<Booking>(uri);
+            var booking = new Booking
+            {
+                Id = bookingId,
+                FromStation = stations[0],
+                ToStation = stations[1],
+                RegistrationDate = DateTime.UtcNow,
+                DueDate = DateTime.UtcNow.AddMinutes(3),
+                EventId = 1,
+                BikeId = 2332,
+                RideType = RideType.Event
+            };
 
             return booking;
         }
 
-        public async Task<Station> GetNearestStationTo(GeoLocation location)
+        public Task<Station> GetNearestStationTo(GeoLocation location)
         {
-            IEnumerable<Station> stations = await GetNearestStationsTo(location);
+            var station = stations[StationsCounter++ % stations.Count()];
 
-            return stations.FirstOrDefault();
-        }
-
-        public async Task<Station> GetInfoForNearestStationTo(GeoLocation toGeoLocation)
-        {
-            Station station = await GetNearestStationTo(toGeoLocation);
-            station = await GetStation(station.Id);
-
-            return station;
-        }
-
-        public async Task<Station> GetInfoForNearestStation()
-        {
-            IEnumerable<Station> nearest = await GetNearestStations();
-            Station station = nearest.FirstOrDefault();
-
-            if (station != null)
-            {
-                station = await GetStation(station.Id);
-            }
-
-            return station;
-        }
-
-        public Task<Station> GetStation(int stationId)
-        {
-            UriBuilder builder = new UriBuilder(GlobalSettings.RidesEndpoint);
-            builder.Path = $"api/stations/{stationId}";
-
-            string uri = builder.ToString();
-
-            return _requestProvider.GetAsync<Station>(uri);
+            return Task.FromResult(station);
         }
 
         public async Task<IEnumerable<Suggestion>> GetSuggestions()
@@ -154,9 +176,9 @@ namespace BikeSharing.Clients.Core.DataServices
 
             string uri = builder.ToString();
 
-            IEnumerable<Ride> userRides = await _requestProvider.GetAsync<IEnumerable<Ride>>(uri);
+            IEnumerable<Ride> rides = await _requestProvider.GetAsync<IEnumerable<Ride>>(uri);
 
-            return userRides;
+            return rides;
         }
 
         public void RemoveCurrentBooking()
@@ -166,37 +188,59 @@ namespace BikeSharing.Clients.Core.DataServices
 
         public async Task<IEnumerable<Station>> GetNearestStations()
         {
-            ILocationResponse location = await _locationProvider.GetPositionAsync();
-
-            return location is GeoLocation
-                ? await GetNearestStationsTo(location as GeoLocation)
-                : Enumerable.Empty<Station>();
-        }
-
-        public async Task<IEnumerable<Station>> GetNearestStationsTo(GeoLocation location)
-        {
-            int maxStations = Device.Idiom == TargetIdiom.Desktop ? 40 : 30;
-
-            var userId = _authenticationService.GetCurrentUserId();
-
-            UriBuilder builder = new UriBuilder(GlobalSettings.RidesEndpoint);
-            builder.Path = $"/api/stations/nearto?latitude={location.Latitude.ToString(CultureInfo.InvariantCulture)}&longitude={location.Longitude.ToString(CultureInfo.InvariantCulture)}&count={maxStations}";
-
-            string uri = builder.ToString();
-
-            IEnumerable<Station> stations = await _requestProvider.GetAsync<IEnumerable<Station>>(uri);
-
-            var all = stations.Select(s => s.Id.ToString()).Aggregate((s1, s2) => $"{s1}, {s2}");
+            await Task.Delay(200);
 
             return stations;
         }
 
-        private void CheckBikesAvailability(Station fromStation)
+        public async Task<IEnumerable<Station>> GetNearestStationsTo(GeoLocation location)
         {
-            if (fromStation?.Occupied <= 0)
+            try
             {
-                throw new NoAvailableBikesException($"Station {fromStation?.Id} has not any available bike");
+                const int count = 10;
+                var userId = _authenticationService.GetCurrentUserId();
+
+                UriBuilder builder = new UriBuilder(GlobalSettings.RidesEndpoint);
+                builder.Path = $"/api/stations/nearto?latitude={location.Latitude.ToString(CultureInfo.InvariantCulture)}&longitude={location.Longitude.ToString(CultureInfo.InvariantCulture)}&count={count}";
+
+                string uri = builder.ToString();
+
+                IEnumerable<Station> stations = await _requestProvider.GetAsync<IEnumerable<Station>>(uri);
+
+                return stations;
             }
+            catch
+            {
+                await Task.Delay(200);
+
+                return stations;
+            }
+        }
+
+        public async Task<Station> GetInfoForNearestStation()
+        {
+            await Task.Delay(500);
+
+            return stations.FirstOrDefault();
+        }
+
+        public async Task<Station> GetInfoForNearestStationTo(GeoLocation toGeoLocation)
+        {
+            await Task.Delay(500);
+
+            return stations.FirstOrDefault();
+        }
+
+        public async Task<Station> GetStation(int stationId)
+        {
+            await Task.Delay(500);
+
+            return stations.FirstOrDefault();
+        }
+
+        public Task<Booking> RequestBikeBooking(Station fromStation, Station toStation, Event @event)
+        {
+            return BikeBooking(fromStation, RideType.Event, @event.Id);
         }
     }
 }

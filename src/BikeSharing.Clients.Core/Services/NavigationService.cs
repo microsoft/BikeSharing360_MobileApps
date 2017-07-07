@@ -4,7 +4,6 @@ using BikeSharing.Clients.Core.Pages;
 using BikeSharing.Clients.Core.Pages.SignUp;
 using BikeSharing.Clients.Core.ViewModels;
 using BikeSharing.Clients.Core.ViewModels.Base;
-using BikeSharing.Clients.Core.ViewModels.SignUp;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -175,7 +174,6 @@ namespace BikeSharing.Clients.Core.Services
             _mappings.Add(typeof(EventSummaryViewModel), typeof(EventSummaryPage));
             _mappings.Add(typeof(HomeViewModel), typeof(HomePage));
             _mappings.Add(typeof(LoginViewModel), typeof(LoginPage));
-            _mappings.Add(typeof(PaymentViewModel), typeof(PaymentPage));
 
             if (Device.OS == TargetPlatform.Windows)
             {

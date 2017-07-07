@@ -1,6 +1,4 @@
-﻿using BikeSharing.Clients.Core.Models;
-using BikeSharing.Clients.Core.Models.Enums;
-using BikeSharing.Clients.Core.Utils;
+﻿using BikeSharing.Clients.Core.Models.Enums;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;

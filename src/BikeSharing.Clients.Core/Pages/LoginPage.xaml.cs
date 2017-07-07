@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using BikeSharing.Clients.Core.ViewModels.Base;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace BikeSharing.Clients.Core.Pages
@@ -16,5 +17,18 @@ namespace BikeSharing.Clients.Core.Pages
         {
             base.OnBindingContextChanged();
         }
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+
+			var osVersionString = ViewModelLocator.Instance.Resolve<IOperatingSystemVersionProvider>()
+                .GetOperatingSystemVersionString();
+
+			if (Device.OS == TargetPlatform.iOS && osVersionString == "10.0.2")
+			{
+				SignInButton.BackgroundColor = Color.Black;
+			}
+		}
     }
 }

@@ -1,5 +1,4 @@
-﻿using BikeSharing.Clients.Core.Models;
-using BikeSharing.Clients.Core.Models.Users;
+﻿using BikeSharing.Clients.Core.Models.Users;
 using BikeSharing.Clients.Core.ViewModels.Base;
 using System.Windows.Input;
 using Xamarin.Forms;

@@ -6,10 +6,12 @@ namespace BikeSharing.Clients.Core.DataServices
     {
         public NoAvailableBikesException()
         {
+
         }
 
         public NoAvailableBikesException(string message) : base(message)
         {
+
         }
     }
 }
