@@ -1,4 +1,4 @@
-#BikeSharing360
+# BikeSharing360
 
 During our Connect(); event this year we presented 15 demos in Scott Guthrie’s and Scott Hanselman’s keynotes. If you missed the keynotes, you can watch the recording in [Channel 9](https://channel9.msdn.com/Events/Connect/2016/Keynotes-Scott-Guthrie-and-Scott-Hanselman).
 
@@ -8,15 +8,15 @@ BikeSharing360 is a fictitious example of a smart bike sharing system with 10,00
 
 In this demo scenario, we built several apps for both the enterprise and the consumer (bike riders). You can find all other BikeSharing360 repos in the following locations:
 
-*[Mobile Apps](https://github.com/Microsoft/BikeSharing360_MobileApps)
-*[Backend Services](https://github.com/Microsoft/BikeSharing360_BackendServices)
-*[Websites](https://github.com/Microsoft/BikeSharing360_Websites)
-*[Single Container Apps](https://github.com/Microsoft/BikeSharing360_SingleContainer)
-*[Multi Container Apps](https://github.com/Microsoft/BikeSharing360_MultiContainer)
-*[Cognitive Services Kiosk App](https://github.com/Microsoft/BikeSharing360_CognitiveServicesKioskApp)
-*[Azure Bot App](https://github.com/Microsoft/BikeSharing360_BotApps)
+* [Mobile Apps](https://github.com/Microsoft/BikeSharing360_MobileApps)
+* [Backend Services](https://github.com/Microsoft/BikeSharing360_BackendServices)
+* [Websites](https://github.com/Microsoft/BikeSharing360_Websites)
+* [Single Container Apps](https://github.com/Microsoft/BikeSharing360_SingleContainer)
+* [Multi Container Apps](https://github.com/Microsoft/BikeSharing360_MultiContainer)
+* [Cognitive Services Kiosk App](https://github.com/Microsoft/BikeSharing360_CognitiveServicesKioskApp)
+* [Azure Bot App](https://github.com/Microsoft/BikeSharing360_BotApps)
 
-#BikeRider Xamarin app and Maintenance Cordova app
+## BikeRider Xamarin app and Maintenance Cordova app
 This repository contains the BikeRider consumer-facing mobile apps for renting bikes and the BikeSharing360 maintenance app built with Cordova.
 
 **Note:** This document is about the **Xamarin apps**. For the [Cordova app click here](./Cordova.md).
@@ -36,20 +36,19 @@ BikeRider features **93.7% code share** across all platforms (7.34% iOS / 8.61% 
 
 [Xamarin.Forms](https://www.xamarin.com/forms) allows you to build native UIs for iOS, Android, and Windows from a single, shared codebase. You can dive into mobile development with Xamarin.Forms by following our [free self-guided learning](https://university.xamarin.com/classes/track/self-guided) from Xamarin University. This project exercises the following patterns and features:
 
-* Xamarin.Forms
-  * [XAML UI](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/)
-  * [Animations](https://developer.xamarin.com/guides/xamarin-forms/user-interface/animation/)
-  * Converters
-  * Custom Controls
-  * [Custom Renderers](https://developer.xamarin.com/guides/xamarin-forms/custom-renderer/)
-  * [Data Binding](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/data_binding_basics/)
-  * [Effects](https://developer.xamarin.com/guides/xamarin-forms/effects/)
-  * IoC
-  * [Messaging Center](https://developer.xamarin.com/guides/xamarin-forms/messaging-center/)
-  * [MVVM](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/data_bindings_to_mvvm/)
-  * [Native View Declaration](https://developer.xamarin.com/guides/xamarin-forms/user-interface/native-views/)
-  * [Plugins for Xamarin](https://www.xamarin.com/plugins)
-  * [Styles](https://developer.xamarin.com/guides/xamarin-forms/user-interface/styles/)
+* [XAML UI](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/)
+* [Animations](https://developer.xamarin.com/guides/xamarin-forms/user-interface/animation/)
+* Converters
+* Custom Controls
+* [Custom Renderers](https://developer.xamarin.com/guides/xamarin-forms/custom-renderer/)
+* [Data Binding](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/data_binding_basics/)
+* [Effects](https://developer.xamarin.com/guides/xamarin-forms/effects/)
+* IoC
+* [Messaging Center](https://developer.xamarin.com/guides/xamarin-forms/messaging-center/)
+* [MVVM](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/data_bindings_to_mvvm/)
+* [Native View Declaration](https://developer.xamarin.com/guides/xamarin-forms/user-interface/native-views/)
+* [Plugins for Xamarin](https://www.xamarin.com/plugins)
+* [Styles](https://developer.xamarin.com/guides/xamarin-forms/user-interface/styles/)
   
 <img src="Images/UWP.png" alt="Three platforms" Width="800" />
 
@@ -122,7 +121,6 @@ Here's links to blog posts related to this project:
 - Visual Studio Toolbox: [Exploring our newest sample app, BikeSharing360](https://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Exploring-our-newest-sample-app-BikeSharing360)
 - Xamarin Blog: [Microsoft Connect(); 2016 Recap](https://blog.xamarin.com/microsoft-connect-2016-recap/)
 - Xamarin Blog: [Introducing the BikeRider Xamarin.Forms Sample App](https://blog.xamarin.com/introducing-bikerider-app/)
-
 
 ## Clean and Rebuild
 If you see build issues when pulling updates from the repo, try cleaning and rebuilding the solution.
