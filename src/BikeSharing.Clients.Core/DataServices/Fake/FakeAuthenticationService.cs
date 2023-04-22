@@ -18,7 +18,7 @@ namespace BikeSharing.Clients.Core.DataServices
         {
             bool succeeded = false;
 
-            if (userName == "aaa")
+            if (userName.ToLower() == "aaa")
             {
                 succeeded = true;
             }
